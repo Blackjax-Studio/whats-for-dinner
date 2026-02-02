@@ -19,7 +19,7 @@ A Model Context Protocol (MCP) server for the ChatGPT App Store that helps you d
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/BlackjaxStudio/whats-for-dinner.git
+git clone https://github.com/Blackjax-Studio/whats-for-dinner.git
 cd whats-for-dinner
 ```
 
@@ -96,7 +96,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Support
 
 If you encounter any issues or have questions:
-- Open an issue on GitHub at [BlackjaxStudio/whats-for-dinner](https://github.com/BlackjaxStudio/whats-for-dinner/issues)
+- Open an issue on GitHub at [Blackjax-Studio/whats-for-dinner](https://github.com/Blackjax-Studio/whats-for-dinner/issues)
 - Check existing issues for solutions
 - Join the [MCP community discussions](https://github.com/modelcontextprotocol/discussions)
 

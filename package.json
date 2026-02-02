@@ -18,12 +18,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BlackjaxStudio/whats-for-dinner.git"
+    "url": "git+https://github.com/Blackjax-Studio/whats-for-dinner.git"
   },
   "bugs": {
-    "url": "https://github.com/BlackjaxStudio/whats-for-dinner/issues"
+    "url": "https://github.com/Blackjax-Studio/whats-for-dinner/issues"
   },
-  "homepage": "https://github.com/BlackjaxStudio/whats-for-dinner",
+  "homepage": "https://github.com/Blackjax-Studio/whats-for-dinner",
   "keywords": [
     "mcp",
     "model-context-protocol",

@@ -75,7 +75,7 @@ Look for issues labeled `good first issue` - these are great starting points for
 
 1. **Fork and clone**:
 ```bash
-git clone https://github.com/BlackjaxStudio/whats-for-dinner.git
+git clone https://github.com/Blackjax-Studio/whats-for-dinner.git
 cd whats-for-dinner
 ```
 
@@ -262,7 +262,7 @@ When adding features, please update:
 
 ## Questions?
 
-- Check existing [GitHub Issues](https://github.com/BlackjaxStudio/whats-for-dinner/issues)
+- Check existing [GitHub Issues](https://github.com/Blackjax-Studio/whats-for-dinner/issues)
 - Review [MCP documentation](https://modelcontextprotocol.io/)
 - Open a new issue with the `question` label
 
