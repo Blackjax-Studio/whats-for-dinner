@@ -231,8 +231,10 @@
             display:flex;
             flex-wrap: wrap;
             align-items:center;
-            justify-content: space-between;
-            gap: 10px;
+            justify-content: center;
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
         }
 
         .footerLinks{
@@ -240,6 +242,7 @@
             gap: 10px;
             flex-wrap: wrap;
             align-items:center;
+            justify-content: center;
         }
 
         .footerLinks button{
@@ -295,8 +298,16 @@
             </select>
         </div>
 
-        <div class="video-container" id="video-player">
-            <div class="video-placeholder">
+        <div class="video-container" id="video-container">
+            <video id="web-video" style="width: 100%; height: 100%; display: block;" controls autoplay muted loop>
+                <source src="/videos/test_web_recording.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video id="mobile-video" style="width: 100%; height: 100%; display: none;" controls autoplay muted loop>
+                <source src="/videos/ios_test_recording.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div id="placeholder" class="video-placeholder" style="display: none;">
                 <div class="play-icon"></div>
                 <span id="platform-label">Demo Video: Web Browser</span>
             </div>
@@ -310,7 +321,10 @@
 <script>
     function updateVideo(platform) {
         const label = document.getElementById('platform-label');
-        const container = document.getElementById('video-player');
+        const container = document.getElementById('video-container');
+        const webVideo = document.getElementById('web-video');
+        const mobileVideo = document.getElementById('mobile-video');
+        const placeholder = document.getElementById('placeholder');
 
         const platforms = {
             'web': 'Web Browser',
@@ -320,14 +334,24 @@
 
         label.textContent = `Demo Video: ${platforms[platform]}`;
 
+        // Reset all
+        webVideo.style.display = 'none';
+        webVideo.pause();
+        mobileVideo.style.display = 'none';
+        mobileVideo.pause();
+        placeholder.style.display = 'none';
+
         // Handle portrait mode for mobile platforms
         if (platform === 'ios' || platform === 'android') {
             container.classList.add('portrait');
+            mobileVideo.style.display = 'block';
+            mobileVideo.play().catch(e => console.log("Autoplay blocked:", e));
         } else {
             container.classList.remove('portrait');
+            webVideo.style.display = 'block';
+            webVideo.play().catch(e => console.log("Autoplay blocked:", e));
         }
 
-        // In a real app, you would swap the video source here
         console.log(`Switching to ${platform} demo`);
     }
 </script>
