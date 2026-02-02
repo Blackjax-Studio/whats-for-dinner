@@ -190,6 +190,38 @@ describe("mcpRoutes", () => {
       expect(mockRes.render).toHaveBeenCalledWith("support", { appName: config.appName });
     });
 
+    it("should have a /how-it-works route that renders howItWorks template", async () => {
+      const mockReq = {} as Request;
+      const mockRes = {
+        render: vi.fn(),
+      } as unknown as Response;
+
+      const howItWorksRoute = router.stack.find(
+        (s: any) => s.route?.path === "/how-it-works" && s.route?.methods?.get
+      );
+      expect(howItWorksRoute).toBeDefined();
+
+      const handler = howItWorksRoute!.route!.stack[0].handle;
+      await handler(mockReq, mockRes, () => {});
+      expect(mockRes.render).toHaveBeenCalledWith("howItWorks", { appName: config.appName });
+    });
+
+    it("should have a /see-it-work route that renders seeItWork template", async () => {
+      const mockReq = {} as Request;
+      const mockRes = {
+        render: vi.fn(),
+      } as unknown as Response;
+
+      const seeItWorkRoute = router.stack.find(
+        (s: any) => s.route?.path === "/see-it-work" && s.route?.methods?.get
+      );
+      expect(seeItWorkRoute).toBeDefined();
+
+      const handler = seeItWorkRoute!.route!.stack[0].handle;
+      await handler(mockReq, mockRes, () => {});
+      expect(mockRes.render).toHaveBeenCalledWith("seeItWork", { appName: config.appName });
+    });
+
     it("should have an /mcp route that calls handleMcpRequest", () => {
       const mcpRoute = router.stack.find(
         (s: any) => s.route?.path === "/mcp"
