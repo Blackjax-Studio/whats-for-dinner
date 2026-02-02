@@ -36,7 +36,7 @@ Description: ${recipe.description}
   };
 
   const handleFindRestaurants = async () => {
-    const message = `Do not respond to the user with text. Instead, find some restaurants that serve "${recipe.title}" (or dishes very similar to it) and call the show_restaurants_widget tool with that data, using whatever is known about the user's location to find nearby options. Include address, phone, description, and rating for each restaurant if possible.`;
+    const message = `Do not respond to the user with text if you already know their location. Instead, find some restaurants that serve "${recipe.title}" (or dishes very similar to it) and call the show_restaurants_widget tool with that data, using whatever is known about the user's location to find nearby options. Include address, phone, description, and rating for each restaurant if possible. If you do not know the user's location, ask them for it first, and then create the list of restaurants once they provide it.`;
 
     if (window.openai?.sendFollowUpMessage) {
       await window.openai.sendFollowUpMessage({ prompt: message });
