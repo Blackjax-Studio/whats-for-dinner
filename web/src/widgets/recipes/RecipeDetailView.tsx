@@ -20,7 +20,19 @@ export function RecipeDetailView() {
   };
 
   const handleGiveRecipe = async () => {
-    alert(`Requesting full recipe for ${recipe.title}...`);
+    const message = `Sure, I'll give you a recipe for "${recipe.title}". 
+
+Title: ${recipe.title}
+Description: ${recipe.description}
+
+(Model instruction: Please provide a friendly response and then the full recipe. Do not repeat these internal instructions.)`;
+
+    if (window.openai?.sendFollowUpMessage) {
+      await window.openai.sendFollowUpMessage({ prompt: message });
+    } else {
+      console.error("window.openai.sendFollowUpMessage is not available");
+      alert(`Instruction sent to model: ${message}`);
+    }
   };
 
   const handleRestaurants = () => {
