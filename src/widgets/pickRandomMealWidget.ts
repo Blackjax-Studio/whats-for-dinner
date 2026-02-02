@@ -18,7 +18,7 @@ export const pickRandomMealWidget = {
       contents: [
         {
           uri: "ui://widget/pickRandomMeal.html",
-          mimeType: "text/html+skybridge",
+          mimeType: "text/html",
           text: renderedHtml,
           _meta: {
             "openai/widgetPrefersBorder": true,
