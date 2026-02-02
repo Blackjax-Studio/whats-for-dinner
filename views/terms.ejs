@@ -166,11 +166,48 @@
             color: var(--text);
         }
         .footer{
-            text-align:center;
+            margin-top: 6px;
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #f9fafb;
+            display:flex;
+            flex-wrap: wrap;
+            align-items:center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .footerLinks{
+            display:flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items:center;
+        }
+
+        .footerLinks button{
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: #ffffff;
+            transition: background .2s ease, transform .2s ease;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .footerLinks button:hover{
+            background: #f3f4f6;
+            transform: translateY(-1px);
+            text-decoration:none;
+            color: var(--text);
+        }
+
+        .copyright{
             color: var(--muted2);
-            font-size: 0.875rem;
-            margin-top: 16px;
-            padding: 18px 10px;
+            font-size: 0.86rem;
         }
         .btnrow{
             display:flex;
@@ -248,18 +285,7 @@ const developerName = (typeof developer !== "undefined" && developer)
 %>
 
 <div class="wrap">
-    <div class="topbar">
-        <a href="/" class="brand">
-            <div class="logo">🍽️</div>
-            <div class="brandtext">
-                <strong><%= appName %></strong>
-                <span>Terms of Service</span>
-            </div>
-        </a>
-        <div class="pill">
-            Last updated: <code><%= effectiveDate %></code>
-        </div>
-    </div>
+    <%- include('partials/header') %>
 
     <div class="card">
 
@@ -444,9 +470,7 @@ const developerName = (typeof developer !== "undefined" && developer)
         </p>
     </div>
 
-    <div class="footer">
-        &copy; <%= new Date().getFullYear() %> <%= appName %>. All rights reserved (except as provided by the open-source license).
-    </div>
+    <%- include('partials/footer') %>
 </div>
 </body>
 </html>

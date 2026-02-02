@@ -20,6 +20,10 @@ router.get("/support", (req: Request, res: Response) => {
   res.render("support", { appName: config.appName });
 });
 
+router.get("/how-it-works", (req: Request, res: Response) => {
+  res.render("howItWorks", { appName: config.appName });
+});
+
 router.all("/mcp", handleMcpRequest);
 
 export default router;

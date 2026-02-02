@@ -72,6 +72,7 @@
             align-items:center;
             gap: 12px;
             min-width: 0;
+            text-decoration: none;
             cursor: pointer;
         }
 
@@ -373,7 +374,7 @@
             align-items:center;
         }
 
-        .footerLinks a{
+        .footerLinks button{
             color: var(--muted);
             font-size: 0.9rem;
             text-decoration: none;
@@ -382,9 +383,11 @@
             border: 1px solid var(--border);
             background: #ffffff;
             transition: background .2s ease, transform .2s ease;
+            cursor: pointer;
+            font-family: inherit;
         }
 
-        .footerLinks a:hover{
+        .footerLinks button:hover{
             background: #f3f4f6;
             transform: translateY(-1px);
             text-decoration:none;
@@ -427,41 +430,13 @@ const readme = repo + "#readme";
 
 <div class="wrap">
 
-    <div class="topbar">
-        <div class="brand" onclick="window.location='/'">
-            <div class="logo">🍽️</div>
-            <div class="brandtext">
-                <strong><%= appName %></strong>
-                <span>Open-source MCP dinner picker</span>
-            </div>
-        </div>
-    </div>
+    <%- include('partials/header') %>
 
     <div class="hero">
         <!-- Main Cycler Card -->
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; padding: 10px 0;">
             <div class="cycleContainer" style="width: 100%; border: none; background: transparent; margin-top: 0; padding: 0; min-height: auto;">
                 <div id="cycleText" class="cycleText">Loading...</div>
-            </div>
-        </div>
-
-        <!-- How It Works -->
-        <div class="card sideCard">
-            <div class="sideTop">
-                <h2 class="sideTitle">How it works</h2>
-                <p class="sideText">
-                    Designed for quick decisions—no accounts, no setup drama.
-                </p>
-            </div>
-
-            <ol class="miniSteps">
-                <li>Provide meal options (or use the built-in list).</li>
-                <li>Spin the picker in the UI widget.</li>
-                <li>Use quick actions (recipe/restaurant/spin again).</li>
-            </ol>
-
-            <div class="notice">
-                ✅ Privacy-first: this server is built to run without storing personal user data.
             </div>
         </div>
     </div>
@@ -478,18 +453,7 @@ const readme = repo + "#readme";
         </div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <div class="footerLinks">
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/terms">Terms of Service</a>
-            <a href="/support">Support</a>
-        </div>
-
-        <div class="copyright">
-            &copy; <%= new Date().getFullYear() %> <%= appName %>. All rights reserved (except as provided by the open-source license).
-        </div>
-    </div>
+    <%- include('partials/footer') %>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -513,7 +477,7 @@ const readme = repo + "#readme";
                     cycles++;
                     setTimeout(spin, speed);
                 } else {
-                    cycleText.textContent = "Stop spinning your wheels. Spin and let us choose!";
+                    cycleText.textContent = "Stop spinning your wheels. We'll spin for you!";
                     cycleText.classList.add('final');
                 }
             }

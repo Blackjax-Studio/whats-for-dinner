@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <title>Support - <%= appName %></title>
-    <meta name="description" content="Support and help resources for <%= appName %>." />
+    <title>How It Works - <%= appName %></title>
+    <meta name="description" content="Learn how <%= appName %> helps you choose your next meal." />
 
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Vend+Sans:wght@400;700&display=swap" rel="stylesheet">
 
@@ -102,64 +102,90 @@
             color: var(--muted2);
         }
 
+        .header-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+        }
+
         .card{
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            padding: 34px 28px;
-            text-align: center;
+            padding: 40px 32px;
         }
 
         h1{
-            margin: 0 0 10px;
+            margin: 0 0 16px;
             font-family: var(--display);
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 400;
             letter-spacing: -0.02em;
             color: #111827;
         }
 
-        p{
-            margin: 0 0 22px;
-            color: var(--muted);
-            font-size: 1.05rem;
-        }
-
-        .btn{
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-            gap: 8px;
-            padding: 12px 18px;
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            background: #f3f4f6;
+        h2{
+            margin: 32px 0 12px;
+            font-size: 1.4rem;
             color: var(--text);
-            font-weight: 650;
-            text-decoration:none;
-            cursor: pointer;
-            transition: all 0.2s ease;
         }
 
-        .btn:hover{
-            background: #e5e7eb;
-            transform: translateY(-1px);
-            text-decoration: none;
+        p{
+            margin: 0 0 20px;
+            color: var(--muted);
+            font-size: 1.1rem;
         }
 
-        .btn.primary{
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
             background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
         }
 
-        .btn.primary:hover{
-            background: #0046CC;
-            border-color: #0046CC;
-            color: #fff;
+        .step-content h3 {
+            margin: 0 0 4px;
+            font-size: 1.1rem;
+            color: var(--text);
         }
 
+        .step-content p {
+            margin: 0;
+            font-size: 1rem;
+        }
 
         .footer{
             margin-top: 6px;
@@ -176,7 +202,7 @@
 
         .footerLinks{
             display:flex;
-            gap: 14px;
+            gap: 10px;
             flex-wrap: wrap;
             align-items:center;
         }
@@ -206,41 +232,56 @@
             font-size: 0.86rem;
         }
 
-        @media(max-width: 520px){
-            .card{ padding: 24px 16px; }
-            h1{ font-size: 1.6rem; }
+        @media(max-width: 640px){
+            .card{ padding: 28px 20px; }
+            h1{ font-size: 1.8rem; }
+            .topbar { flex-direction: column; align-items: flex-start; gap: 16px; }
         }
     </style>
 </head>
 
 <body>
-<%
-const repo =
-        (typeof githubRepo !== "undefined" && githubRepo)
-                ? githubRepo
-                : "https://github.com/Blackjax-Studio/whats-for-dinner";
-
-const issues = repo + "/issues";
-const readme = repo + "#readme";
-%>
-
 <div class="wrap">
 
     <%- include('partials/header') %>
 
     <div class="card">
-        <h1>Support</h1>
-
+        <h1>How it works</h1>
         <p>
-            Need help with <strong><%= appName %></strong>?
-            This project is maintained as an open-source tool, and support is provided through GitHub.
+            <%= appName %> is an open-source Model Context Protocol (MCP) tool designed to solve the age-old question:
+            <em>"What's for dinner?"</em>
         </p>
 
-        <div style="margin-top: 30px; display: flex; justify-content: center;">
-            <a href="<%= issues %>" target="_blank" rel="noopener noreferrer" class="btn primary">
-                Open an Issue on GitHub →
-            </a>
+        <h2>The Process</h2>
+        <div class="step-list">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Connect to ChatGPT</h3>
+                    <p>Integrate our MCP server into your ChatGPT environment to give your AI dinner-picking superpowers.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Ask for a Suggestion</h3>
+                    <p>Tell ChatGPT what you're in the mood for, or ask it to choose from a list of local restaurants.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Spin the Wheel</h3>
+                    <p>Use our interactive widget to randomly select your meal and get recipes or directions instantly.</p>
+                </div>
+            </div>
         </div>
+
+        <h2>Open Source & Privacy</h2>
+        <p>
+            We believe in transparency. <%= appName %> is fully open-source and built with a privacy-first mindset.
+            We don't store your data, your preferences, or your location. Everything happens locally in your session.
+        </p>
     </div>
 
     <%- include('partials/footer') %>
