@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Privacy Policy - <%= appName %></title>
+    <meta name="description" content="Privacy Policy for <%= appName %>." />
+
+    <style>
+        :root{
+            --bg: #0b1220;
+            --card: rgba(255,255,255,0.08);
+            --card2: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.14);
+            --text: rgba(255,255,255,0.92);
+            --muted: rgba(255,255,255,0.72);
+            --muted2: rgba(255,255,255,0.60);
+            --accent: #60a5fa;
+            --accent2: #22c55e;
+            --warn: #fbbf24;
+            --shadow: 0 20px 60px rgba(0,0,0,.35);
+            --radius: 16px;
+            --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        body{
+            margin:0;
+            font-family: var(--sans);
+            line-height: 1.6;
+            color: var(--text);
+            background:
+                    radial-gradient(1200px 800px at 10% 0%, rgba(96,165,250,0.22), transparent 55%),
+                    radial-gradient(900px 700px at 90% 10%, rgba(34,197,94,0.18), transparent 50%),
+                    radial-gradient(700px 600px at 50% 100%, rgba(251,191,36,0.10), transparent 55%),
+                    var(--bg);
+            padding: 28px 16px 44px;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .wrap{
+            max-width: 940px;
+            margin: 0 auto;
+        }
+
+        .topbar{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.05);
+            border-radius: 14px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.18);
+        }
+
+        .brand{
+            display:flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .brand strong{
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .brand span{
+            font-size: 0.82rem;
+            color: var(--muted2);
+        }
+
+        .pill{
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.06);
+            font-size: 0.86rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .pill code{
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .card{
+            background: linear-gradient(180deg, var(--card), var(--card2));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px 28px;
+            backdrop-filter: blur(12px);
+        }
+
+        h1{
+            margin: 0 0 8px;
+            font-size: 2.0rem;
+            letter-spacing: -0.02em;
+        }
+
+        .meta{
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        h2{
+            margin: 26px 0 8px;
+            font-size: 1.2rem;
+            letter-spacing: -0.01em;
+        }
+
+        p{
+            margin: 8px 0 14px;
+            color: rgba(255,255,255,0.88);
+        }
+
+        ul{
+            margin: 8px 0 14px 18px;
+            color: rgba(255,255,255,0.88);
+        }
+
+        li{ margin: 6px 0; }
+
+        .notice{
+            border-left: 4px solid var(--accent2);
+            background: rgba(34,197,94,0.10);
+            padding: 14px 14px;
+            border-radius: 12px;
+            margin: 18px 0 22px;
+            color: rgba(255,255,255,0.90);
+        }
+
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+            font-size: 0.92rem;
+            text-decoration: none;
+            margin-bottom: 16px;
+        }
+
+        .btn:hover{
+            background: rgba(255,255,255,0.10);
+            text-decoration: none;
+        }
+
+        .footer{
+            text-align:center;
+            color: var(--muted2);
+            font-size: 0.875rem;
+            margin-top: 16px;
+            padding: 18px 10px;
+        }
+
+        @media (max-width: 520px){
+            .card{ padding: 22px 16px; }
+            h1{ font-size: 1.7rem; }
+            .topbar{ flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+
+<body>
+<%
+const effectiveDate =
+        (typeof lastUpdated !== "undefined" && lastUpdated)
+                ? lastUpdated
+                : new Date().toLocaleDateString();
+
+const gh =
+        (typeof githubUrl !== "undefined" && githubUrl)
+                ? githubUrl
+                : "https://github.com/yourname/yourrepo";
+
+const contact =
+        (typeof contactEmail !== "undefined" && contactEmail)
+                ? contactEmail
+                : null;
+%>
+
+<div class="wrap">
+
+    <div class="topbar">
+        <div class="brand">
+            <strong><%= appName %></strong>
+            <span>Privacy Policy</span>
+        </div>
+
+        <div class="pill">
+            Last updated: <code><%= effectiveDate %></code>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <a href="/" class="btn">&larr; Back to Home</a>
+
+        <h1>Privacy Policy</h1>
+        <p class="meta">
+            This Privacy Policy explains how <strong><%= appName %></strong> handles information when you use the App.
+            The App is an open-source MCP server designed to help users choose meals randomly.
+        </p>
+
+        <div class="notice">
+            ✅ <strong>Privacy by Design:</strong>
+            <%= appName %> does not collect, sell, or store personal user data on any developer-controlled backend.
+        </div>
+
+        <h2>1. Information We Collect</h2>
+        <p>
+            <strong><%= appName %></strong> is intentionally built to minimize data collection.
+            The App does not require accounts, registrations, or identifying information.
+        </p>
+
+        <ul>
+            <li>No names, emails, or user profiles</li>
+            <li>No payment information</li>
+            <li>No tracking identifiers</li>
+            <li>No advertising analytics</li>
+        </ul>
+
+        <h2>2. Information Processed During Use</h2>
+        <p>
+            When you use the App through an AI client such as ChatGPT, the client may send input (for example, a list of meals)
+            to the MCP server to generate a response.
+        </p>
+
+        <p>
+            The App processes this data only transiently in memory to return a meal selection result.
+            The developer does not intentionally log or permanently retain this information.
+        </p>
+
+        <h2>3. No Data Storage</h2>
+        <p>
+            The App does not operate a database of user activity and does not store:
+        </p>
+
+        <ul>
+            <li>chat histories</li>
+            <li>personal prompts</li>
+            <li>meal preferences</li>
+            <li>session identifiers</li>
+        </ul>
+
+        <h2>4. Third-Party AI Client Processing</h2>
+        <p>
+            Your interaction with <%= appName %> is mediated through an AI client platform (such as ChatGPT).
+            That platform may collect or retain data according to its own policies.
+        </p>
+
+        <p>
+            You should review the AI client provider’s privacy documentation separately, as it governs what happens
+            before requests reach the App.
+        </p>
+
+        <h2>5. Cookies and Tracking</h2>
+        <p>
+            The App does not use cookies, trackers, advertising beacons, or analytics services.
+        </p>
+
+        <h2>6. Open Source Transparency</h2>
+        <p>
+            The App is open source, and the full codebase is available publicly at:
+        </p>
+
+        <p>
+            <a href="<%= gh %>" target="_blank" rel="noopener noreferrer">
+                <%= gh %>
+            </a>
+        </p>
+
+        <p>
+            Users are welcome to inspect how the App functions and verify that no hidden data collection occurs.
+        </p>
+
+        <h2>7. Children’s Privacy</h2>
+        <p>
+            The App is not directed toward children under 13, and the developer does not knowingly collect personal
+            data from children.
+        </p>
+
+        <h2>8. Security</h2>
+        <p>
+            While no system can be guaranteed 100% secure, the App is designed without persistent user data storage,
+            reducing privacy risk significantly.
+        </p>
+
+        <h2>9. Policy Updates</h2>
+        <p>
+            This Privacy Policy may be updated occasionally to reflect improvements or compliance needs.
+            Updates will be reflected in the “Last updated” date above.
+        </p>
+
+        <h2>10. Contact</h2>
+        <p>
+            If you have questions about this Privacy Policy, you may contact the developer via:
+        </p>
+
+        <% if (contact) { %>
+            <p><strong>Email:</strong> <a href="mailto:<%= contact %>"><%= contact %></a></p>
+        <% } else { %>
+            <p><strong>GitHub Repository:</strong> <a href="<%= gh %>"><%= gh %></a></p>
+        <% } %>
+
+    </div>
+
+    <div class="footer">
+        &copy; <%= new Date().getFullYear() %> <%= appName %>.
+        Privacy-first, open-source, and built for fun dinner decisions.
+    </div>
+
+</div>
+</body>
+</html>

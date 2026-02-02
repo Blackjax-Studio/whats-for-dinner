@@ -1,0 +1,438 @@
+[
+  {
+    "name": "Spicy Miso Ramen",
+    "description": "A rich, flavorful broth with chewy noodles, topped with spicy minced pork, soft-boiled egg, and green onions."
+  },
+  {
+    "name": "Margherita Pizza",
+    "description": "Classic pizza with tomato sauce, fresh mozzarella, basil, and a drizzle of olive oil."
+  },
+  {
+    "name": "Chicken Tikka Masala",
+    "description": "Roasted chunks of chicken in a creamy, spiced tomato sauce, served with basmati rice."
+  },
+  {
+    "name": "Tacos al Pastor",
+    "description": "Thinly sliced marinated pork with pineapple, onions, and cilantro on small corn tortillas."
+  },
+  {
+    "name": "Pad Thai",
+    "description": "Stir-fried rice noodles with shrimp, tofu, peanuts, bean sprouts, and a tangy tamarind sauce."
+  },
+  {
+    "name": "Beef Burger",
+    "description": "Juicy grilled beef patty with lettuce, tomato, cheese, and pickles on a toasted brioche bun."
+  },
+  {
+    "name": "Sushi Platter",
+    "description": "An assortment of fresh nigiri and maki rolls, served with ginger and wasabi."
+  },
+  {
+    "name": "Falafel Wrap",
+    "description": "Crispy falafel balls with hummus, tahini, and fresh vegetables wrapped in pita bread."
+  },
+  {
+    "name": "Beef Stroganoff",
+    "description": "Tender strips of beef and mushrooms in a creamy sour cream sauce, served over egg noodles."
+  },
+  {
+    "name": "Eggplant Parmesan",
+    "description": "Breaded and fried eggplant slices layered with tomato sauce and mozzarella cheese."
+  },
+  {
+    "name": "Bibimbap",
+    "description": "A bowl of rice topped with sautéed vegetables, beef, a fried egg, and spicy gochujang sauce."
+  },
+  {
+    "name": "Lamb Gyro",
+    "description": "Seasoned lamb slices with tomato, onion, and tzatziki sauce in a warm pita."
+  },
+  {
+    "name": "Fish and Chips",
+    "description": "Crispy battered white fish served with chunky fries and tartar sauce."
+  },
+  {
+    "name": "Peking Duck",
+    "description": "Crispy roasted duck served with thin pancakes, hoisin sauce, and scallions."
+  },
+  {
+    "name": "Paella Mixta",
+    "description": "Saffron rice cooked with seafood, chicken, and chorizo."
+  },
+  {
+    "name": "Pho Bo",
+    "description": "A fragrant beef noodle soup with herbs, bean sprouts, and lime."
+  },
+  {
+    "name": "Coq au Vin",
+    "description": "Chicken braised with red wine, mushrooms, and pearl onions."
+  },
+  {
+    "name": "Goulash",
+    "description": "A hearty stew of beef and vegetables, seasoned with paprika."
+  },
+  {
+    "name": "Butter Chicken",
+    "description": "Tender chicken in a mild, creamy tomato sauce with plenty of butter."
+  },
+  {
+    "name": "Enchiladas Verdes",
+    "description": "Corn tortillas filled with chicken and topped with a tangy green tomatillo sauce and cheese."
+  },
+  {
+    "name": "Chicken Schnitzel",
+    "description": "Breaded and fried chicken breast, typically served with potato salad."
+  },
+  {
+    "name": "Laksa",
+    "description": "A spicy noodle soup with a coconut milk base, shrimp, and tofu puffs."
+  },
+  {
+    "name": "Osso Buco",
+    "description": "Cross-cut veal shanks braised with vegetables, white wine, and broth."
+  },
+  {
+    "name": "Shepherd's Pie",
+    "description": "Minced lamb and vegetables topped with mashed potatoes and baked."
+  },
+  {
+    "name": "Dim Sum Selection",
+    "description": "A variety of small steamed or fried dumplings and buns."
+  },
+  {
+    "name": "Moussaka",
+    "description": "Layered eggplant, minced meat, and béchamel sauce, baked to perfection."
+  },
+  {
+    "name": "Tom Yum Goong",
+    "description": "Spicy and sour soup with shrimp, lemongrass, and galangal."
+  },
+  {
+    "name": "Steak Frites",
+    "description": "Grilled steak served with a side of crispy french fries and herb butter."
+  },
+  {
+    "name": "Ceviche",
+    "description": "Fresh raw fish cured in citrus juices, spiced with chili peppers and onions."
+  },
+  {
+    "name": "Ratatouille",
+    "description": "A stewed vegetable dish consisting of eggplant, zucchini, peppers, and tomatoes."
+  },
+  {
+    "name": "Bangers and Mash",
+    "description": "Sausages served with mashed potatoes and onion gravy."
+  },
+  {
+    "name": "Bulgogi",
+    "description": "Thin, marinated slices of beef grilled on a barbecue or stir-fried."
+  },
+  {
+    "name": "Shrimp Scampi",
+    "description": "Shrimp sautéed in a garlic, butter, and white wine sauce, served over linguine."
+  },
+  {
+    "name": "Arepas with Carne Mechada",
+    "description": "Cornmeal cakes stuffed with shredded beef, beans, and cheese."
+  },
+  {
+    "name": "Köttbullar (Swedish Meatballs)",
+    "description": "Meatballs served with creamy gravy, lingonberry jam, and mashed potatoes."
+  },
+  {
+    "name": "Massaman Curry",
+    "description": "A rich, relatively mild Thai curry with peanuts, potatoes, and beef."
+  },
+  {
+    "name": "Spaghetti Carbonara",
+    "description": "Pasta with eggs, cheese, pancetta, and black pepper."
+  },
+  {
+    "name": "Chicken Satay",
+    "description": "Grilled chicken skewers served with a spicy peanut sauce."
+  },
+  {
+    "name": "Chili con Carne",
+    "description": "A spicy stew containing chili peppers, meat, and often tomatoes and beans."
+  },
+  {
+    "name": "Gyoza",
+    "description": "Pan-fried dumplings filled with ground meat and vegetables."
+  },
+  {
+    "name": "Hummus Plate",
+    "description": "Creamy hummus served with olives, feta, cucumbers, and warm pita bread."
+  },
+  {
+    "name": "Quiche Lorraine",
+    "description": "A savory open-faced pastry crust filled with cheese, meat, and seafood or vegetables."
+  },
+  {
+    "name": "Lobster Roll",
+    "description": "Chilled lobster meat mixed with mayo, served in a toasted bun."
+  },
+  {
+    "name": "Jambalaya",
+    "description": "A Creole rice dish with chicken, andouille sausage, and shrimp."
+  },
+  {
+    "name": "Chicken Adobo",
+    "description": "Chicken marinated and simmered in vinegar, soy sauce, garlic, and peppercorns."
+  },
+  {
+    "name": "Lentil Soup",
+    "description": "Hearty and healthy soup made with brown or red lentils and vegetables."
+  },
+  {
+    "name": "Chicken Pot Pie",
+    "description": "Creamy chicken and vegetable filling in a flaky pastry crust."
+  },
+  {
+    "name": "Pulled Pork Sandwich",
+    "description": "Slow-cooked pork shredded and tossed in BBQ sauce, served on a bun."
+  },
+  {
+    "name": "Paneer Tikka",
+    "description": "Marinated paneer cheese cubes grilled with bell peppers and onions."
+  },
+  {
+    "name": "Ravioli with Sage Butter",
+    "description": "Cheese-filled ravioli tossed in a simple sauce of browned butter and fresh sage."
+  },
+  {
+    "name": "Clam Chowder",
+    "description": "A thick soup made with clams, potatoes, onions, and cream."
+  },
+  {
+    "name": "Tabbouleh Salad",
+    "description": "Finely chopped parsley, tomatoes, mint, onion, and bulgur, seasoned with olive oil and lemon."
+  },
+  {
+    "name": "Beef Wellington",
+    "description": "Fillet steak coated with pâté and mushroom duxelles, wrapped in puff pastry and baked."
+  },
+  {
+    "name": "Kimchi Jjigae",
+    "description": "A spicy stew made with kimchi, pork belly, and tofu."
+  },
+  {
+    "name": "Banh Mi",
+    "description": "A crusty baguette filled with pickled vegetables, cilantro, chili, and various meats."
+  },
+  {
+    "name": "Egg Fried Rice",
+    "description": "Quick and easy stir-fried rice with eggs, peas, carrots, and soy sauce."
+  },
+  {
+    "name": "Chicken Quesadilla",
+    "description": "Tortilla filled with cheese and grilled chicken, served with salsa and sour cream."
+  },
+  {
+    "name": "Minestrone Soup",
+    "description": "A thick vegetable soup often with the addition of pasta or rice."
+  },
+  {
+    "name": "Lamb Rogan Josh",
+    "description": "A flavorful lamb curry with a deep red color from Kashmiri chilies."
+  },
+  {
+    "name": "Cottage Pie",
+    "description": "Minced beef and vegetables topped with mashed potatoes and baked."
+  },
+  {
+    "name": "Chicken Caesar Salad",
+    "description": "Romaine lettuce and croutons dressed with lemon juice, olive oil, egg, Worcestershire sauce, and garlic."
+  },
+  {
+    "name": "Lasagna Bolognese",
+    "description": "Layered pasta with rich meat sauce, béchamel, and parmesan cheese."
+  },
+  {
+    "name": "Fettuccine Alfredo",
+    "description": "Pasta tossed with parmesan cheese and butter."
+  },
+  {
+    "name": "BBQ Ribs",
+    "description": "Pork ribs slow-cooked and glazed with a smoky barbecue sauce."
+  },
+  {
+    "name": "Chicken Fajitas",
+    "description": "Grilled chicken with peppers and onions, served with tortillas and toppings."
+  },
+  {
+    "name": "Salmon Teriyaki",
+    "description": "Grilled salmon glazed with a sweet and savory teriyaki sauce."
+  },
+  {
+    "name": "Beef Tacos",
+    "description": "Seasoned ground beef in crispy or soft tortillas with lettuce, cheese, and salsa."
+  },
+  {
+    "name": "Clams Linguine",
+    "description": "Pasta with fresh clams, garlic, white wine, and parsley."
+  },
+  {
+    "name": "Vegetable Stir-fry",
+    "description": "Assorted fresh vegetables quickly cooked in a wok with a savory sauce."
+  },
+  {
+    "name": "Lamb Kofte",
+    "description": "Spiced ground lamb skewers grilled and served with flatbread."
+  },
+  {
+    "name": "Chicken Katsu Curry",
+    "description": "Breaded chicken cutlet served with a thick, mild curry sauce and rice."
+  },
+  {
+    "name": "Pork Souvlaki",
+    "description": "Grilled skewers of marinated pork, often served in a pita with tzatziki."
+  },
+  {
+    "name": "Shrimp Gumbo",
+    "description": "A thick stew with shrimp, okra, and the 'holy trinity' of vegetables."
+  },
+  {
+    "name": "Mushroom Risotto",
+    "description": "Creamy rice dish cooked with broth and plenty of sautéed mushrooms."
+  },
+  {
+    "name": "Beef Pho",
+    "description": "Noodle soup consisting of broth, rice noodles, herbs, and beef."
+  },
+  {
+    "name": "Caprese Salad",
+    "description": "Simple salad made of sliced fresh mozzarella, tomatoes, and sweet basil."
+  },
+  {
+    "name": "Buffalo Wings",
+    "description": "Deep-fried chicken wings coated in a vinegar-based cayenne pepper hot sauce."
+  },
+  {
+    "name": "Duck Confit",
+    "description": "Duck legs slow-cooked in their own fat until tender, then crisped."
+  },
+  {
+    "name": "Zucchini Fritters",
+    "description": "Grated zucchini mixed with flour, eggs, and herbs, then pan-fried."
+  },
+  {
+    "name": "Chicken Piccata",
+    "description": "Chicken breast sautéed in a lemon, butter, and caper sauce."
+  },
+  {
+    "name": "Aloo Gobi",
+    "description": "A vegetarian dish made with potatoes, cauliflower, and Indian spices."
+  },
+  {
+    "name": "Sloppy Joes",
+    "description": "Ground beef seasoned with onions, tomato sauce or ketchup, and other seasonings, served on a burger bun."
+  },
+  {
+    "name": "Bibimbap",
+    "description": "Mixed rice with vegetables, beef, and a whole lot of flavor."
+  },
+  {
+    "name": "Beef Carpaccio",
+    "description": "Thinly sliced raw beef served as an appetizer."
+  },
+  {
+    "name": "Stuffed Bell Peppers",
+    "description": "Bell peppers filled with a mixture of meat, rice, and vegetables, then baked."
+  },
+  {
+    "name": "Chana Masala",
+    "description": "Chickpeas simmered in a spicy and tangy tomato-based sauce."
+  },
+  {
+    "name": "Fish Tacos",
+    "description": "Grilled or fried fish in corn tortillas with cabbage slaw and lime."
+  },
+  {
+    "name": "Lentil Dahl",
+    "description": "Creamy lentils cooked with spices, ginger, and garlic."
+  },
+  {
+    "name": "Steak Diane",
+    "description": "Pan-fried steak with a sauce made from the pan juices."
+  },
+  {
+    "name": "Gnocchi with Pesto",
+    "description": "Soft potato dumplings tossed in a fresh basil pesto sauce."
+  },
+  {
+    "name": "Chicken Marsala",
+    "description": "Chicken braised with Marsala wine and mushrooms."
+  },
+  {
+    "name": "Beef Stew",
+    "description": "Slow-cooked beef with potatoes, carrots, and onions in a rich gravy."
+  },
+  {
+    "name": "Spanakopita",
+    "description": "Savory spinach and feta pie wrapped in flaky phyllo dough."
+  },
+  {
+    "name": "Chicken Tortilla Soup",
+    "description": "Spicy tomato-based soup with chicken, topped with tortilla strips and avocado."
+  },
+  {
+    "name": "Miso Soup",
+    "description": "Traditional soup made from dashi stock and softened miso paste."
+  },
+  {
+    "name": "Eggplant Moussaka",
+    "description": "A classic Greek dish with layers of eggplant and a rich meat sauce."
+  },
+  {
+    "name": "Prawn Linguine",
+    "description": "Pasta with succulent prawns, garlic, chili, and lemon."
+  },
+  {
+    "name": "Chicken Kiev",
+    "description": "Chicken breast rolled around cold butter, then coated with eggs and breadcrumbs, and fried."
+  },
+  {
+    "name": "Sweet and Sour Pork",
+    "description": "Crispy pork chunks tossed in a tangy sweet and sour sauce with pineapple and peppers."
+  },
+  {
+    "name": "Cobb Salad",
+    "description": "Main-dish garden salad made with chopped salad greens, tomato, crisp bacon, boiled chicken breast, hard-boiled eggs, avocado, chives, Roquefort cheese, and red wine vinaigrette."
+  },
+  {
+    "name": "Ramen (Shoyu)",
+    "description": "Noodles in a soy sauce based broth, typically topped with bamboo shoots, nori, and pork."
+  },
+  {
+    "name": "Baked Ziti",
+    "description": "Tube-shaped pasta baked with tomato sauce and three kinds of cheese."
+  },
+  {
+    "name": "Tandoori Chicken",
+    "description": "Chicken marinated in yogurt and spices, then roasted in a clay oven."
+  },
+  {
+    "name": "Beef Brisket",
+    "description": "Slow-smoked beef brisket, tender and flavorful."
+  },
+  {
+    "name": "Omelette with Herbs",
+    "description": "A simple, fluffy omelette filled with fresh herbs."
+  },
+  {
+    "name": "Falafel Platter",
+    "description": "Falafel served with hummus, pita, and a side of salad."
+  },
+  {
+    "name": "Chicken Tikka",
+    "description": "Pieces of chicken marinated in spices and yogurt, then grilled."
+  },
+  {
+    "name": "Poke Bowl",
+    "description": "Diced raw fish served over rice with various toppings like seaweed and avocado."
+  },
+  {
+    "name": "Grilled Cheese and Tomato Soup",
+    "description": "Classic comfort food featuring a toasted cheese sandwich and creamy tomato soup."
+  }
+]

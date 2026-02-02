@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Terms of Service - <%= appName %></title>
+    <meta name="description" content="Terms of Service for <%= appName %>." />
+    <style>
+        :root{
+            --bg: #0b1220;
+            --card: rgba(255,255,255,0.08);
+            --card2: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.14);
+            --text: rgba(255,255,255,0.92);
+            --muted: rgba(255,255,255,0.72);
+            --muted2: rgba(255,255,255,0.60);
+            --accent: #60a5fa;
+            --accent2: #22c55e;
+            --warn: #fbbf24;
+            --danger: #f87171;
+            --shadow: 0 20px 60px rgba(0,0,0,.35);
+            --radius: 16px;
+            --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        * { box-sizing: border-box; }
+        body{
+            margin:0;
+            font-family: var(--sans);
+            line-height: 1.6;
+            color: var(--text);
+            background:
+                    radial-gradient(1200px 800px at 10% 0%, rgba(96,165,250,0.22), transparent 55%),
+                    radial-gradient(900px 700px at 90% 10%, rgba(34,197,94,0.18), transparent 50%),
+                    radial-gradient(700px 600px at 50% 100%, rgba(251,191,36,0.10), transparent 55%),
+                    var(--bg);
+            padding: 28px 16px 44px;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .wrap{
+            max-width: 940px;
+            margin: 0 auto;
+        }
+        .topbar{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.05);
+            border-radius: 14px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.18);
+        }
+        .brand{
+            display:flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+        .brand strong{
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .brand span{
+            font-size: 0.82rem;
+            color: var(--muted2);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .pill{
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.06);
+            font-size: 0.86rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .pill code{ font-family: var(--mono); font-size: 0.82rem; color: rgba(255,255,255,0.85); }
+        .card{
+            background: linear-gradient(180deg, var(--card), var(--card2));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px 28px;
+            backdrop-filter: blur(12px);
+        }
+        h1{
+            margin: 0 0 8px;
+            font-size: 2.0rem;
+            letter-spacing: -0.02em;
+        }
+        .meta{
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+        .meta strong{ color: rgba(255,255,255,0.88); }
+        .notice{
+            border-left: 4px solid var(--warn);
+            background: rgba(251,191,36,0.10);
+            padding: 14px 14px;
+            border-radius: 12px;
+            margin: 18px 0 22px;
+            color: rgba(255,255,255,0.88);
+        }
+        .notice b{ color: rgba(255,255,255,0.95); }
+        h2{
+            margin: 26px 0 8px;
+            font-size: 1.2rem;
+            letter-spacing: -0.01em;
+        }
+        p{ margin: 8px 0 14px; color: rgba(255,255,255,0.88); }
+        ul{ margin: 8px 0 14px 18px; color: rgba(255,255,255,0.88); }
+        li{ margin: 6px 0; }
+        .hr{
+            height: 1px;
+            background: rgba(255,255,255,0.12);
+            margin: 18px 0 6px;
+        }
+        .kbd{
+            font-family: var(--mono);
+            font-size: 0.9rem;
+            padding: 2px 6px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.9);
+        }
+        .footer{
+            text-align:center;
+            color: var(--muted2);
+            font-size: 0.875rem;
+            margin-top: 16px;
+            padding: 18px 10px;
+        }
+        .btnrow{
+            display:flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+            font-size: 0.92rem;
+            text-decoration: none;
+        }
+        .btn:hover{
+            background: rgba(255,255,255,0.10);
+            text-decoration: none;
+        }
+        .btn.secondary{
+            color: rgba(255,255,255,0.86);
+            font-weight: 600;
+        }
+        .tag{
+            display:inline-block;
+            margin-left: 8px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(34,197,94,0.12);
+            color: rgba(220,255,236,0.92);
+            vertical-align: middle;
+        }
+        @media (max-width: 520px){
+            .card{ padding: 22px 16px; }
+            h1{ font-size: 1.7rem; }
+            .topbar{ flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+<%
+const effectiveDate = (typeof lastUpdated !== "undefined" && lastUpdated)
+        ? lastUpdated
+        : new Date().toLocaleDateString();
+
+const gh = (typeof githubUrl !== "undefined" && githubUrl)
+        ? githubUrl
+        : "https://github.com/yourname/yourrepo";
+
+const contact = (typeof contactEmail !== "undefined" && contactEmail)
+        ? contactEmail
+        : null;
+
+const governing = (typeof governingLaw !== "undefined" && governingLaw)
+        ? governingLaw
+        : "the laws of your jurisdiction";
+
+const venue = (typeof jurisdiction !== "undefined" && jurisdiction)
+        ? jurisdiction
+        : "your local courts";
+
+const developerName = (typeof developer !== "undefined" && developer)
+        ? developer
+        : "the developer";
+%>
+
+<div class="wrap">
+    <div class="topbar">
+        <div class="brand">
+            <strong><%= appName %></strong>
+            <span>Terms of Service</span>
+        </div>
+        <div class="pill">
+            Last updated: <code><%= effectiveDate %></code>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="/" class="btn secondary" aria-label="Back to Home">&larr; Back to Home</a>
+
+        <h1>Terms of Service <span class="tag">Open Source</span></h1>
+        <p class="meta">
+            These Terms of Service (“Terms”) govern your use of <strong><%= appName %></strong> (the “App”).
+            The App is maintained by <strong><%= developerName %></strong> and distributed as open-source software.
+        </p>
+
+        <div class="notice">
+            <b>Important:</b> The App provides random meal suggestions and UI interactions. It does not provide medical,
+            nutritional, allergy, or food-safety advice. Always confirm ingredients, allergens, and restaurant availability.
+        </div>
+
+        <div class="btnrow">
+            <a class="btn" href="<%= gh %>" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            <% if (contact) { %>
+                <a class="btn" href="mailto:<%= contact %>">Contact</a>
+            <% } %>
+        </div>
+
+        <div class="hr"></div>
+
+        <h2>1. Acceptance of These Terms</h2>
+        <p>
+            By accessing, installing, invoking, or using the App (including through an MCP-compatible client such as ChatGPT),
+            you agree to be bound by these Terms. If you do not agree, do not use the App.
+        </p>
+
+        <h2>2. Who May Use the App</h2>
+        <p>
+            You may use the App only if you are legally permitted to do so where you live and you can form a binding contract
+            with <%= developerName %>. If you use the App on behalf of an organization, you represent you have authority
+            to bind that organization to these Terms.
+        </p>
+
+        <h2>3. Description of the App</h2>
+        <p>
+            <strong><%= appName %></strong> is an MCP server and interactive widget experience intended to help users decide
+            what to eat by selecting randomly from:
+        </p>
+        <ul>
+            <li>a built-in database/list of meal options, and/or</li>
+            <li>a list generated by an AI client (e.g., ChatGPT) that is then provided to the App for selection.</li>
+        </ul>
+        <p>
+            The App may show UI controls such as “spin again” or quick actions (for example, linking to recipes or restaurant
+            searches) depending on the client experience.
+        </p>
+
+        <h2>4. Food, Allergy, and Safety Disclaimers</h2>
+        <p>
+            The App does not know your dietary needs, allergies, medical conditions, or preferences unless you provide them
+            to your AI client. Even if you provide preferences, outputs may be incomplete or incorrect.
+        </p>
+        <ul>
+            <li><strong>Allergens:</strong> Always verify ingredients and allergen information from authoritative sources.</li>
+            <li><strong>Food safety:</strong> Use proper food-handling and cooking practices. When in doubt, consult official guidance.</li>
+            <li><strong>Nutrition/medical:</strong> Nothing in the App is medical or professional advice.</li>
+            <li><strong>Restaurants:</strong> Availability, hours, and menus can change. Confirm before ordering or traveling.</li>
+        </ul>
+
+        <h2>5. No Data Collection by the App</h2>
+        <p>
+            The App is designed to operate without collecting or storing personal data on a backend controlled by
+            <%= developerName %>. Specifically:
+        </p>
+        <ul>
+            <li>No user accounts</li>
+            <li>No tracking or analytics by the App</li>
+            <li>No sale of personal information by the App</li>
+            <li>No database of user prompts or histories maintained by the App</li>
+        </ul>
+        <p>
+            <strong>Client processing:</strong> When you use the App through an AI client (such as ChatGPT), that client may
+            transmit inputs to the App for the purpose of fulfilling your request. Any such inputs are handled transiently
+            to process the request and are not intentionally stored by the App. However, you should review the AI client’s
+            own terms and privacy practices to understand what it may store or log.
+        </p>
+
+        <h2>6. Acceptable Use</h2>
+        <p>You agree not to misuse the App. For example, you will not:</p>
+        <ul>
+            <li>attempt to disrupt, overload, or reverse engineer the service beyond what the open-source license permits;</li>
+            <li>use the App to generate or select content that is illegal or harmful;</li>
+            <li>probe, scan, or test vulnerabilities of systems related to the App;</li>
+            <li>use automation to make excessive requests that degrade availability for others.</li>
+        </ul>
+
+        <h2>7. Open Source License and Your Responsibilities</h2>
+        <p>
+            The source code for the App is available at <a href="<%= gh %>" target="_blank" rel="noopener noreferrer"><%= gh %></a>.
+            Your rights to use, modify, and distribute the code are governed by the repository’s license file.
+        </p>
+        <p>
+            If you run your own modified version of the App, you are responsible for your deployment, security posture,
+            compliance obligations, and any data handling you introduce.
+        </p>
+
+        <h2>8. Intellectual Property</h2>
+        <p>
+            Except as provided by the open-source license, <%= developerName %> retains all rights, title, and interest in
+            the App’s name, logos, and non-code branding elements (if any). You may not imply endorsement or affiliation
+            without permission.
+        </p>
+
+        <h2>9. Third-Party Content and Links</h2>
+        <p>
+            The App or your AI client may surface links to third-party sites (such as recipe pages, maps, or delivery services).
+            Third-party services are not under <%= developerName %>’s control, and use of those services is at your own risk.
+        </p>
+
+        <h2>10. Availability; Changes; Termination</h2>
+        <p>
+            The App may change, pause, or be discontinued at any time. <%= developerName %> may limit access to the App
+            (including blocking abusive usage) to protect reliability, security, or compliance.
+        </p>
+
+        <h2>11. Disclaimer of Warranties</h2>
+        <p>
+            The App is provided <span class="kbd">AS IS</span> and <span class="kbd">AS AVAILABLE</span>.
+            To the maximum extent permitted by law, <%= developerName %> disclaims all warranties, express or implied,
+            including merchantability, fitness for a particular purpose, non-infringement, and availability.
+        </p>
+
+        <h2>12. Limitation of Liability</h2>
+        <p>
+            To the maximum extent permitted by law, <%= developerName %> will not be liable for any indirect, incidental,
+            special, consequential, exemplary, or punitive damages, or any loss of profits, revenues, data, goodwill, or
+            other intangible losses, arising from or related to your use of (or inability to use) the App.
+        </p>
+        <p>
+            To the maximum extent permitted by law, <%= developerName %>’s total liability for any claim arising out of or
+            related to the App will not exceed the greater of (a) <span class="kbd">$10</span> or (b) the amount you paid
+            (if any) to use the App in the 12 months prior to the event giving rise to the claim.
+        </p>
+
+        <h2>13. Indemnification</h2>
+        <p>
+            You agree to indemnify and hold harmless <%= developerName %> from any claims, damages, liabilities, losses, and
+            expenses (including reasonable attorneys’ fees) arising out of or related to:
+        </p>
+        <ul>
+            <li>your misuse of the App,</li>
+            <li>your violation of these Terms, or</li>
+            <li>your violation of any law or third-party rights.</li>
+        </ul>
+
+        <h2>14. DMCA / Copyright Complaints</h2>
+        <p>
+            If you believe content produced through use of the App infringes your copyright, please contact
+            <%= developerName %> with (i) identification of the work claimed infringed, (ii) identification of the allegedly
+            infringing material, and (iii) your contact information. If you provide an email below, send notices there.
+        </p>
+        <% if (contact) { %>
+            <p><strong>Copyright contact:</strong> <a href="mailto:<%= contact %>"><%= contact %></a></p>
+        <% } else { %>
+            <p><strong>Copyright contact:</strong> See the GitHub repository contact instructions.</p>
+        <% } %>
+
+        <h2>15. Governing Law; Venue</h2>
+        <p>
+            These Terms are governed by <strong><%= governing %></strong>, without regard to conflict-of-law principles.
+            You agree that any dispute will be brought exclusively in <strong><%= venue %></strong>, unless applicable law
+            allows otherwise.
+        </p>
+
+        <h2>16. Changes to These Terms</h2>
+        <p>
+            <%= developerName %> may update these Terms from time to time. When changes are made, the “Last updated” date at
+            the top will be revised. Your continued use of the App after changes become effective means you accept the updated Terms.
+        </p>
+
+        <h2>17. Contact</h2>
+        <p>
+            Questions about these Terms can be directed to:
+            <% if (contact) { %>
+                <a href="mailto:<%= contact %>"><%= contact %></a>
+            <% } else { %>
+                the GitHub repository issues/discussions page
+            <% } %>.
+        </p>
+    </div>
+
+    <div class="footer">
+        &copy; <%= new Date().getFullYear() %> <%= appName %>. All rights reserved (except as provided by the open-source license).
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title><%= appName %> - Landing Page</title>
+    <meta name="description" content="<%= appName %> is an open-source MCP server for the ChatGPT App Store that helps you decide what to eat with a fun, interactive dinner picker." />
+
+    <style>
+        :root{
+            --bg: #0b1220;
+            --card: rgba(255,255,255,0.08);
+            --card2: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.14);
+            --text: rgba(255,255,255,0.92);
+            --muted: rgba(255,255,255,0.72);
+            --muted2: rgba(255,255,255,0.60);
+            --accent: #60a5fa;
+            --accent2: #22c55e;
+            --warn: #fbbf24;
+            --shadow: 0 20px 60px rgba(0,0,0,.35);
+            --radius: 18px;
+            --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { height: 100%; -webkit-text-size-adjust: 100%; }
+
+        body{
+            margin:0;
+            min-height: 100vh;
+            font-family: var(--sans);
+            line-height: 1.6;
+            color: var(--text);
+            background:
+                    radial-gradient(1200px 800px at 10% 0%, rgba(96,165,250,0.22), transparent 55%),
+                    radial-gradient(900px 700px at 90% 10%, rgba(34,197,94,0.18), transparent 50%),
+                    radial-gradient(700px 600px at 50% 100%, rgba(251,191,36,0.10), transparent 55%),
+                    var(--bg);
+            padding: 18px 16px 30px;
+            display:flex;
+            flex-direction: column;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .wrap{
+            width: 100%;
+            max-width: 1040px;
+            margin: 0 auto;
+            flex: 1;
+            display:flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .topbar{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap: 12px;
+            padding: 12px 12px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.05);
+            border-radius: 14px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.18);
+        }
+
+        .brand{
+            display:flex;
+            align-items:center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .logo{
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.16);
+            background:
+                    radial-gradient(circle at 30% 20%, rgba(96,165,250,0.35), transparent 55%),
+                    radial-gradient(circle at 80% 70%, rgba(34,197,94,0.25), transparent 55%),
+                    rgba(255,255,255,0.06);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size: 1.15rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,.25);
+            flex: 0 0 auto;
+        }
+
+        .brandtext{
+            display:flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .brandtext strong{
+            font-size: 0.98rem;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .brandtext span{
+            font-size: 0.82rem;
+            color: var(--muted2);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav{
+            display:flex;
+            align-items:center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .chip{
+            display:inline-flex;
+            align-items:center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.14);
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.84);
+            font-size: 0.88rem;
+            text-decoration:none;
+            transition: background .2s ease, transform .2s ease;
+        }
+
+        .chip:hover{
+            background: rgba(255,255,255,0.10);
+            transform: translateY(-1px);
+            text-decoration:none;
+        }
+
+        .hero{
+            display:grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .card{
+            background: linear-gradient(180deg, var(--card), var(--card2));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px 28px;
+            backdrop-filter: blur(12px);
+        }
+
+        .headline{
+            margin: 0 0 10px;
+            font-size: 2.2rem;
+            letter-spacing: -0.03em;
+            line-height: 1.12;
+        }
+
+        .subhead{
+            margin: 0 0 18px;
+            color: rgba(255,255,255,0.84);
+            font-size: 1.05rem;
+        }
+
+        .badges{
+            display:flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0 18px;
+        }
+
+        .badge{
+            display:inline-flex;
+            align-items:center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.14);
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.82);
+            font-size: 0.86rem;
+        }
+
+        .badge strong{
+            color: rgba(255,255,255,0.92);
+            font-weight: 700;
+        }
+
+        .ctaRow{
+            display:flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap: 8px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.92);
+            font-weight: 700;
+            text-decoration:none;
+            transition: background .2s ease, transform .2s ease;
+        }
+
+        .btn:hover{
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-1px);
+            text-decoration:none;
+        }
+
+        .btn.primary{
+            border-color: rgba(96,165,250,0.45);
+            background: rgba(96,165,250,0.16);
+        }
+
+        .btn.primary:hover{
+            background: rgba(96,165,250,0.24);
+        }
+
+        .btn.ghost{
+            background: rgba(255,255,255,0.04);
+        }
+
+        .sideCard{
+            display:flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 14px;
+            position: relative;
+            overflow:hidden;
+        }
+
+        .sideTop{
+            display:flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sideTitle{
+            margin: 0;
+            font-size: 1.05rem;
+            letter-spacing: -0.01em;
+        }
+
+        .sideText{
+            margin: 0;
+            color: rgba(255,255,255,0.80);
+            font-size: 0.98rem;
+        }
+
+        .miniSteps{
+            margin: 0;
+            padding-left: 18px;
+            color: rgba(255,255,255,0.84);
+        }
+
+        .miniSteps li{
+            margin: 8px 0;
+        }
+
+        .notice{
+            border-left: 4px solid var(--accent2);
+            background: rgba(34,197,94,0.10);
+            padding: 12px 12px;
+            border-radius: 12px;
+            color: rgba(255,255,255,0.90);
+            font-size: 0.95rem;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .featureCard{
+            padding: 16px 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .featureCard h3{
+            margin: 0 0 6px;
+            font-size: 1.02rem;
+            letter-spacing: -0.01em;
+        }
+
+        .featureCard p{
+            margin: 0;
+            color: rgba(255,255,255,0.78);
+            font-size: 0.94rem;
+        }
+
+        .mutedLine{
+            margin-top: 16px;
+            color: rgba(255,255,255,0.66);
+            font-size: 0.92rem;
+        }
+
+        .footer{
+            margin-top: 6px;
+            padding: 16px 10px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 14px;
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(10px);
+            display:flex;
+            flex-wrap: wrap;
+            align-items:center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .footerLinks{
+            display:flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items:center;
+        }
+
+        .footerLinks a{
+            color: rgba(255,255,255,0.72);
+            font-size: 0.9rem;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.03);
+            transition: background .2s ease, transform .2s ease;
+        }
+
+        .footerLinks a:hover{
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-1px);
+            text-decoration:none;
+            color: rgba(255,255,255,0.88);
+        }
+
+        .copyright{
+            color: rgba(255,255,255,0.55);
+            font-size: 0.86rem;
+        }
+
+        @media (max-width: 920px){
+            .hero{ grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 720px){
+            .grid{ grid-template-columns: 1fr 1fr; }
+            .headline{ font-size: 1.85rem; }
+        }
+
+        @media (max-width: 480px){
+            .grid{ grid-template-columns: 1fr; }
+            .card{ padding: 22px 16px; }
+            .headline{ font-size: 1.65rem; }
+            .subhead{ font-size: 1.00rem; }
+        }
+    </style>
+</head>
+
+<body>
+<%
+const repo =
+        (typeof githubRepo !== "undefined" && githubRepo)
+                ? githubRepo
+                : "https://github.com/BlackjaxStudio/whats-for-dinner";
+
+const issues = repo + "/issues";
+const readme = repo + "#readme";
+%>
+
+<div class="wrap">
+
+    <div class="topbar">
+        <div class="brand">
+            <div class="logo">🍽️</div>
+            <div class="brandtext">
+                <strong><%= appName %></strong>
+                <span>Open-source MCP dinner picker</span>
+            </div>
+        </div>
+
+        <div class="nav">
+            <a class="chip" href="/privacy">Privacy</a>
+            <a class="chip" href="/terms">Terms</a>
+            <a class="chip" href="/support">Support</a>
+            <a class="chip" href="<%= repo %>" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+    </div>
+
+    <div class="hero">
+        <!-- Main Hero -->
+        <div class="card">
+            <h1 class="headline">Stop debating dinner. Spin once and move on.</h1>
+            <p class="subhead">
+                <strong><%= appName %></strong> is a lightweight, open-source MCP server that helps you pick a meal fast.
+                Use built-in meal options or let ChatGPT generate candidates and have the picker choose for you.
+            </p>
+
+            <div class="badges">
+                <div class="badge">🎲 <strong>Random Picker</strong> from meals</div>
+                <div class="badge">🤖 <strong>ChatGPT-friendly</strong> list selection</div>
+                <div class="badge">🎨 <strong>Interactive UI</strong> spin animation</div>
+                <div class="badge">🔒 <strong>No user data stored</strong></div>
+            </div>
+
+            <div class="ctaRow">
+                <a class="btn primary" href="<%= repo %>" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                <a class="btn" href="<%= readme %>" target="_blank" rel="noopener noreferrer">Read the README</a>
+                <a class="btn ghost" href="<%= issues %>" target="_blank" rel="noopener noreferrer">Get Support</a>
+            </div>
+
+            <p class="mutedLine">
+                Tip: Ask ChatGPT for “10 dinner ideas under 30 minutes,” then spin from that list.
+            </p>
+        </div>
+
+        <!-- Side How It Works -->
+        <div class="card sideCard">
+            <div class="sideTop">
+                <h2 class="sideTitle">How it works</h2>
+                <p class="sideText">
+                    Designed for quick decisions—no accounts, no setup drama.
+                </p>
+            </div>
+
+            <ol class="miniSteps">
+                <li>Provide meal options (or use the built-in list).</li>
+                <li>Spin the picker in the UI widget.</li>
+                <li>Use quick actions (recipe/restaurant/spin again).</li>
+            </ol>
+
+            <div class="notice">
+                ✅ Privacy-first: this server is built to run without storing personal user data.
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="card">
+        <h2 style="margin:0 0 12px; font-size:1.2rem;">What you get</h2>
+
+        <div class="grid">
+            <div class="featureCard">
+                <h3>🎲 Random Dinner Picker</h3>
+                <p>Pick from the app’s meal options instantly—no endless scrolling.</p>
+            </div>
+
+            <div class="featureCard">
+                <h3>🤖 ChatGPT Integration</h3>
+                <p>Let ChatGPT brainstorm; the picker chooses from the candidates.</p>
+            </div>
+
+            <div class="featureCard">
+                <h3>🎨 Interactive Widget</h3>
+                <p>A fun spin animation that lands on a single clear choice.</p>
+            </div>
+
+            <div class="featureCard">
+                <h3>⚡ Quick Actions</h3>
+                <p>Jump to recipes/restaurants or spin again in one tap.</p>
+            </div>
+        </div>
+
+        <p class="mutedLine" style="margin-bottom:0;">
+            Open source means you can inspect the code and run your own version.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footerLinks">
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/support">Customer Support</a>
+        </div>
+
+        <div class="copyright">
+            &copy; <%= new Date().getFullYear() %> <%= appName %>. All rights reserved (except as provided by the open-source license).
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

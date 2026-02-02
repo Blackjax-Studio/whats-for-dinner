@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Customer Support - <%= appName %></title>
+    <meta name="description" content="Customer support and help resources for <%= appName %>." />
+
+    <style>
+        :root{
+            --bg: #0b1220;
+            --card: rgba(255,255,255,0.08);
+            --card2: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.14);
+            --text: rgba(255,255,255,0.92);
+            --muted: rgba(255,255,255,0.72);
+            --muted2: rgba(255,255,255,0.60);
+            --accent: #60a5fa;
+            --accent2: #22c55e;
+            --warn: #fbbf24;
+            --shadow: 0 20px 60px rgba(0,0,0,.35);
+            --radius: 16px;
+            --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        body{
+            margin:0;
+            font-family: var(--sans);
+            line-height: 1.6;
+            color: var(--text);
+            background:
+                    radial-gradient(1200px 800px at 10% 0%, rgba(96,165,250,0.22), transparent 55%),
+                    radial-gradient(900px 700px at 90% 10%, rgba(34,197,94,0.18), transparent 50%),
+                    radial-gradient(700px 600px at 50% 100%, rgba(251,191,36,0.10), transparent 55%),
+                    var(--bg);
+            padding: 28px 16px 44px;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .wrap{
+            max-width: 940px;
+            margin: 0 auto;
+        }
+
+        .topbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.05);
+            border-radius: 14px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.18);
+        }
+
+        .brand strong{
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
+        }
+
+        .brand span{
+            font-size: 0.82rem;
+            color: var(--muted2);
+        }
+
+        .card{
+            background: linear-gradient(180deg, var(--card), var(--card2));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 34px 28px;
+            backdrop-filter: blur(12px);
+            text-align: center;
+        }
+
+        h1{
+            margin: 0 0 10px;
+            font-size: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        p{
+            margin: 0 0 22px;
+            color: rgba(255,255,255,0.85);
+            font-size: 1.05rem;
+        }
+
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.92);
+            font-weight: 650;
+            text-decoration:none;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover{
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-1px);
+            text-decoration:none;
+        }
+
+        .btn.primary{
+            border-color: rgba(96,165,250,0.45);
+            background: rgba(96,165,250,0.15);
+        }
+
+        .btn.primary:hover{
+            background: rgba(96,165,250,0.22);
+        }
+
+        .support-grid{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+            margin-top: 28px;
+        }
+
+        .support-box{
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 16px;
+            padding: 20px 18px;
+            text-align: left;
+        }
+
+        .support-box h3{
+            margin: 0 0 8px;
+            font-size: 1.1rem;
+        }
+
+        .support-box p{
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            color: rgba(255,255,255,0.78);
+        }
+
+        .footer{
+            text-align:center;
+            color: var(--muted2);
+            font-size: 0.875rem;
+            margin-top: 16px;
+            padding: 18px 10px;
+        }
+
+        @media(max-width: 520px){
+            .card{ padding: 24px 16px; }
+            h1{ font-size: 1.6rem; }
+        }
+    </style>
+</head>
+
+<body>
+<%
+const repo =
+        (typeof githubRepo !== "undefined" && githubRepo)
+                ? githubRepo
+                : "https://github.com/BlackjaxStudio/whats-for-dinner";
+
+const issues = repo + "/issues";
+const readme = repo + "#readme";
+%>
+
+<div class="wrap">
+
+    <div class="topbar">
+        <div class="brand">
+            <strong><%= appName %></strong><br />
+            <span>Support & Help</span>
+        </div>
+
+        <a href="/" class="btn">&larr; Home</a>
+    </div>
+
+    <div class="card">
+        <h1>Customer Support</h1>
+
+        <p>
+            Need help with <strong><%= appName %></strong>?
+            This project is maintained as an open-source tool, and support is provided through GitHub.
+        </p>
+
+        <div class="support-grid">
+
+            <!-- GitHub Issues -->
+            <div class="support-box">
+                <h3>🐛 Report a Bug</h3>
+                <p>
+                    Found something broken or unexpected?
+                    The fastest way to get help is by opening a GitHub Issue.
+                </p>
+                <a href="<%= issues %>" target="_blank" rel="noopener noreferrer" class="btn primary">
+                    Open an Issue →
+                </a>
+            </div>
+
+            <!-- Feature Requests -->
+            <div class="support-box">
+                <h3>✨ Request a Feature</h3>
+                <p>
+                    Have an idea that would make the dinner picker even better?
+                    Suggestions and pull requests are welcome.
+                </p>
+                <a href="<%= issues %>" target="_blank" rel="noopener noreferrer" class="btn">
+                    Suggest an Improvement →
+                </a>
+            </div>
+
+            <!-- Documentation -->
+            <div class="support-box">
+                <h3>📖 Documentation</h3>
+                <p>
+                    Looking for setup instructions, usage examples, or details about MCP integration?
+                    Check the README.
+                </p>
+                <a href="<%= readme %>" target="_blank" rel="noopener noreferrer" class="btn">
+                    View README →
+                </a>
+            </div>
+
+            <!-- Open Source Notice -->
+            <div class="support-box">
+                <h3>🌍 Open Source</h3>
+                <p>
+                    This is a solo open-source project.
+                    You can inspect the full codebase anytime for transparency.
+                </p>
+                <a href="<%= repo %>" target="_blank" rel="noopener noreferrer" class="btn">
+                    Visit Repository →
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; <%= new Date().getFullYear() %> <%= appName %>.
+        Built with ❤️ as an open-source MCP tool.
+    </div>
+
+</div>
+</body>
+</html>
