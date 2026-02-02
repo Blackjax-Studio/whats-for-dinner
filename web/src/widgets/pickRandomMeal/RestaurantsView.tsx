@@ -114,15 +114,34 @@ export function RestaurantsView() {
               ←
             </button>
             <div style={{
-              fontFamily: "'Alfa Slab One', serif",
-              fontSize: '1.1rem',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              flex: 1
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              flex: 1,
+              minWidth: 0,
+              lineHeight: 1
             }}>
-              <span style={{ color: 'var(--text-neutral, #666666)' }}>Restaurants for </span>
-              <span style={{ color: 'var(--accent2, #008639)' }}>{mealName}</span>
+              <div style={{
+                fontFamily: "'Alfa Slab One', serif",
+                fontSize: '0.9rem',
+                color: 'var(--text-neutral, #666666)',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis'
+              }}>
+                Restaurants for
+              </div>
+              <div style={{
+                fontFamily: "'Alfa Slab One', serif",
+                fontSize: '1.1rem',
+                color: 'var(--accent2, #008639)',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                marginTop: '-2px'
+              }}>
+                {mealName}
+              </div>
             </div>
             <button
               onClick={handleSpin}
@@ -196,7 +215,7 @@ export function RestaurantsView() {
                   {restaurant.rating && (
                     <div style={{
                       fontSize: '0.85rem',
-                      color: '#FFD700', // Yellow/Gold
+                      color: 'var(--rating-color, #FFD700)',
                       fontWeight: 'bold'
                     }}>
                       Rating: {restaurant.rating} ★

@@ -31,6 +31,11 @@ function WidgetRouter() {
           50% { opacity: 1; transform: scale(1); }
           100% { opacity: 0.6; transform: scale(0.98); }
         }
+        :root {
+          --text-neutral: #666666;
+          --text-title: #000000;
+          --rating-color: #B8860B;
+        }
         @media (prefers-color-scheme: dark) {
           :root {
             --bg-color: #212121;
@@ -40,13 +45,12 @@ function WidgetRouter() {
             --text-main: #FFFFFF;
             --text-muted: #CDCDCD;
             --text-neutral: #AAAAAA;
+            --text-title: #FFFFFF;
+            --rating-color: #FFD700;
             --bg-muted: #2A2A2A;
             --card-bg: #2A2A2A;
             --border: #404040;
           }
-        }
-        :root {
-          --text-neutral: #666666;
         }
         button {
           -webkit-tap-highlight-color: transparent;

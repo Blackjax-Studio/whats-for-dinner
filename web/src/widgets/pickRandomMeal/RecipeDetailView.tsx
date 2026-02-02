@@ -98,7 +98,7 @@ export function RecipeDetailView() {
           minWidth: 0
         }}>
           <div style={{
-            color: 'var(--text-neutral, #666666)',
+            color: 'var(--text-title, #000000)',
             fontSize: '1.4rem',
             fontFamily: "'Alfa Slab One', serif",
             fontWeight: 400,
