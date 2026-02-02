@@ -51,24 +51,29 @@ export function CyclerView() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      minHeight: '100px',
+      height: '100%',
+      width: '100%',
       margin: 0,
       backgroundColor: 'var(--bg-color, #FFFFFF)',
-      color: 'var(--text-main, #0D0D0D)'
+      color: 'var(--text-main, #0D0D0D)',
+      overflow: 'hidden',
+      boxSizing: 'border-box'
     }}>
       <div style={{
         textAlign: 'center',
-        padding: '0.5rem'
+        padding: '4px',
+        boxSizing: 'border-box'
       }}>
         <div style={{
           fontFamily: "'Alfa Slab One', serif",
-          fontSize: '3rem',
+          fontSize: '2.4rem',
           fontWeight: 400,
           color: 'var(--accent, #0062FF)',
           textAlign: 'center',
-          padding: '12px 20px 4px',
+          padding: '8px 16px',
           whiteSpace: 'nowrap',
           overflow: 'hidden',
+          textOverflow: 'ellipsis',
           maxWidth: '100%',
           transition: 'all 0.2s ease-out',
           transform: cycleScale ? 'scale(1.05)' : 'scale(1)'

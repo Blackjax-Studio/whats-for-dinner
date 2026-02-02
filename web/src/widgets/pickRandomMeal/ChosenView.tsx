@@ -36,15 +36,22 @@ export function ChosenView() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      minHeight: '100px',
+      height: '100%',
+      width: '100%',
       margin: 0,
       backgroundColor: 'var(--bg-color, #FFFFFF)',
-      color: 'var(--text-main, #0D0D0D)'
+      color: 'var(--text-main, #0D0D0D)',
+      overflow: 'hidden',
+      boxSizing: 'border-box'
     }}>
       <div style={{
         textAlign: 'center',
-        padding: '0.5rem',
-        width: '100%'
+        padding: '4px',
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        boxSizing: 'border-box'
       }}>
         <div style={{
           display: 'flex',
@@ -52,35 +59,42 @@ export function ChosenView() {
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
-          gap: '20px',
-          padding: '10px 20px'
+          gap: '12px',
+          padding: '4px 12px',
+          boxSizing: 'border-box'
         }}>
           <div style={{
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'flex-start'
+            alignItems: 'flex-start',
+            minWidth: 0
           }}>
             <div style={{
               color: 'var(--accent2, #008639)',
-              fontSize: '1.8rem',
+              fontSize: '1.4rem',
               fontFamily: "'Alfa Slab One', serif",
               fontWeight: 400,
               wordBreak: 'break-word',
               maxWidth: '100%',
               textAlign: 'left',
-              transition: 'all 0.5s ease'
+              transition: 'all 0.5s ease',
+              lineHeight: '1.1'
             }}>
               {sharedLandedMeal.title || sharedLandedMeal.name}
             </div>
             {sharedLandedMeal.description && (
               <div style={{
                 fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-                fontSize: '1rem',
+                fontSize: '0.85rem',
                 color: 'var(--text-muted, #6E6E6E)',
-                marginTop: '4px',
+                marginTop: '2px',
                 maxWidth: '100%',
-                textAlign: 'left'
+                textAlign: 'left',
+                display: '-webkit-box',
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden'
               }}>
                 {sharedLandedMeal.description}
               </div>
@@ -89,19 +103,20 @@ export function ChosenView() {
           <div style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '8px',
-            alignItems: 'flex-end'
+            gap: '4px',
+            alignItems: 'flex-end',
+            flexShrink: 0
           }}>
             <button
               onClick={handleRecipes}
               style={{
                 fontFamily: "'Alfa Slab One', serif",
-                fontSize: '0.9rem',
+                fontSize: '0.8rem',
                 color: 'var(--accent, #0062FF)',
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                padding: '4px 0',
+                padding: '2px 0',
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px',
                 transition: 'opacity 0.2s',
@@ -116,12 +131,12 @@ export function ChosenView() {
               onClick={handleRestaurants}
               style={{
                 fontFamily: "'Alfa Slab One', serif",
-                fontSize: '0.9rem',
+                fontSize: '0.8rem',
                 color: 'var(--accent, #0062FF)',
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                padding: '4px 0',
+                padding: '2px 0',
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px',
                 transition: 'opacity 0.2s',
@@ -136,12 +151,12 @@ export function ChosenView() {
               onClick={handleSpinAgain}
               style={{
                 fontFamily: "'Alfa Slab One', serif",
-                fontSize: '0.9rem',
+                fontSize: '0.8rem',
                 color: 'var(--warn, #E25600)',
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                padding: '4px 0',
+                padding: '2px 0',
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px',
                 transition: 'opacity 0.2s',

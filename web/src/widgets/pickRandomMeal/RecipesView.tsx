@@ -40,44 +40,53 @@ export function RecipesView() {
       fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
       backgroundColor: 'var(--bg-color, #FFFFFF)',
       color: 'var(--text-main, #0D0D0D)',
-      minHeight: '200px',
-      padding: '20px'
+      height: '100%',
+      width: '100%',
+      padding: '12px',
+      boxSizing: 'border-box',
+      overflow: 'hidden'
     }}>
       {isLoading ? (
-        <div style={{ textAlign: 'center' }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%'
+        }}>
           <div style={{
             fontFamily: "'Alfa Slab One', serif",
-            fontSize: '1.5rem',
+            fontSize: '1.2rem',
             color: 'var(--accent, #0062FF)',
-            marginBottom: '20px'
+            marginBottom: '16px'
           }}>
             Finding Recipes...
           </div>
           <div style={{
             width: '100%',
-            maxWidth: '400px',
-            height: '8px',
+            maxWidth: '300px',
+            height: '6px',
             backgroundColor: 'var(--bg-muted, #F0F0F0)',
-            borderRadius: '4px',
-            overflow: 'hidden',
-            margin: '0 auto'
+            borderRadius: '3px',
+            overflow: 'hidden'
           }}>
             <div style={{
               height: '100%',
               width: `${progress}%`,
               backgroundColor: 'var(--accent, #0062FF)',
               transition: 'width 0.1s linear',
-              borderRadius: '4px'
+              borderRadius: '3px'
             }} />
           </div>
         </div>
       ) : (
-        <div>
+        <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            marginBottom: '16px',
-            gap: '0.5rem'
+            marginBottom: '8px',
+            gap: '0.5rem',
+            flexShrink: 0
           }}>
             <button
               onClick={() => navigate('/chosen')}
@@ -87,7 +96,7 @@ export function RecipesView() {
                 border: 'none',
                 cursor: 'pointer',
                 padding: 0,
-                fontSize: '1.5rem',
+                fontSize: '1.2rem',
                 lineHeight: 1,
                 display: 'flex',
                 alignItems: 'center',
@@ -99,8 +108,11 @@ export function RecipesView() {
             </button>
             <div style={{
               fontFamily: "'Alfa Slab One', serif",
-              fontSize: '1.2rem',
-              color: 'var(--accent2, #008639)'
+              fontSize: '1.1rem',
+              color: 'var(--accent2, #008639)',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
             }}>
               Recipes for {mealName}
             </div>
@@ -108,33 +120,44 @@ export function RecipesView() {
           <div style={{
             display: 'flex',
             overflowX: 'auto',
-            gap: '16px',
+            gap: '12px',
             paddingBottom: '8px',
-            scrollbarWidth: 'thin'
+            scrollbarWidth: 'thin',
+            flex: 1
           }}>
             {recipes.map(recipe => (
               <div
                 key={recipe.id}
                 style={{
-                  minWidth: '280px',
+                  minWidth: '240px',
+                  maxWidth: '240px',
                   backgroundColor: 'var(--card-bg, #F8F8F8)',
-                  borderRadius: '12px',
-                  padding: '16px',
-                  border: '1px solid var(--border, #E0E0E0)'
+                  borderRadius: '10px',
+                  padding: '12px',
+                  border: '1px solid var(--border, #E0E0E0)',
+                  display: 'flex',
+                  flexDirection: 'column'
                 }}
               >
                 <div style={{
                   fontFamily: "'Alfa Slab One', serif",
-                  fontSize: '1.1rem',
+                  fontSize: '1rem',
                   color: 'var(--text-main, #0D0D0D)',
-                  marginBottom: '8px'
+                  marginBottom: '4px',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
                 }}>
                   {recipe.title}
                 </div>
                 <div style={{
-                  fontSize: '0.95rem',
+                  fontSize: '0.85rem',
                   color: 'var(--text-muted, #6E6E6E)',
-                  lineHeight: '1.4'
+                  lineHeight: '1.3',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: 'vertical'
                 }}>
                   {recipe.description}
                 </div>

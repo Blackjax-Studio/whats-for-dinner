@@ -49,20 +49,24 @@ export function LoadingView() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      minHeight: '100px',
+      height: '100%',
+      width: '100%',
       margin: 0,
       backgroundColor: 'var(--bg-color, #FFFFFF)',
-      color: 'var(--text-main, #0D0D0D)'
+      color: 'var(--text-main, #0D0D0D)',
+      overflow: 'hidden',
+      boxSizing: 'border-box'
     }}>
       <div style={{
         textAlign: 'center',
-        padding: '0.5rem'
+        padding: '4px',
+        boxSizing: 'border-box'
       }}>
         <div style={{
           fontFamily: "'Alfa Slab One', serif",
-          fontSize: '2.2rem',
+          fontSize: '1.8rem',
           color: 'var(--accent, #0062FF)',
-          padding: '12px 20px',
+          padding: '8px 16px',
           animation: 'pulsate 1.5s ease-in-out infinite'
         }}>
           Loading up the options
