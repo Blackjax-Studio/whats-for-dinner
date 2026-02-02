@@ -32,7 +32,7 @@ describe("Widgets", () => {
             expect(result.contents).toHaveLength(1);
             expect(result.contents[0]).toMatchObject({
                 uri: "ui://widget/pickRandomMeal.html",
-                mimeType: "text/html+skybridge",
+                mimeType: "text/html",
                 text: "<html>https://example.com</html>",
             });
             expect(result.contents[0]._meta).toBeDefined();

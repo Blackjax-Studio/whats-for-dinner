@@ -14,6 +14,7 @@ setServerId(serverId);
 const app = express();
 
 app.set("view engine", "ejs");
+app.use(express.static("assets"));
 app.use(requestLoggingMiddleware);
 app.use(cors(corsOptions));
 app.use(router);

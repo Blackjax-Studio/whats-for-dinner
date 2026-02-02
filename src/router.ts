@@ -24,7 +24,10 @@ router.get("/how-it-works", (req: Request, res: Response) => {
   res.render("howItWorks", { appName: config.appName });
 });
 
+router.get("/see-it-work", (req: Request, res: Response) => {
+  res.render("seeItWork", { appName: config.appName });
+});
+
 router.all("/mcp", handleMcpRequest);
 
 export default router;
-2

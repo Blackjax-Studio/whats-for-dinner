@@ -196,8 +196,10 @@
             display:flex;
             flex-wrap: wrap;
             align-items:center;
-            justify-content: space-between;
-            gap: 10px;
+            justify-content: center;
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
         }
 
         .footerLinks{
@@ -205,6 +207,7 @@
             gap: 10px;
             flex-wrap: wrap;
             align-items:center;
+            justify-content: center;
         }
 
         .footerLinks button{
@@ -300,6 +303,12 @@
             <li><strong>Meal selected:</strong> Get Recipes | Get Restaurants | Spin Again</li>
             <li><strong>Restaurant selected:</strong> Get Recipes | Get Directions | Spin Again</li>
         </ul>
+
+        <div style="margin-top: 40px; display: flex; justify-content: center;">
+            <button onclick="window.location.href='/see-it-work'" class="btn primary" style="padding: 12px 24px; font-size: 1.1rem; border-radius: 14px; background: var(--accent); color: #fff; border: none; font-weight: 650; cursor: pointer; transition: all 0.2s ease;">
+                See it in action →
+            </button>
+        </div>
     </div>
 
     <%- include('partials/footer') %>

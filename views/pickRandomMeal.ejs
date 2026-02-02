@@ -48,6 +48,8 @@
             min-height: 100vh;
             min-height: -webkit-fill-available;
             -webkit-overflow-scrolling: touch;
+            /* Ensure the widget is visible on mobile if it has a height issue */
+            overflow: visible;
         }
 
         .container {
@@ -85,11 +87,12 @@
         }
 
         .full-screen-spin {
-            position: fixed;
+            position: absolute; /* Changed from fixed to absolute */
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
+            min-height: 100vh;
             background: var(--bg-gradient);
             display: -webkit-box;
             display: -webkit-flex;
@@ -545,6 +548,7 @@
         };
 
         const handleSetGlobals = (event) => {
+            console.log("openai:set_globals event received");
             const globals = event.detail?.globals;
             setupWidget(globals?.toolOutput);
         };
@@ -553,7 +557,10 @@
 
         // Initial check
         if (window.openai?.toolOutput) {
+            console.log("Found toolOutput in window.openai");
             setupWidget(window.openai.toolOutput);
+        } else {
+            console.log("Waiting for openai:set_globals event or toolOutput");
         }
     </script>
 </body>

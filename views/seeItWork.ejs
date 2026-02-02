@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>See It Work - <%= appName %></title>
+    <meta name="description" content="Watch <%= appName %> in action across different platforms." />
+
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Vend+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --bg: #ffffff;
+            --card: #ffffff;
+            --card2: #f9fafb;
+            --border: #e5e7eb;
+            --text: #111827;
+            --muted: #4b5563;
+            --muted2: #6b7280;
+            --accent: #2563EB;
+            --accent2: #10b981;
+            --warn: #f59e0b;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --sans: 'Vend Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --display: 'Alfa Slab One', serif;
+            --bg-gradient: linear-gradient(135deg, #f0f4f8 0%, #ffffff 100%);
+        }
+
+        * { box-sizing: border-box; }
+
+        body{
+            margin:0;
+            font-family: var(--sans);
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            padding: 28px 16px 44px;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .wrap{
+            max-width: 940px;
+            margin: 0 auto;
+        }
+
+        .topbar{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding: 20px 0;
+        }
+
+        .brand{
+            display:flex;
+            align-items:center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .brand:hover{
+            text-decoration: none;
+        }
+
+        .logo{
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: #f3f4f6;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size: 1.4rem;
+            flex: 0 0 auto;
+        }
+
+        .brandtext{
+            display:flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .brand strong{
+            font-family: var(--display);
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            color: var(--text);
+        }
+
+        .brand span{
+            font-size: 0.82rem;
+            color: var(--muted2);
+        }
+
+        .card{
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 40px 32px;
+            text-align: center;
+        }
+
+        h1{
+            margin: 0 0 16px;
+            font-family: var(--display);
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: #111827;
+        }
+
+        p{
+            margin: 0 0 30px;
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        .selector-wrap {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        label {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        select {
+            padding: 12px 40px 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #ffffff;
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--text);
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            box-shadow: var(--shadow);
+            min-width: 180px;
+        }
+
+        select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        select:hover {
+            border-color: var(--muted2);
+            background-color: #f9fafb;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .video-container.portrait {
+            max-width: 320px;
+            aspect-ratio: 9 / 16;
+        }
+
+        .video-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .play-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .play-icon::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 12px 0 12px 20px;
+            border-color: transparent transparent transparent #fff;
+            margin-left: 4px;
+        }
+
+        .footer{
+            margin-top: 6px;
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #f9fafb;
+            display:flex;
+            flex-wrap: wrap;
+            align-items:center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
+        }
+
+        .footerLinks{
+            display:flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items:center;
+            justify-content: center;
+        }
+
+        .footerLinks button{
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: #ffffff;
+            transition: background .2s ease, transform .2s ease;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .footerLinks button:hover{
+            background: #f3f4f6;
+            transform: translateY(-1px);
+            text-decoration:none;
+            color: var(--text);
+        }
+
+        .copyright{
+            color: var(--muted2);
+            font-size: 0.86rem;
+        }
+
+        @media(max-width: 640px){
+            .card{ padding: 28px 20px; }
+            h1{ font-size: 1.8rem; }
+            .topbar { flex-direction: column; align-items: flex-start; gap: 16px; }
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrap">
+
+    <%- include('partials/header') %>
+
+    <div class="card">
+        <h1>See It Work</h1>
+        <p>
+            Watch how <%= appName %> simplifies your dinner decisions across all your devices.
+        </p>
+
+        <div class="selector-wrap">
+            <label for="platform-select">Choose Platform:</label>
+            <select id="platform-select" onchange="updateVideo(this.value)">
+                <option value="web">Web Browser</option>
+                <option value="ios">iOS App</option>
+                <option value="android">Android App</option>
+            </select>
+        </div>
+
+        <div class="video-container" id="video-container">
+            <video id="web-video" style="width: 100%; height: 100%; display: block;" controls autoplay muted loop>
+                <source src="/videos/test_web_recording.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video id="mobile-video" style="width: 100%; height: 100%; display: none;" controls autoplay muted loop>
+                <source src="/videos/ios_test_recording.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div id="placeholder" class="video-placeholder" style="display: none;">
+                <div class="play-icon"></div>
+                <span id="platform-label">Demo Video: Web Browser</span>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+</div>
+
+<script>
+    function updateVideo(platform) {
+        const label = document.getElementById('platform-label');
+        const container = document.getElementById('video-container');
+        const webVideo = document.getElementById('web-video');
+        const mobileVideo = document.getElementById('mobile-video');
+        const placeholder = document.getElementById('placeholder');
+
+        const platforms = {
+            'web': 'Web Browser',
+            'ios': 'iOS App',
+            'android': 'Android App'
+        };
+
+        label.textContent = `Demo Video: ${platforms[platform]}`;
+
+        // Reset all
+        webVideo.style.display = 'none';
+        webVideo.pause();
+        mobileVideo.style.display = 'none';
+        mobileVideo.pause();
+        placeholder.style.display = 'none';
+
+        // Handle portrait mode for mobile platforms
+        if (platform === 'ios' || platform === 'android') {
+            container.classList.add('portrait');
+            mobileVideo.style.display = 'block';
+            mobileVideo.play().catch(e => console.log("Autoplay blocked:", e));
+        } else {
+            container.classList.remove('portrait');
+            webVideo.style.display = 'block';
+            webVideo.play().catch(e => console.log("Autoplay blocked:", e));
+        }
+
+        console.log(`Switching to ${platform} demo`);
+    }
+</script>
+</body>
+</html>
