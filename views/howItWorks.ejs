@@ -248,40 +248,58 @@
     <div class="card">
         <h1>How it works</h1>
         <p>
-            <%= appName %> is an open-source Model Context Protocol (MCP) tool designed to solve the age-old question:
-            <em>"What's for dinner?"</em>
+            <%= appName %> is an open-source MCP server designed exclusively for the ChatGPT environment, providing a conversational and interactive way to decide what to eat.
         </p>
 
-        <h2>The Process</h2>
+        <h2>Key Features</h2>
         <div class="step-list">
             <div class="step-item">
-                <div class="step-number">1</div>
+                <div class="step-number">✓</div>
                 <div class="step-content">
-                    <h3>Connect to ChatGPT</h3>
-                    <p>Integrate our MCP server into your ChatGPT environment to give your AI dinner-picking superpowers.</p>
+                    <h3>Two Operating Modes</h3>
+                    <p><strong>Internal Database Mode:</strong> Randomly selects from built-in meal options.</p>
+                    <p><strong>Model Provided List:</strong> Randomly selects from meals and/or restaurants suggested by the AI model during the conversation.</p>
                 </div>
             </div>
             <div class="step-item">
-                <div class="step-number">2</div>
+                <div class="step-number">🤖</div>
                 <div class="step-content">
-                    <h3>Ask for a Suggestion</h3>
-                    <p>Tell ChatGPT what you're in the mood for, or ask it to choose from a list of local restaurants.</p>
-                </div>
-            </div>
-            <div class="step-item">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3>Spin the Wheel</h3>
-                    <p>Use our interactive widget to randomly select your meal and get recipes or directions instantly.</p>
+                    <h3>ChatGPT-Specific Implementation</h3>
+                    <p>Uses <code>window.openai</code> for seamless UI integration within ChatGPT.</p>
+                    <p>Displays an interactive spinning widget that cycles through options, making the decision process fun and visual.</p>
                 </div>
             </div>
         </div>
 
-        <h2>Open Source & Privacy</h2>
-        <p>
-            We believe in transparency. <%= appName %> is fully open-source and built with a privacy-first mindset.
-            We don't store your data, your preferences, or your location. Everything happens locally in your session.
-        </p>
+        <h2>User Flow Examples</h2>
+
+        <div class="example-box" style="background: var(--card2); padding: 20px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 24px;">
+            <h3 style="margin-top: 0;">Example 1: Open-Ended Decision</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 8px;"><strong>User:</strong> "Me and the girlfriend don't know what to eat tonight"</p>
+            <ul style="font-size: 0.95rem; margin-bottom: 0;">
+                <li>Widget cycles through options and lands on a meal.</li>
+                <li>Shows buttons: <strong>Get Recipes | Get Restaurants | Spin Again</strong></li>
+                <li>User clicks "Get Restaurants" &rarr; ChatGPT lists nearby options.</li>
+                <li>User: "Pick one of those restaurants" &rarr; Widget spins again using the restaurant list.</li>
+                <li>New buttons: <strong>Get Recipes | Get Directions | Spin Again</strong></li>
+            </ul>
+        </div>
+
+        <div class="example-box" style="background: var(--card2); padding: 20px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 24px;">
+            <h3 style="margin-top: 0;">Example 2: Constrained Decision</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 8px;"><strong>User:</strong> "Pick a chicken dish to eat tonight"</p>
+            <ul style="font-size: 0.95rem; margin-bottom: 0;">
+                <li>Widget spins through generated chicken dishes.</li>
+                <li>Displays result with relevant action buttons.</li>
+            </ul>
+        </div>
+
+        <h2>Button Context Logic</h2>
+        <p>The interface intelligently adapts its buttons based on what was selected:</p>
+        <ul style="font-size: 1rem;">
+            <li><strong>Meal selected:</strong> Get Recipes | Get Restaurants | Spin Again</li>
+            <li><strong>Restaurant selected:</strong> Get Recipes | Get Directions | Spin Again</li>
+        </ul>
     </div>
 
     <%- include('partials/footer') %>
