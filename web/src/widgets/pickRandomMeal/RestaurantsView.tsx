@@ -195,7 +195,7 @@ export function RestaurantsView() {
                   {restaurant.rating && (
                     <div style={{
                       fontSize: '0.85rem',
-                      color: 'var(--accent2, #008639)',
+                      color: '#FFD700', // Yellow/Gold
                       fontWeight: 'bold'
                     }}>
                       Rating: {restaurant.rating} ★

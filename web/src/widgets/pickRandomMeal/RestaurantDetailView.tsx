@@ -126,7 +126,7 @@ export function RestaurantDetailView() {
           {sharedLandedRestaurant.rating && (
              <div style={{
                 fontSize: '0.85rem',
-                color: 'var(--accent2, #008639)',
+                color: '#FFD700', // Yellow/Gold
                 fontWeight: 'bold',
                 marginTop: '4px'
               }}>
@@ -169,7 +169,7 @@ export function RestaurantDetailView() {
             style={{
               fontFamily: "'Alfa Slab One', serif",
               fontSize: '0.8rem',
-              color: 'var(--accent, #0062FF)',
+              color: 'var(--accent2, #008639)',
               background: 'none',
               border: 'none',
               cursor: 'pointer',
