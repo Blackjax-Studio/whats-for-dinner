@@ -1,25 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Restaurant } from './types';
-import { sharedLandedMeal, restaurantsLoaded, setRestaurantsLoaded, setSharedOptions, setCycleTargetRoute, sharedLandedRestaurant, setSharedLandedRestaurant } from './state';
+import { sharedLandedMeal, restaurantsLoaded, setRestaurantsLoaded, setSharedOptions, setCycleTargetRoute, sharedLandedRestaurant, setSharedLandedRestaurant, isFetchingRestaurants, setIsFetchingRestaurants, restaurants, setRestaurants, subscribe } from './state';
 
 export function RestaurantsView() {
-  const [isLoading, setIsLoading] = useState(!restaurantsLoaded);
   const navigate = useNavigate();
+
+  const restaurantsLoadedValue = useSyncExternalStore(subscribe, () => restaurantsLoaded);
+  const isFetchingRestaurantsValue = useSyncExternalStore(subscribe, () => isFetchingRestaurants);
+  const restaurantsValue = useSyncExternalStore(subscribe, () => restaurants);
+
+  const isLoading = isFetchingRestaurantsValue || !restaurantsLoadedValue;
 
   const mealName = sharedLandedMeal?.title || sharedLandedMeal?.name || 'Your Choice';
 
-  // Stub restaurant data
-  const restaurants: Restaurant[] = [
-    { id: '1', name: 'The Golden Fork', location: '123 Main St, Downtown', rating: '4.5' },
-    { id: '2', name: 'Spicy Garden', location: '456 Oak Ave, Westside', rating: '4.2' },
-    { id: '3', name: 'Riverside Bistro', location: '789 River Rd, Waterfront', rating: '4.8' },
-    { id: '4', name: 'Urban Eats', location: '101 Pine St, Midtown', rating: '4.0' },
-    { id: '5', name: 'Green Leaf Cafe', location: '202 Maple Dr, Eastside', rating: '4.4' },
-  ];
-
   const handleSpin = () => {
-    setSharedOptions(restaurants);
+    setSharedOptions(restaurantsValue);
     setCycleTargetRoute('/restaurant-detail'); 
     navigate('/cycler');
   };
@@ -30,15 +26,12 @@ export function RestaurantsView() {
   };
 
   useEffect(() => {
-    if (restaurantsLoaded) return;
-
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      setRestaurantsLoaded(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
+    // If we are currently fetching, we should not be checking for loaded state
+    if (isFetchingRestaurantsValue) {
+        return;
+    }
+    // No-op if already loaded
+  }, [isFetchingRestaurantsValue]);
 
   return (
     <div style={{
@@ -173,7 +166,7 @@ export function RestaurantsView() {
             scrollbarWidth: 'thin',
             flex: 1
           }}>
-            {restaurants.map(restaurant => {
+            {restaurantsValue.map(restaurant => {
               const isLanded = sharedLandedRestaurant?.id === restaurant.id;
               return (
                 <div

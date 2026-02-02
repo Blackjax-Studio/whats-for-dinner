@@ -13,14 +13,32 @@ export function RecipeDetailView() {
 
   if (!sharedLandedRecipe) return null;
 
+  const recipe = sharedLandedRecipe;
+
   const handleBack = () => {
     navigate('/recipes');
   };
 
-  const handleGiveRecipe = () => {
-    console.log('Give me the recipe clicked for:', sharedLandedRecipe.title);
-    // Stubbed action
-    alert(`Here's the recipe for ${sharedLandedRecipe.title}! (Stubbed)`);
+  const handleGiveRecipe = async () => {
+    if (window.openai?.callTool) {
+      try {
+        const result = await window.openai.callTool("format_recipes", {
+          type: "dish",
+          dish_details: recipe.title,
+          options: [{ title: recipe.title, description: recipe.description }]
+        });
+        
+        if (result) {
+          console.log("format_recipes result:", result);
+        }
+        
+        alert(`Requesting full recipe for ${recipe.title}...`);
+      } catch (error) {
+        console.error("Failed to call format_recipes:", error);
+      }
+    } else {
+      alert(`Here's the recipe for ${recipe.title}! (Stubbed)`);
+    }
   };
 
   const handleRestaurants = () => {
@@ -107,7 +125,7 @@ export function RecipeDetailView() {
             textAlign: 'left',
             lineHeight: '1.1'
           }}>
-            {sharedLandedRecipe.title}
+            {recipe.title}
           </div>
           <div style={{
             fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
@@ -121,7 +139,7 @@ export function RecipeDetailView() {
             WebkitBoxOrient: 'vertical',
             overflow: 'hidden'
           }}>
-            {sharedLandedRecipe.description}
+            {recipe.description}
           </div>
         </div>
 

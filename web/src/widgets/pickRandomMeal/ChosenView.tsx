@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sharedLandedMeal, setCycleTargetRoute, mealOptions, setSharedOptions } from './state';
+import { sharedLandedMeal, setCycleTargetRoute, mealOptions, setSharedOptions, setIsFetchingRecipes, setRecipesLoaded, setRecipes, setIsFetchingRestaurants, setRestaurantsLoaded, setRestaurants } from './state';
 
 export function ChosenView() {
   const navigate = useNavigate();
@@ -13,12 +13,94 @@ export function ChosenView() {
 
   if (!sharedLandedMeal) return null;
 
-  const handleRecipes = () => {
+  const handleRecipes = async () => {
+    if (!sharedLandedMeal) return;
+    const dishName = sharedLandedMeal.title || sharedLandedMeal.name;
+    setRecipes([]); // Clear current recipes immediately
+    setIsFetchingRecipes(true);
+    setRecipesLoaded(false);
     navigate('/recipes');
+
+    if (window.openai?.callTool) {
+      try {
+          console.log("CALL!!! ____ Calling format_recipes with dish_details:", dishName);
+        const result = await window.openai.callTool("format_recipes", {
+          type: "dish",
+          dish_details: dishName,
+          options: [] // The model will fill this based on dish_details
+        });
+
+        console.log("RESULT = " + JSON.stringify(result, null, 2));
+        console.log(
+          "structuredContent = " + JSON.stringify(result?.structuredContent)
+        )
+
+        const options = result?.structuredContent?.options || result?.options;
+
+        console.log("Extracted options:", options);
+
+        if (options && options.length > 0) {
+          const receivedRecipes = options.map((opt: any, index: number) => ({
+            id: String(index + 1),
+            title: opt.title || opt.name || 'Untitled Recipe',
+            description: opt.description || ''
+          }));
+          console.log("Setting recipes:", receivedRecipes);
+          setRecipes(receivedRecipes);
+          setRecipesLoaded(true);
+          setIsFetchingRecipes(false);
+        } else {
+            console.log("No options found in result");
+            setIsFetchingRecipes(false);
+        }
+      } catch (error) {
+        console.error("Failed to call format_recipes:", error);
+        setIsFetchingRecipes(false);
+      }
+    } else {
+      console.error("window.openai.callTool is not available");
+      // Fallback to stub behavior if needed, or just let it stay in loading state
+      // For now, let's keep it as is.
+    }
   };
 
-  const handleRestaurants = () => {
+  const handleRestaurants = async () => {
+    if (!sharedLandedMeal) return;
+    const dishName = sharedLandedMeal.title || sharedLandedMeal.name;
+    setRestaurants([]); // Clear current restaurants immediately
+    setIsFetchingRestaurants(true);
+    setRestaurantsLoaded(false);
     navigate('/restaurants');
+
+    if (window.openai?.callTool) {
+      try {
+        console.log("CALLING format_recipes for restaurants with dish_details:", dishName);
+        const result = await window.openai.callTool("format_recipes", {
+          type: "restaurant",
+          dish_details: dishName,
+          options: [] 
+        });
+
+        const options = result?.structuredContent?.options || result?.options;
+
+        if (options && options.length > 0) {
+          const receivedRestaurants = options.map((opt: any, index: number) => ({
+            id: String(index + 1),
+            name: opt.title || opt.name || 'Untitled Restaurant',
+            location: opt.address || opt.location || '',
+            rating: opt.rating || ''
+          }));
+          setRestaurants(receivedRestaurants);
+          setRestaurantsLoaded(true);
+          setIsFetchingRestaurants(false);
+        } else {
+          setIsFetchingRestaurants(false);
+        }
+      } catch (error) {
+        console.error("Failed to call format_recipes for restaurants:", error);
+        setIsFetchingRestaurants(false);
+      }
+    }
   };
 
   const handleSpinAgain = () => {

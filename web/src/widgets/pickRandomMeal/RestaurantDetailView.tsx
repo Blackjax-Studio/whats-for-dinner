@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sharedLandedRestaurant, setCycleTargetRoute, setSharedOptions } from './state';
+import { sharedLandedRestaurant } from './state';
 
 export function RestaurantDetailView() {
   const navigate = useNavigate();
@@ -13,20 +13,22 @@ export function RestaurantDetailView() {
 
   if (!sharedLandedRestaurant) return null;
 
+  const restaurant = sharedLandedRestaurant;
+
   const handleBack = () => {
     navigate('/restaurants');
   };
 
   const handleGetRecipes = () => {
-    console.log('Give me some recipes for a place like this clicked for:', sharedLandedRestaurant.name);
+    console.log('Give me some recipes for a place like this clicked for:', restaurant.name);
     // Stubbed action
     navigate('/recipes');
   };
 
   const handleLetsGo = () => {
-    console.log("Let's go here clicked for:", sharedLandedRestaurant.name);
+    console.log("Let's go here clicked for:", restaurant.name);
     // Stubbed action
-    alert(`Great choice! Heading to ${sharedLandedRestaurant.name} at ${sharedLandedRestaurant.location}.`);
+    alert(`Great choice! Heading to ${restaurant.name} at ${restaurant.location}.`);
   };
 
   return (
@@ -109,7 +111,7 @@ export function RestaurantDetailView() {
             textAlign: 'left',
             lineHeight: '1.1'
           }}>
-            {sharedLandedRestaurant.name}
+            {restaurant.name}
           </div>
           <div style={{
             fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
@@ -123,16 +125,16 @@ export function RestaurantDetailView() {
             WebkitBoxOrient: 'vertical',
             overflow: 'hidden'
           }}>
-            {sharedLandedRestaurant.location}
+            {restaurant.location}
           </div>
-          {sharedLandedRestaurant.rating && (
+          {restaurant.rating && (
              <div style={{
                 fontSize: '0.85rem',
                 color: 'var(--rating-color, #FFD700)',
                 fontWeight: 'bold',
                 marginTop: '4px'
               }}>
-                Rating: {sharedLandedRestaurant.rating} ★
+                Rating: {restaurant.rating} ★
               </div>
           )}
         </div>

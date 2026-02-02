@@ -1,57 +1,27 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setSharedOptions, setMealOptions, setCycleTargetRoute, setRecipesLoaded, setRestaurantsLoaded, setSharedLandedRestaurant } from './state';
-
-declare global {
-  interface Window {
-    openai?: {
-      toolOutput?: {
-        options?: Array<{ title?: string; name?: string; description?: string; type?: string }>;
-      };
-      sendFollowUpMessage?: (payload: { prompt: string }) => void;
-    };
-  }
-}
+import { setSharedOptions, setMealOptions, setCycleTargetRoute, clearRecipes, clearRestaurants, setSharedLandedRestaurant } from './state';
+import { useToolOutput } from '../../hooks/useOpenAiGlobal';
 
 export function LoadingView() {
   const navigate = useNavigate();
+  const toolOutput = useToolOutput();
 
   useEffect(() => {
-    const handleSetGlobals = (event: CustomEvent) => {
-      console.log('openai:set_globals event received');
-      const globals = event.detail?.globals;
-      const toolOutput = globals?.toolOutput;
-      if (toolOutput?.options && toolOutput.options.length > 0) {
-        setSharedOptions(toolOutput.options);
-        setMealOptions(toolOutput.options);
-        setCycleTargetRoute('/chosen');
-        setRecipesLoaded(false);
-        setRestaurantsLoaded(false);
-        setSharedLandedRestaurant(null);
-        navigate('/cycler');
-      }
-    };
-
-    window.addEventListener('openai:set_globals', handleSetGlobals as EventListener);
-
-    // Initial check
-    if (window.openai?.toolOutput?.options) {
-      console.log('Found toolOutput in window.openai');
-      setSharedOptions(window.openai.toolOutput.options);
-      setMealOptions(window.openai.toolOutput.options);
+    const options = toolOutput?.structuredContent?.options || toolOutput?.options;
+    if (options && options.length > 0) {
+      console.log('Found toolOutput options');
+      setSharedOptions(options);
+      setMealOptions(options);
       setCycleTargetRoute('/chosen');
-      setRecipesLoaded(false);
-      setRestaurantsLoaded(false);
+      clearRecipes();
+      clearRestaurants();
       setSharedLandedRestaurant(null);
       navigate('/cycler');
     } else {
-      console.log('Waiting for openai:set_globals event or toolOutput');
+      console.log('Waiting for toolOutput options');
     }
-
-    return () => {
-      window.removeEventListener('openai:set_globals', handleSetGlobals as EventListener);
-    };
-  }, [navigate]);
+  }, [toolOutput, navigate]);
 
   return (
     <div style={{

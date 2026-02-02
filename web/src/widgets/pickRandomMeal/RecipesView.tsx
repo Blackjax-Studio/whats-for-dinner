@@ -1,25 +1,51 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Recipe } from './types';
-import { sharedLandedMeal, setSharedOptions, setCycleTargetRoute, setSharedLandedRecipe, recipesLoaded, setRecipesLoaded } from './state';
+import { sharedLandedMeal, setSharedOptions, setCycleTargetRoute, setSharedLandedRecipe, recipesLoaded, setRecipesLoaded, isFetchingRecipes, setIsFetchingRecipes, recipes, setRecipes, subscribe } from './state';
+import { useToolOutput } from '../../hooks/useOpenAiGlobal';
 
 export function RecipesView() {
-  const [isLoading, setIsLoading] = useState(!recipesLoaded);
   const navigate = useNavigate();
+  const toolOutput = useToolOutput();
+
+  const recipesLoadedValue = useSyncExternalStore(subscribe, () => recipesLoaded);
+  const isFetchingRecipesValue = useSyncExternalStore(subscribe, () => isFetchingRecipes);
+  const recipesValue = useSyncExternalStore(subscribe, () => recipes);
+
+  const isLoading = isFetchingRecipesValue || !recipesLoadedValue;
+
+  useEffect(() => {
+    // If we are currently fetching, we should not be processing toolOutput
+    if (isFetchingRecipesValue) {
+        return;
+    }
+
+    // Check if recipes are already loaded in state
+    if (recipesLoadedValue && recipesValue.length > 0) {
+        return;
+    }
+
+    const options = toolOutput?.structuredContent?.options || toolOutput?.options;
+
+    if (options && options.length > 0) {
+      console.log("RecipesView: processing toolOutput options", options);
+      // Map tool output to Recipe type
+      const receivedRecipes: Recipe[] = options.map((opt: any, index: number) => ({
+        id: String(index + 1),
+        title: opt.title || opt.name || 'Untitled Recipe',
+        description: opt.description || ''
+      }));
+
+      setRecipes(receivedRecipes);
+      setRecipesLoaded(true);
+      setIsFetchingRecipes(false);
+    }
+  }, [toolOutput, recipesLoadedValue, recipesValue.length]);
 
   const mealName = sharedLandedMeal?.title || sharedLandedMeal?.name || 'Your Choice';
 
-  // Stub recipe data
-  const recipes: Recipe[] = [
-    { id: '1', title: 'Classic Pasta Carbonara', description: 'Traditional Italian pasta with eggs, cheese, and bacon' },
-    { id: '2', title: 'Spicy Thai Basil Chicken', description: 'Quick stir-fry with holy basil, chilies, and fish sauce' },
-    { id: '3', title: 'Mushroom Risotto', description: 'Creamy Arborio rice with porcini mushrooms and parmesan' },
-    { id: '4', title: 'Grilled Salmon Teriyaki', description: 'Glazed salmon with soy-ginger sauce and sesame seeds' },
-    { id: '5', title: 'Vegetable Pad Thai', description: 'Rice noodles with tofu, peanuts, and tangy tamarind sauce' },
-  ];
-
   const handleSpin = () => {
-    setSharedOptions(recipes);
+    setSharedOptions(recipesValue);
     setCycleTargetRoute('/recipe-detail');
     navigate('/cycler');
   };
@@ -30,14 +56,11 @@ export function RecipesView() {
   };
 
   useEffect(() => {
-    if (recipesLoaded) return;
-
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      setRecipesLoaded(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
+    if (recipesLoaded && recipes.length === 0) {
+       // if we are already loaded but no recipes in state (e.g. initial mount after loading)
+       // we should check window.openai or state if we persisted it.
+       // For now, the useEffect above handles it on mount.
+    }
   }, []);
 
   return (
@@ -173,7 +196,7 @@ export function RecipesView() {
             scrollbarWidth: 'thin',
             flex: 1
           }}>
-            {recipes.map(recipe => (
+            {recipesValue.map(recipe => (
               <div
                 key={recipe.id}
                 onClick={() => handleRecipeClick(recipe)}

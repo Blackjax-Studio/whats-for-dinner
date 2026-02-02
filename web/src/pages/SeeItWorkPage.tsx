@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Layout from '../components/Layout';
 
 type Platform = 'web' | 'ios' | 'android';
@@ -6,11 +6,12 @@ type Platform = 'web' | 'ios' | 'android';
 export default function SeeItWorkPage() {
   const [platform, setPlatform] = useState<Platform>('web');
 
-  const platforms = {
+  const platforms: Record<Platform, string> = {
     'web': 'Web Browser',
     'ios': 'iOS App',
     'android': 'Android App'
   };
+  console.log('Available platforms:', platforms);
 
   return (
     <Layout>

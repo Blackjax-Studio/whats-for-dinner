@@ -33,7 +33,8 @@ export function CyclerView() {
 
     const runCycle = () => {
       const currentOption = sharedOptions[currentIndex];
-      setCyclingText(currentOption.title || (currentOption as MealOption).name || (currentOption as Restaurant).name || '');
+      const title = (currentOption as any).title || (currentOption as any).name || '';
+      setCyclingText(title);
 
       // Scale effect
       setCycleScale(true);

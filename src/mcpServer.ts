@@ -1,5 +1,6 @@
 import {McpServer} from "@modelcontextprotocol/sdk/server/mcp.js";
 import {pickRandomMealTool} from "./tools/pickRandomMealTool.js";
+import {formatRecipesTool} from "./tools/formatRecipesTool.js";
 import {pickRandomMealWidget} from "./widgets/pickRandomMealWidget.js";
 
 export function createWhatsForDinnerServer() {
@@ -16,6 +17,12 @@ export function createWhatsForDinnerServer() {
     pickRandomMealTool.name,
     pickRandomMealTool.config,
     (args: any, extra: any) => pickRandomMealTool.handler(args, extra)
+  );
+
+  server.registerTool(
+    formatRecipesTool.name,
+    formatRecipesTool.config,
+    (args: any, extra: any) => formatRecipesTool.handler(args, extra)
   );
 
   return server;
