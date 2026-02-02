@@ -80,16 +80,17 @@ export function RecipeDetailView() {
       <div style={{
         flex: 1,
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
         gap: '12px',
         padding: '4px',
         boxSizing: 'border-box',
-        minHeight: 0
+        minHeight: 0,
+        overflowY: 'auto'
       }}>
         <div style={{
-          flex: 1,
+          width: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
@@ -125,10 +126,11 @@ export function RecipeDetailView() {
 
         <div style={{
           display: 'flex',
-          flexDirection: 'column',
-          gap: '4px',
-          alignItems: 'flex-end',
-          flexShrink: 0
+          flexDirection: 'row',
+          gap: '12px',
+          alignItems: 'center',
+          flexShrink: 0,
+          width: '100%'
         }}>
           <button
             onClick={handleGiveRecipe}

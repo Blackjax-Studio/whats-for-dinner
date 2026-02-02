@@ -82,16 +82,17 @@ export function RestaurantDetailView() {
       <div style={{
         flex: 1,
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
         gap: '12px',
         padding: '4px',
         boxSizing: 'border-box',
-        minHeight: 0
+        minHeight: 0,
+        overflowY: 'auto'
       }}>
         <div style={{
-          flex: 1,
+          width: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
@@ -137,10 +138,11 @@ export function RestaurantDetailView() {
 
         <div style={{
           display: 'flex',
-          flexDirection: 'column',
-          gap: '4px',
-          alignItems: 'flex-end',
-          flexShrink: 0
+          flexDirection: 'row',
+          gap: '12px',
+          alignItems: 'center',
+          flexShrink: 0,
+          width: '100%'
         }}>
           <button
             onClick={handleGetRecipes}
@@ -155,14 +157,12 @@ export function RestaurantDetailView() {
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
               transition: 'opacity 0.2s',
-              whiteSpace: 'normal',
-              textAlign: 'right',
-              maxWidth: '150px'
+              whiteSpace: 'nowrap'
             }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            Give me some recipes for a place like this
+            Recipes like this
           </button>
           <button
             onClick={handleLetsGo}

@@ -53,18 +53,18 @@ export function ChosenView() {
         <div style={{
           display: 'flex',
           width: '100%',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
+          flexDirection: 'column',
+          justifyContent: 'center',
           alignItems: 'center',
           gap: '12px',
           padding: '4px 12px',
           boxSizing: 'border-box'
         }}>
           <div style={{
-            flex: 1,
+            width: '100%',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'flex-start',
+            alignItems: 'center',
             minWidth: 0
           }}>
             <div style={{
@@ -74,7 +74,7 @@ export function ChosenView() {
               fontWeight: 400,
               wordBreak: 'break-word',
               maxWidth: '100%',
-              textAlign: 'left',
+              textAlign: 'center',
               transition: 'all 0.5s ease',
               lineHeight: '1.1'
             }}>
@@ -87,7 +87,7 @@ export function ChosenView() {
                 color: 'var(--text-muted, #6E6E6E)',
                 marginTop: '2px',
                 maxWidth: '100%',
-                textAlign: 'left',
+                textAlign: 'center',
                 display: '-webkit-box',
                 WebkitLineClamp: 2,
                 WebkitBoxOrient: 'vertical',
@@ -99,9 +99,10 @@ export function ChosenView() {
           </div>
           <div style={{
             display: 'flex',
-            flexDirection: 'column',
-            gap: '4px',
-            alignItems: 'flex-end',
+            flexDirection: 'row',
+            gap: '12px',
+            alignItems: 'center',
+            justifyContent: 'center',
             flexShrink: 0
           }}>
             <button
