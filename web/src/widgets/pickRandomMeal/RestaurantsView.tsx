@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Recipe } from './types';
+import { Restaurant } from './types';
 import { sharedLandedMeal } from './state';
 
-export function RecipesView() {
+export function RestaurantsView() {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const mealName = sharedLandedMeal?.title || sharedLandedMeal?.name || 'Your Choice';
 
-  // Stub recipe data
-  const recipes: Recipe[] = [
-    { id: '1', title: 'Classic Pasta Carbonara', description: 'Traditional Italian pasta with eggs, cheese, and bacon' },
-    { id: '2', title: 'Spicy Thai Basil Chicken', description: 'Quick stir-fry with holy basil, chilies, and fish sauce' },
-    { id: '3', title: 'Mushroom Risotto', description: 'Creamy Arborio rice with porcini mushrooms and parmesan' },
-    { id: '4', title: 'Grilled Salmon Teriyaki', description: 'Glazed salmon with soy-ginger sauce and sesame seeds' },
-    { id: '5', title: 'Vegetable Pad Thai', description: 'Rice noodles with tofu, peanuts, and tangy tamarind sauce' },
+  // Stub restaurant data
+  const restaurants: Restaurant[] = [
+    { id: '1', name: 'The Golden Fork', location: '123 Main St, Downtown', rating: '4.5' },
+    { id: '2', name: 'Spicy Garden', location: '456 Oak Ave, Westside', rating: '4.2' },
+    { id: '3', name: 'Riverside Bistro', location: '789 River Rd, Waterfront', rating: '4.8' },
+    { id: '4', name: 'Urban Eats', location: '101 Pine St, Midtown', rating: '4.0' },
+    { id: '5', name: 'Green Leaf Cafe', location: '202 Maple Dr, Eastside', rating: '4.4' },
   ];
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export function RecipesView() {
             color: 'var(--accent, #0062FF)',
             marginBottom: '16px'
           }}>
-            Finding Recipes...
+            Finding Restaurants...
           </div>
           <div style={{
             width: '100%',
@@ -106,7 +106,7 @@ export function RecipesView() {
               overflow: 'hidden',
               textOverflow: 'ellipsis'
             }}>
-              Recipes for {mealName}
+              Restaurants for {mealName}
             </div>
           </div>
           <div style={{
@@ -117,9 +117,9 @@ export function RecipesView() {
             scrollbarWidth: 'thin',
             flex: 1
           }}>
-            {recipes.map(recipe => (
+            {restaurants.map(restaurant => (
               <div
-                key={recipe.id}
+                key={restaurant.id}
                 style={{
                   minWidth: '240px',
                   maxWidth: '240px',
@@ -140,19 +140,25 @@ export function RecipesView() {
                   overflow: 'hidden',
                   textOverflow: 'ellipsis'
                 }}>
-                  {recipe.title}
+                  {restaurant.name}
                 </div>
                 <div style={{
                   fontSize: '0.85rem',
                   color: 'var(--text-muted, #6E6E6E)',
                   lineHeight: '1.3',
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: 3,
-                  WebkitBoxOrient: 'vertical'
+                  marginBottom: '4px'
                 }}>
-                  {recipe.description}
+                  {restaurant.location}
                 </div>
+                {restaurant.rating && (
+                  <div style={{
+                    fontSize: '0.85rem',
+                    color: 'var(--accent2, #008639)',
+                    fontWeight: 'bold'
+                  }}>
+                    Rating: {restaurant.rating} ★
+                  </div>
+                )}
               </div>
             ))}
           </div>

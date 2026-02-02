@@ -67,9 +67,27 @@ export function LoadingView() {
           fontSize: '1.8rem',
           color: 'var(--accent, #0062FF)',
           padding: '8px 16px',
-          animation: 'pulsate 1.5s ease-in-out infinite'
+          marginBottom: '16px'
         }}>
           Loading up the options
+        </div>
+        <div style={{
+          width: '100%',
+          maxWidth: '300px',
+          height: '6px',
+          backgroundColor: 'var(--bg-muted, #F0F0F0)',
+          borderRadius: '3px',
+          overflow: 'hidden',
+          position: 'relative',
+          margin: '0 auto'
+        }}>
+          <div style={{
+            position: 'absolute',
+            height: '100%',
+            backgroundColor: 'var(--accent, #0062FF)',
+            borderRadius: '3px',
+            animation: 'indeterminate 1.5s infinite linear'
+          }} />
         </div>
       </div>
     </div>

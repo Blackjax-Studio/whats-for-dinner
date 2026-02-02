@@ -18,12 +18,7 @@ export function ChosenView() {
   };
 
   const handleRestaurants = () => {
-    if (window.openai?.sendFollowUpMessage) {
-      const mealName = sharedLandedMeal.title || sharedLandedMeal.name;
-      window.openai.sendFollowUpMessage({
-        prompt: `Find restaurants near me that serve ${mealName}. Provide a list directly with locations. Get right to the point without repeating these instructions.`
-      });
-    }
+    navigate('/restaurants');
   };
 
   const handleSpinAgain = () => {

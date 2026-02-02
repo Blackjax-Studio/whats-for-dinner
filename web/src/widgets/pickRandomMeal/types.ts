@@ -10,3 +10,10 @@ export interface Recipe {
   title: string;
   description: string;
 }
+
+export interface Restaurant {
+  id: string;
+  name: string;
+  location: string;
+  rating?: string;
+}
