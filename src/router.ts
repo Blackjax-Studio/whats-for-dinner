@@ -28,6 +28,14 @@ router.get("/see-it-work", (req: Request, res: Response) => {
   res.render("seeItWork", { appName: config.appName });
 });
 
+router.get("/test-widget", (req: Request, res: Response) => {
+  res.render("testWidget", { appName: config.appName });
+});
+
+router.get("/render-test-widget", (req: Request, res: Response) => {
+  res.render("pickRandomMeal", {});
+});
+
 router.all("/mcp", handleMcpRequest);
 
 export default router;

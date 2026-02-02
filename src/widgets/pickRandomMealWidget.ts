@@ -3,15 +3,14 @@ import ejs from "ejs";
 import {join} from "node:path";
 import {logger} from "../logger.ts";
 
-const templatePath = join(process.cwd(), "views/pickRandomMeal.ejs");
-const pickRandomMealTemplate = readFileSync(templatePath, "utf8");
-
 export const pickRandomMealWidget = {
   name: "pick-random-meal-widget",
   uri: "ui://widget/pickRandomMeal.html",
   options: {},
   handler: async () => {
     logger.debug("Rendering pick-random-meal-widget");
+    const templatePath = join(process.cwd(), "views/pickRandomMeal.ejs");
+    const pickRandomMealTemplate = readFileSync(templatePath, "utf8");
     const renderedHtml = ejs.render(pickRandomMealTemplate, {});
     logger.info("Widget pick-random-meal-widget rendered");
     return {

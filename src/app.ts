@@ -13,6 +13,8 @@ setServerId(serverId);
 
 const app = express();
 
+app.use(express.json());
+
 app.set("view engine", "ejs");
 app.use(express.static("assets"));
 app.use(requestLoggingMiddleware);

@@ -12,11 +12,13 @@ const mockApp = {
 vi.mock("express", () => {
   const mockExpress = vi.fn(() => mockApp);
   (mockExpress as any).static = vi.fn(() => "mocked-static");
+  (mockExpress as any).json = vi.fn(() => "mocked-json");
   return {
     default: mockExpress,
     Router: vi.fn(() => ({
       get: vi.fn(),
       all: vi.fn(),
+      post: vi.fn(),
     })),
   };
 });

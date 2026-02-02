@@ -92,7 +92,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            min-height: 100vh;
+            min-height: 100%;
             background: var(--bg-gradient);
             display: -webkit-box;
             display: -webkit-flex;
@@ -110,19 +110,19 @@
             z-index: 100;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
-            padding: 20px 16px;
-            padding-top: calc(40px + env(safe-area-inset-top));
-            padding-bottom: calc(40px + env(safe-area-inset-bottom));
+            padding: 10px;
+            padding-top: calc(10px + env(safe-area-inset-top));
+            padding-bottom: calc(10px + env(safe-area-inset-bottom));
             font-family: var(--sans);
         }
 
         /* Center content if it fits */
-        @media (min-height: 400px) {
+        @media (min-height: 300px) {
             .full-screen-spin {
                 -webkit-box-pack: center;
                 -webkit-justify-content: center;
                 justify-content: center;
-                padding-top: calc(20px + env(safe-area-inset-top));
+                padding-top: calc(10px + env(safe-area-inset-top));
             }
         }
 
@@ -159,11 +159,11 @@
 
         #cycling-text {
             font-family: var(--display);
-            font-size: 3rem;
+            font-size: 2.2rem;
             font-weight: 400;
             color: var(--accent);
             text-align: center;
-            padding: 12px 20px;
+            padding: 8px 16px;
             -webkit-transition: all 0.2s ease-out;
             transition: all 0.2s ease-out;
             word-break: break-word;
@@ -177,8 +177,8 @@
 
         @media (max-width: 480px) {
             #cycling-text {
-                font-size: 2.2rem;
-                padding: 10px;
+                font-size: 1.8rem;
+                padding: 6px;
                 margin-bottom: 0;
             }
             h1 {
@@ -187,18 +187,14 @@
             .card {
                 padding: 24px 16px;
             }
-            .btn {
-                width: 44px;
-                height: 44px;
-            }
             .description {
                 font-size: 0.95rem;
                 margin-top: -6px;
                 margin-bottom: 16px;
             }
             .full-screen-spin {
-                padding-top: calc(20px + env(safe-area-inset-top));
-                padding-bottom: calc(20px + env(safe-area-inset-bottom));
+                padding-top: calc(10px + env(safe-area-inset-top));
+                padding-bottom: calc(10px + env(safe-area-inset-bottom));
             }
         }
 
@@ -215,22 +211,22 @@
             -webkit-box-direction: normal;
             -webkit-flex-direction: row;
             flex-direction: row;
-            gap: 16px;
+            gap: 12px;
             -webkit-box-pack: center;
             -webkit-justify-content: center;
             justify-content: center;
             -webkit-box-align: center;
             -webkit-align-items: center;
             align-items: center;
-            margin-top: 12px;
+            margin-top: 8px;
             width: 100%;
         }
 
         .btn {
             font-family: var(--sans);
             position: relative;
-            width: 52px;
-            height: 52px;
+            width: 44px;
+            height: 44px;
             display: -webkit-box;
             display: -webkit-flex;
             display: flex;
@@ -462,10 +458,10 @@
 
                     // Final choice
                     cyclingText.textContent = dinnerChoice.name;
-                    cyclingText.style.fontSize = '2rem';
+                    cyclingText.style.fontSize = '1.8rem';
                     // Apply smaller font size for mobile if needed
                     if (window.innerWidth <= 480) {
-                        cyclingText.style.fontSize = '1.6rem';
+                        cyclingText.style.fontSize = '1.5rem';
                     }
                     cyclingText.style.webkitTransform = 'scale(1)';
                     cyclingText.style.transform = 'scale(1)';

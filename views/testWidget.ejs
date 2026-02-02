@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Random Meal Widget - <%= appName %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Vend+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f3f4f6;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --text: #111827;
+            --accent: #2563EB;
+            --sans: 'Vend Sans', -apple-system, sans-serif;
+            --display: 'Alfa Slab One', serif;
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        body {
+            font-family: var(--sans);
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .main-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+            width: 100%;
+            max-width: 1200px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .header {
+            text-align: center;
+        }
+        .content-layout {
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        @media (max-width: 800px) {
+            .content-layout {
+                flex-direction: column;
+            }
+        }
+        .side-panel {
+            flex: 0 0 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 20px;
+        }
+        .main-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            min-width: 0;
+        }
+        h1 {
+            font-family: var(--display);
+            font-size: 2rem;
+            margin: 0 0 8px 0;
+            color: var(--accent);
+        }
+        .controls {
+            background: #f9fafb;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .input-group {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: ui-monospace, monospace;
+            font-size: 0.85rem;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        button#load-widget {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: opacity 0.2s;
+        }
+        button#load-widget:hover {
+            opacity: 0.9;
+        }
+        .widget-frame-container {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            max-height: 600px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            background: #fff;
+            position: relative;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .stub-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .button-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .stub-btn {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+            color: #6b7280;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-align: center;
+            cursor: not-allowed;
+            white-space: nowrap;
+        }
+        .info {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-card">
+        <div class="header">
+            <h1>Widget Tester</h1>
+            <p style="margin:0; color: #6b7280;">Simulate ChatGPT Widget Environment</p>
+        </div>
+
+        <div class="content-layout">
+            <div class="side-panel">
+                <div class="controls">
+                    <div class="input-group">
+                        <label for="options-json">Meal Options (JSON):</label>
+                        <textarea id="options-json">[
+  {"name": "Pizza", "description": "Cheesy pepperoni pizza", "type": "dish"},
+  {"name": "Burger", "description": "Juicy cheeseburger with fries", "type": "dish"},
+  {"name": "Sushi", "description": "Fresh salmon rolls", "type": "dish"},
+  {"name": "Tacos", "description": "Spicy beef tacos", "type": "dish"},
+  {"name": "Pasta", "description": "Creamy Alfredo pasta", "type": "dish"},
+  {"name": "Olive Garden", "description": "Italian Restaurant", "type": "restaurant", "address": "123 Pasta St"},
+  {"name": "McDonald's", "description": "Fast Food", "type": "restaurant", "address": "456 Burger Way"}
+]</textarea>
+                    </div>
+                    <button id="load-widget">Load / Reset Widget</button>
+                </div>
+
+                <div class="info">
+                    This tester simulates how the widget appears within the ChatGPT UI.
+                </div>
+            </div>
+
+            <div class="main-panel">
+                <div class="widget-frame-container">
+                    <iframe id="widget-iframe" src="about:blank"></iframe>
+                </div>
+
+                <div class="stub-buttons">
+                    <div class="button-row">
+                        <div class="stub-btn">Action 1</div>
+                        <div class="stub-btn">Action 2</div>
+                        <div class="stub-btn">Action 3</div>
+                    </div>
+                    <div class="button-row">
+                        <div class="stub-btn">Secondary Action</div>
+                        <div class="stub-btn">Settings</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loadBtn = document.getElementById('load-widget');
+        const iframe = document.getElementById('widget-iframe');
+        const optionsInput = document.getElementById('options-json');
+
+        loadBtn.addEventListener('click', () => {
+            let options;
+            try {
+                options = JSON.parse(optionsInput.value);
+            } catch (e) {
+                alert('Invalid JSON in options');
+                return;
+            }
+
+            // Set the iframe source to the render endpoint
+            // We use a timestamp to force reload
+            iframe.src = '/render-test-widget?t=' + Date.now();
+
+            // Once the iframe loads, we send the message
+            iframe.onload = () => {
+                const eventData = {
+                    type: 'openai:set_globals',
+                    detail: {
+                        globals: {
+                            toolOutput: {
+                                options: options
+                            }
+                        }
+                    }
+                };
+
+                // The widget in the iframe listens for window.addEventListener("openai:set_globals", ...)
+                // But it's designed for the top-level window in ChatGPT.
+                // In our current implementation of pickRandomMeal.ejs:
+                // window.addEventListener("openai:set_globals", handleSetGlobals);
+
+                // We need to trigger this event INSIDE the iframe.
+
+                const injectAndTrigger = () => {
+                    const iframeWindow = iframe.contentWindow;
+
+                    // Create and dispatch the event inside the iframe
+                    const event = new iframeWindow.CustomEvent('openai:set_globals', {
+                        detail: eventData.detail
+                    });
+                    iframeWindow.dispatchEvent(event);
+
+                    // Also set it on the window object just in case it checks there initially
+                    if (!iframeWindow.openai) iframeWindow.openai = {};
+                    iframeWindow.openai.toolOutput = eventData.detail.globals.toolOutput;
+                };
+
+                // Small delay to ensure the iframe's internal scripts have registered their listeners
+                setTimeout(injectAndTrigger, 100);
+            };
+        });
+    </script>
+</body>
+</html>
