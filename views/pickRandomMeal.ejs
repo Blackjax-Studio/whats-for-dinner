@@ -2,537 +2,259 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Dinner Choice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick Random Meal - Stub</title>
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Vend+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root{
-            --bg: #ffffff;
-            --card: #ffffff;
-            --card2: #f9fafb;
-            --border: #e5e7eb;
-            --text: #111827;
-            --muted: #4b5563;
-            --muted2: #6b7280;
-            --accent: #2563EB;
-            --accent2: #10b981;
-            --warn: #f59e0b;
-            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --radius: 14px;
+        :root {
+            --bg-color: #FFFFFF;
+            --accent: #0062FF;
+            --accent2: #008639;
+            --warn: #E25600;
+            --text-main: #0D0D0D;
+            --text-muted: #6E6E6E;
             --sans: 'Vend Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --display: 'Alfa Slab One', serif;
-            --bg-gradient: linear-gradient(135deg, #f0f4f8 0%, #ffffff 100%);
         }
-
-        * { box-sizing: border-box; }
-
-        html {
-            height: 100%;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        body {
-            font-family: var(--sans);
-            background: var(--bg-gradient);
-            background-attachment: fixed;
-            color: var(--text);
-            margin: 0;
-            padding: 0;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
-            -webkit-flex-direction: column;
-            flex-direction: column;
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
-            -webkit-overflow-scrolling: touch;
-            /* Ensure the widget is visible on mobile if it has a height issue */
-            overflow: visible;
-        }
-
-        .container {
-            -webkit-box-flex: 1;
-            -webkit-flex: 1;
-            flex: 1;
-            width: 100%;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
-            -webkit-flex-direction: column;
-            flex-direction: column;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            padding: 16px;
-            padding-top: calc(16px + env(safe-area-inset-top));
-            padding-bottom: calc(16px + env(safe-area-inset-bottom));
-        }
-
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 30px 24px;
-            width: 100%;
-            max-width: 95%;
-            text-align: center;
-        }
-
-        .full-screen-spin {
-            position: absolute; /* Changed from fixed to absolute */
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            min-height: 100vh;
-            background: var(--bg-gradient);
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
-            -webkit-flex-direction: column;
-            flex-direction: column;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-            -webkit-box-pack: start;
-            -webkit-justify-content: flex-start;
-            justify-content: flex-start;
-            z-index: 100;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            padding: 20px 16px;
-            padding-top: calc(40px + env(safe-area-inset-top));
-            padding-bottom: calc(40px + env(safe-area-inset-bottom));
-            font-family: var(--sans);
-        }
-
-        /* Center content if it fits */
-        @media (min-height: 400px) {
-            .full-screen-spin {
-                -webkit-box-pack: center;
-                -webkit-justify-content: center;
-                justify-content: center;
-                padding-top: calc(20px + env(safe-area-inset-top));
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #212121;
+                --accent: #0084FF;
+                --accent2: #40C977;
+                --warn: #FF9E60;
+                --text-main: #FFFFFF;
+                --text-muted: #CDCDCD;
             }
         }
-
-        h1 {
-            font-family: var(--display);
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin: 0 0 12px 0;
-            color: var(--text);
-            letter-spacing: -0.01em;
-        }
-
-        .description {
+        body {
             font-family: var(--sans);
-            color: var(--muted);
-            line-height: 1.5;
-            margin-top: -4px;
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
-
-        .cycling-container {
-            display: -webkit-box;
-            display: -webkit-flex;
             display: flex;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            -webkit-justify-content: center;
             justify-content: center;
-            width: 100%;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
         }
-
+        .container {
+            text-align: center;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            overflow: hidden;
+        }
+        #loading-text {
+            font-family: var(--display);
+            font-size: 2.2rem;
+            color: var(--accent);
+            padding: 12px 20px;
+            animation: pulsate 1.5s ease-in-out infinite;
+        }
         #cycling-text {
             font-family: var(--display);
             font-size: 3rem;
             font-weight: 400;
             color: var(--accent);
             text-align: center;
-            padding: 12px 20px;
-            -webkit-transition: all 0.2s ease-out;
-            transition: all 0.2s ease-out;
+            padding: 12px 20px 4px;
             word-break: break-word;
             max-width: 100%;
-            min-height: 1.2em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 0;
+            display: none;
+            transition: all 0.2s ease-out;
         }
-
-        @media (max-width: 480px) {
-            #cycling-text {
-                font-size: 2.2rem;
-                padding: 10px;
-                margin-bottom: 0;
-            }
-            h1 {
-                font-size: 1.25rem;
-            }
-            .card {
-                padding: 24px 16px;
-            }
-            .btn {
-                width: 44px;
-                height: 44px;
-            }
-            .description {
-                font-size: 0.95rem;
-                margin-top: -6px;
-                margin-bottom: 16px;
-            }
-            .full-screen-spin {
-                padding-top: calc(20px + env(safe-area-inset-top));
-                padding-bottom: calc(20px + env(safe-area-inset-bottom));
-            }
-        }
-
         .cycling-text-change {
-            -webkit-transform: scale(1.05);
             transform: scale(1.05);
         }
-
-        .button-group {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-orient: horizontal;
-            -webkit-box-direction: normal;
-            -webkit-flex-direction: row;
-            flex-direction: row;
-            gap: 16px;
-            -webkit-box-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-            margin-top: 12px;
-            width: 100%;
-        }
-
-        .btn {
-            font-family: var(--sans);
-            position: relative;
-            width: 52px;
-            height: 52px;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            border-radius: 14px;
-            cursor: pointer;
-            -webkit-transition: all 0.2s;
-            transition: all 0.2s;
-            border: 1px solid var(--border);
-            background: #f3f4f6;
-            color: var(--text);
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
-            -webkit-appearance: none;
-            padding: 0;
-        }
-
-        /* Custom Tooltip */
-        .btn::after {
-            font-family: var(--sans);
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            -webkit-transform: translateX(-50%) translateY(-8px);
-            transform: translateX(-50%) translateY(-8px);
-            background: #111827;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            -webkit-transition: all 0.2s;
-            transition: all 0.2s;
-            z-index: 10;
-            font-weight: 400;
-        }
-
-        .btn:hover::after {
-            opacity: 1;
-            -webkit-transform: translateX(-50%) translateY(-12px);
-            transform: translateX(-50%) translateY(-12px);
-        }
-
-        @media (hover: none) {
-            .btn::after {
-                display: none;
-            }
-        }
-
-        .btn:hover {
-            background: #e5e7eb;
-            -webkit-transform: translateY(-2px);
-            transform: translateY(-2px);
-        }
-
-        .btn:active {
-            -webkit-transform: scale(0.95);
-            transform: scale(0.95);
-        }
-
-        .btn-recipes {
-            border-color: rgba(16, 185, 129, 0.2);
-            background: rgba(16, 185, 129, 0.1);
+        #cycling-text.landed, .landed {
             color: var(--accent2);
+            font-size: 1.8rem;
+            transform: scale(1);
+            transition: all 0.5s ease;
+            text-align: left;
+            padding: 0;
+            font-family: var(--display);
+            font-weight: 400;
+            word-break: break-word;
+            max-width: 100%;
         }
-
-        .btn-recipes:hover {
-            background: rgba(16, 185, 129, 0.15);
+        #description {
+            font-family: var(--sans);
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            padding: 0;
+            display: none;
+            max-width: 100%;
+            text-align: left;
         }
-
-        .btn-directions, .btn-restaurants {
-            border-color: rgba(37, 99, 235, 0.2);
-            background: rgba(37, 99, 235, 0.1);
+        .result-layout {
+            display: none;
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 10px 20px;
+        }
+        .result-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .result-right {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-end;
+        }
+        .text-btn {
+            font-family: var(--display);
+            font-size: 0.9rem;
             color: var(--accent);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
         }
-
-        .btn-directions:hover, .btn-restaurants:hover {
-            background: rgba(37, 99, 235, 0.15);
+        .text-btn:hover {
+            opacity: 0.7;
         }
-
-        .btn-spin-again {
-            border-color: rgba(245, 158, 11, 0.2);
-            background: rgba(245, 158, 11, 0.1);
+        .text-btn-spin {
             color: var(--warn);
         }
-
-        .btn-spin-again:hover {
-            background: rgba(245, 158, 11, 0.15);
+        @media (max-width: 480px) {
+            #loading-text {
+                font-size: 1.6rem;
+            }
+            #cycling-text {
+                font-size: 2.2rem;
+            }
+            #cycling-text.landed, .landed {
+                font-size: 1.4rem;
+            }
+            #description {
+                font-size: 0.85rem;
+            }
+            .result-layout {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .result-right {
+                align-items: flex-start;
+                width: 100%;
+            }
         }
-
-        /* Loading Spinner */
-        .spinner-container {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
-            -webkit-flex-direction: column;
-            flex-direction: column;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            gap: 16px;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f4f6;
-            border-top: 4px solid var(--accent);
-            border-radius: 50%;
-            -webkit-animation: spin 1s linear infinite;
-            animation: spin 1s linear infinite;
-        }
-
-        @-webkit-keyframes spin {
-            0% { -webkit-transform: rotate(0deg); }
-            100% { -webkit-transform: rotate(360deg); }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            font-family: var(--sans);
-            color: var(--muted);
-            font-size: 0.95rem;
-            font-weight: 400;
+        @keyframes pulsate {
+            0% { opacity: 0.6; transform: scale(0.98); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.6; transform: scale(0.98); }
         }
     </style>
 </head>
 <body>
-    <div id="spin-overlay" class="full-screen-spin">
-        <div class="cycling-container">
-            <div id="cycling-text">Waiting for options...</div>
-        </div>
-        <div id="post-spin-content" style="display: none; width: 100%; max-width: 900px; text-align: center; padding: 0 20px; box-sizing: border-box;">
-            <p id="result-description" class="description"></p>
-            <div class="button-group">
-                <button id="btn-recipes" class="btn btn-recipes" title="Find me recipes for this" data-tooltip="Recipes">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                </button>
-                <button id="btn-directions" class="btn btn-directions" title="Get directions" data-tooltip="Directions" style="display: none;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
-                </button>
-                <button id="btn-restaurants" class="btn btn-restaurants" title="Find me restaurants for this" data-tooltip="Restaurants">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                </button>
-                <button id="btn-spin-again" class="btn btn-spin-again" title="Spin Again" data-tooltip="Spin Again">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <div class="container">
-        <div id="initial-loading">
-            <div id="spinner-view" class="spinner-container">
-                <div class="spinner"></div>
-                <div class="loading-text">Preparing options...</div>
+        <div id="loading-text">Loading up the options</div>
+        <div id="cycling-text"></div>
+
+        <div class="result-layout" id="result-layout">
+            <div class="result-left">
+                <div id="landed-title" class="landed"></div>
+                <div id="description"></div>
+            </div>
+            <div class="result-right">
+                <button id="btn-recipes" class="text-btn">Get Recipes</button>
+                <button id="btn-restaurants" class="text-btn">Find Restaurants</button>
+                <button id="btn-spin-again" class="text-btn text-btn-spin">Spin Again</button>
             </div>
         </div>
     </div>
 
     <script>
-        let isSpinning = false;
-        let hasFinished = false;
-        let cachedToolOutput = null;
+        let mealOptions = [];
+        let isStarted = false;
 
-        const startAnimation = () => {
-            if (!cachedToolOutput || isSpinning || hasFinished) return;
-            isSpinning = true;
+        const loadingText = document.getElementById('loading-text');
+        const cyclingText = document.getElementById('cycling-text');
+        const descriptionText = document.getElementById('description');
+        const resultLayout = document.getElementById('result-layout');
+        const landedTitle = document.getElementById('landed-title');
 
-            const { options } = cachedToolOutput;
+        const btnRecipes = document.getElementById('btn-recipes');
+        const btnRestaurants = document.getElementById('btn-restaurants');
+        const btnSpinAgain = document.getElementById('btn-spin-again');
 
-            // Shuffle options first
-            const shuffledOptions = [...options].sort(() => Math.random() - 0.5);
+        const startAnimation = (options) => {
+            if (isStarted || !options || options.length === 0) return;
+            isStarted = true;
 
-            // If we have many options, we can cycle through more of them to make it look better
-            // but we'll stop on one of the first few in the shuffled list or just keep it as is.
+            mealOptions = options;
 
-            const spinOverlay = document.getElementById('spin-overlay');
-            const initialLoading = document.getElementById('initial-loading');
-            const cyclingText = document.getElementById('cycling-text');
-            const postSpinContent = document.getElementById('post-spin-content');
-
-            initialLoading.style.display = 'none';
-            spinOverlay.style.display = '-webkit-flex';
-            spinOverlay.style.display = 'flex';
-            postSpinContent.style.display = 'none';
-            cyclingText.style.webkitTransform = 'scale(1)';
-            cyclingText.style.transform = 'scale(1)';
-            cyclingText.style.color = 'var(--accent)';
+            loadingText.style.display = 'none';
+            resultLayout.style.display = 'none';
+            cyclingText.style.display = 'block';
 
             let currentIndex = 0;
-            const cycleInterval = 100; // ms
-
-            // Set a timeout for random value between 3.00 and 5.00 seconds for a better "full" feel
-            const totalDuration = Math.floor(Math.random() * 2001) + 3000;
-            const iterations = totalDuration / cycleInterval;
+            const cycleInterval = 150; // ms
+            const cycleDuration = 2000; // how long to cycle for
+            const iterations = cycleDuration / cycleInterval;
             let currentIteration = 0;
 
             const runCycle = () => {
-                cyclingText.textContent = shuffledOptions[currentIndex].name;
+                const currentOption = mealOptions[currentIndex];
+                cyclingText.textContent = currentOption.title || currentOption.name;
+
+                // Cool transition scale effect
                 cyclingText.classList.add('cycling-text-change');
                 setTimeout(() => cyclingText.classList.remove('cycling-text-change'), 50);
 
-                const nextIndex = (currentIndex + 1) % shuffledOptions.length;
-                currentIteration++;
-
                 if (currentIteration < iterations) {
-                    currentIndex = nextIndex;
+                    currentIndex = (currentIndex + 1) % mealOptions.length;
+                    currentIteration++;
                     setTimeout(runCycle, cycleInterval);
                 } else {
-                    // Choose whatever is saying from the options at that time
-                    const dinnerChoice = shuffledOptions[currentIndex];
+                    // Land on the current meal
+                    cyclingText.style.display = 'none';
+                    resultLayout.style.display = 'flex';
 
-                    // Final choice
-                    cyclingText.textContent = dinnerChoice.name;
-                    cyclingText.style.fontSize = '2rem';
-                    // Apply smaller font size for mobile if needed
-                    if (window.innerWidth <= 480) {
-                        cyclingText.style.fontSize = '1.6rem';
-                    }
-                    cyclingText.style.webkitTransform = 'scale(1)';
-                    cyclingText.style.transform = 'scale(1)';
-                    cyclingText.style.color = 'var(--accent2)'; // Success green
-                    cyclingText.style.marginBottom = '0px';
+                    landedTitle.textContent = currentOption.title || currentOption.name;
+                    landedTitle.className = 'landed';
 
-                    setTimeout(() => {
-                        hasFinished = true;
-                        isSpinning = false;
+                    descriptionText.textContent = currentOption.description;
+                    descriptionText.style.display = 'block';
 
-                        document.getElementById('result-description').textContent = dinnerChoice.description;
+                    // Button Logic
+                    const mealName = currentOption.title || currentOption.name;
+                    const isRestaurant = currentOption.type === 'restaurant';
 
-                        const btnRecipes = document.getElementById('btn-recipes');
-                        const btnDirections = document.getElementById('btn-directions');
-                        const btnRestaurants = document.getElementById('btn-restaurants');
-
-                        // Determine if it's a restaurant
-                        const isRestaurant = dinnerChoice.type === 'restaurant';
-
-                        if (isRestaurant) {
-                            btnDirections.style.display = 'flex';
-                            btnRestaurants.style.display = 'none';
-                        } else {
-                            btnDirections.style.display = 'none';
-                            btnRestaurants.style.display = 'flex';
+                    btnRecipes.onclick = () => {
+                        if (window.openai?.sendFollowUpMessage) {
+                            window.openai.sendFollowUpMessage({
+                                prompt: `Find me one recipe for ${mealName}. Provide the recipe directly without repeating these instructions or any internal preamble.`
+                            });
                         }
+                    };
 
-                        btnRecipes.onclick = () => {
-                            if (window.openai?.sendFollowUpMessage) {
-                                window.openai.sendFollowUpMessage({
-                                    prompt: `Find me one recipe for ${dinnerChoice.name}. Provide the recipe directly without repeating these instructions or any internal preamble.`
-                                });
-                            }
-                        };
+                    btnRestaurants.onclick = () => {
+                        if (window.openai?.sendFollowUpMessage) {
+                            window.openai.sendFollowUpMessage({
+                                prompt: `Find restaurants near me that serve ${mealName}. Provide a list directly with locations. Get right to the point without repeating these instructions.`
+                            });
+                        }
+                    };
 
-                        btnDirections.onclick = () => {
-                            if (window.openai?.sendFollowUpMessage) {
-                                const addressPrompt = dinnerChoice.address
-                                    ? `at ${dinnerChoice.address}`
-                                    : "based on its known locations or searching for it near me";
-
-                                window.openai.sendFollowUpMessage({
-                                    prompt: `Provide directions to ${dinnerChoice.name} ${addressPrompt}. If the specific address isn't clear, use your knowledge of its locations relative to my current location. Get right to the point without any preamble.`
-                                });
-                            }
-                        };
-
-                        btnRestaurants.onclick = () => {
-                            if (window.openai?.sendFollowUpMessage) {
-                                window.openai.sendFollowUpMessage({
-                                    prompt: `Find restaurants near me that serve ${dinnerChoice.name}. Provide a list directly with locations. Get right to the point without repeating these instructions.`
-                                });
-                            }
-                        };
-                        postSpinContent.style.display = 'block';
-
-                        document.getElementById('btn-spin-again').onclick = () => {
-                            hasFinished = false;
-                            isSpinning = false;
-                            // Reset UI to loading state
-                            postSpinContent.style.display = 'none';
-                            cyclingText.textContent = '';
-
-                            // Small delay to ensure smooth transition
-                            setTimeout(startAnimation, 100);
-                        };
-                    }, 500);
+                    btnSpinAgain.onclick = () => {
+                        isStarted = false;
+                        startAnimation(mealOptions);
+                    };
                 }
             };
 
@@ -541,10 +263,7 @@
 
         const setupWidget = (toolOutput) => {
             if (!toolOutput || !toolOutput.options) return;
-            cachedToolOutput = toolOutput;
-
-            // Start animation automatically
-            startAnimation();
+            startAnimation(toolOutput.options);
         };
 
         const handleSetGlobals = (event) => {
