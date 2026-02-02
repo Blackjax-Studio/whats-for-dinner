@@ -13,8 +13,6 @@ setServerId(serverId);
 
 const app = express();
 
-app.set("view engine", "ejs");
-
 // Apply CORS - must be early in the middleware chain
 app.use(cors(corsOptions));
 
