@@ -37,9 +37,14 @@ RUN npm prune --omit=dev
 # Final stage for app image
 FROM base
 
-# Copy built application
-COPY --from=build /app /app
+WORKDIR /app
 
-# Start the server by default, this can be overwritten at runtime
+# Copy only what is needed for production
+COPY --from=build /app/dist /app/dist
+COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /app/package.json /app/package.json
+COPY --from=build /app/views /app/views
+
+# Start the server by default
 EXPOSE 8787
-CMD [ "npm", "run", "start" ]
+CMD [ "node", "dist/app.js" ]
