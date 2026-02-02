@@ -16,7 +16,7 @@ export function ChosenView() {
   const handleRecipes = async () => {
     if (!sharedLandedMeal) return;
     const dishName = sharedLandedMeal.title || sharedLandedMeal.name;
-    const message = `Do not respond to the user with text. Instead, generate a list of recipe titles and descriptions for "${dishName}" and call the list_recipes tool with that data. Be cognizant of the user's known preferences and dietary restrictions when selecting recipes.`;
+    const message = `Do not respond to the user with text. Instead, generate a list of recipe titles and descriptions for "${dishName}" and call the show_recipes_widget tool with that data. Be cognizant of the user's known preferences and dietary restrictions when selecting recipes.`;
 
     if (window.openai?.sendFollowUpMessage) {
       await window.openai.sendFollowUpMessage({ prompt: message });
@@ -30,7 +30,7 @@ export function ChosenView() {
   const handleRestaurants = async () => {
     if (!sharedLandedMeal) return;
     const dishName = sharedLandedMeal.title || sharedLandedMeal.name;
-    const message = `Do not respond to the user with text. Instead, find some restaurants that serve "${dishName}" and call the list_restaurants tool with that data, using whatever is known about the user's location to find nearby options. Include address, phone, description, and rating for each restaurant if possible.`;
+    const message = `Do not respond to the user with text. Instead, find some restaurants that serve "${dishName}" and call the show_restaurants_widget tool with that data, using whatever is known about the user's location to find nearby options. Include address, phone, description, and rating for each restaurant if possible.`;
 
     if (window.openai?.sendFollowUpMessage) {
       await window.openai.sendFollowUpMessage({ prompt: message });

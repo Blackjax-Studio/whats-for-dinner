@@ -2,11 +2,11 @@ import { logger } from "../logger.js";
 import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { listRecipesInputSchema } from "../mcpSchemas.js";
 
-export const listRecipesTool = {
-  name: "list_recipes",
+export const showRecipesWidgetTool = {
+  name: "show_recipes_widget",
   config: {
-    title: "List recipes for a specific dish.",
-    description: "Displays a list of recipes for a given dish name. Each recipe includes a title and a brief description. This tool opens the recipes widget.",
+    title: "Show Recipes Widget",
+    description: "ONLY used to show the recipes widget with the specified recipes. This tool does NOT retrieve any data itself; the model must provide the recipe data to it. Use this tool when you want to display a list of recipes to the user in an interactive widget.",
     inputSchema: listRecipesInputSchema,
     _meta: {
       "openai/outputTemplate": "ui://widget/recipes.html",
@@ -16,7 +16,7 @@ export const listRecipesTool = {
   },
   handler: async (args: { dishName: string, recipes: { title: string, description: string }[] }, extra: any): Promise<CallToolResult> => {
     const requestLogger = extra?.request?.logger || logger;
-    requestLogger.info({ dishName: args.dishName, count: args.recipes.length }, "Tool called: list_recipes");
+    requestLogger.info({ dishName: args.dishName, count: args.recipes.length }, "Tool called: show_recipes_widget");
 
     return {
       content: [],

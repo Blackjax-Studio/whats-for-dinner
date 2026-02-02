@@ -2,11 +2,11 @@ import { logger } from "../logger.js";
 import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { listRestaurantsInputSchema } from "../mcpSchemas.js";
 
-export const listRestaurantsTool = {
-  name: "list_restaurants",
+export const showRestaurantsWidgetTool = {
+  name: "show_restaurants_widget",
   config: {
-    title: "List Restaurants",
-    description: "Displays a list of restaurants that serve a specific dish using the restaurants-widget.",
+    title: "Show Restaurants Widget",
+    description: "ONLY used to show the restaurants widget with the specified restaurants. This tool does NOT retrieve any data itself; the model must provide the restaurant data to it. Use this tool when you want to display a list of restaurants to the user in an interactive widget.",
     inputSchema: listRestaurantsInputSchema,
     _meta: {
       "openai/outputTemplate": "ui://widget/restaurants.html",
@@ -16,7 +16,7 @@ export const listRestaurantsTool = {
   },
   handler: async (args: { dishName: string, restaurants: any[] }, extra: any): Promise<CallToolResult> => {
     const requestLogger = extra?.request?.logger || logger;
-    requestLogger.info({ dishName: args.dishName, count: args.restaurants.length }, "Tool called: list_restaurants");
+    requestLogger.info({ dishName: args.dishName, count: args.restaurants.length }, "Tool called: show_restaurants_widget");
 
     return {
       content: [],

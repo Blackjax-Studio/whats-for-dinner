@@ -35,8 +35,15 @@ Description: ${recipe.description}
     }
   };
 
-  const handleRestaurants = () => {
-    navigate('/restaurants');
+  const handleFindRestaurants = async () => {
+    const message = `Do not respond to the user with text. Instead, find some restaurants that serve "${recipe.title}" (or dishes very similar to it) and call the show_restaurants_widget tool with that data, using whatever is known about the user's location to find nearby options. Include address, phone, description, and rating for each restaurant if possible.`;
+
+    if (window.openai?.sendFollowUpMessage) {
+      await window.openai.sendFollowUpMessage({ prompt: message });
+    } else {
+      console.error("window.openai.sendFollowUpMessage is not available");
+      alert(`Instruction sent to model: ${message}`);
+    }
   };
 
   return (
@@ -167,22 +174,23 @@ Description: ${recipe.description}
             Give me the recipe
           </button>
           <button
-            onClick={() => {}}
+            onClick={handleFindRestaurants}
             style={{
               fontFamily: "'Alfa Slab One', serif",
               fontSize: '0.8rem',
               color: 'var(--accent, #0062FF)',
               background: 'none',
               border: 'none',
-              cursor: 'default',
+              cursor: 'pointer',
               padding: '2px 0',
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
               transition: 'opacity 0.2s',
               whiteSpace: 'nowrap',
-              WebkitTapHighlightColor: 'transparent',
-              opacity: 0.3
+              WebkitTapHighlightColor: 'transparent'
             }}
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
             Find Restaurants
           </button>

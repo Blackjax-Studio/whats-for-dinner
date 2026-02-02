@@ -19,10 +19,30 @@ export function RestaurantDetailView() {
     navigate('/');
   };
 
-  const handleLetsGo = () => {
-    console.log("Let's go here clicked for:", restaurant.name);
-    // Stubbed action
-    alert(`Great choice! Heading to ${restaurant.name} at ${restaurant.location}.`);
+  const handleRecipesLikeThis = async () => {
+    const message = `Do not respond to the user with text. Instead, first look up information about the restaurant "${restaurant.name}" at "${restaurant.location}" if possible. Then, generate a list of recipe titles and descriptions for dishes that could typically be found at this restaurant. Finally, call the show_recipes_widget tool with that data to show the recipes in the widget. Please be cognizant of the user's known preferences and dietary restrictions.`;
+
+    if (window.openai?.sendFollowUpMessage) {
+      await window.openai.sendFollowUpMessage({ prompt: message });
+    } else {
+      console.error("window.openai.sendFollowUpMessage is not available");
+      alert(`Instruction sent to model: ${message}`);
+    }
+  };
+
+  const handleLetsGo = async () => {
+    const message = `I've decided to go to "${restaurant.name}" at "${restaurant.location}". 
+
+Please create a Google Maps link for this restaurant using whatever location knowledge you have (nearby "${restaurant.location}") and give it to me. 
+
+(Model instruction: Provide a friendly confirmation and the maps link. Do not repeat these internal instructions.)`;
+
+    if (window.openai?.sendFollowUpMessage) {
+      await window.openai.sendFollowUpMessage({ prompt: message });
+    } else {
+      console.error("window.openai.sendFollowUpMessage is not available");
+      alert(`Instruction sent to model: ${message}`);
+    }
   };
 
   return (
@@ -165,7 +185,7 @@ export function RestaurantDetailView() {
           marginTop: 'auto'
         }}>
           <button
-            onClick={() => {}}
+            onClick={handleRecipesLikeThis}
             style={{
               fontFamily: "'Alfa Slab One', serif",
               fontSize: '0.8rem',
