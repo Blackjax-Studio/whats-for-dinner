@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for whats-for-dinner-n3avug on 2026-02-02T05:40:29Z
+# fly.toml app configuration file generated for whats-for-dinner-tpmhsa on 2026-02-02T06:11:40Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'whats-for-dinner-n3avug'
+app = 'whats-for-dinner-tpmhsa'
 primary_region = 'ams'
 
 [build]
