@@ -101,12 +101,13 @@ export function RestaurantsView() {
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                padding: 0,
-                fontSize: '1.2rem',
+                padding: '4px',
+                fontSize: '1.5rem',
                 lineHeight: 1,
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                WebkitTapHighlightColor: 'transparent'
               }}
               title="Back"
             >
@@ -115,13 +116,13 @@ export function RestaurantsView() {
             <div style={{
               fontFamily: "'Alfa Slab One', serif",
               fontSize: '1.1rem',
-              color: 'var(--accent2, #008639)',
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               flex: 1
             }}>
-              Restaurants for {mealName}
+              <span style={{ color: 'var(--text-neutral, #666666)' }}>Restaurants for </span>
+              <span style={{ color: 'var(--accent2, #008639)' }}>{mealName}</span>
             </div>
             <button
               onClick={handleSpin}

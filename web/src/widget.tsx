@@ -39,10 +39,21 @@ function WidgetRouter() {
             --warn: #FF9E60;
             --text-main: #FFFFFF;
             --text-muted: #CDCDCD;
+            --text-neutral: #AAAAAA;
             --bg-muted: #2A2A2A;
             --card-bg: #2A2A2A;
             --border: #404040;
           }
+        }
+        :root {
+          --text-neutral: #666666;
+        }
+        button {
+          -webkit-tap-highlight-color: transparent;
+          outline: none;
+        }
+        button:focus {
+          outline: none;
         }
       ` }} />
     </BrowserRouter>

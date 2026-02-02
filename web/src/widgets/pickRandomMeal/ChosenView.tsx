@@ -118,7 +118,8 @@ export function ChosenView() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px',
                 transition: 'opacity 0.2s',
-                whiteSpace: 'nowrap'
+                whiteSpace: 'nowrap',
+                WebkitTapHighlightColor: 'transparent'
               }}
               onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
               onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
@@ -130,7 +131,7 @@ export function ChosenView() {
               style={{
                 fontFamily: "'Alfa Slab One', serif",
                 fontSize: '0.8rem',
-                color: 'var(--accent, #0062FF)',
+                color: 'var(--accent2, #008639)',
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
@@ -138,7 +139,8 @@ export function ChosenView() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px',
                 transition: 'opacity 0.2s',
-                whiteSpace: 'nowrap'
+                whiteSpace: 'nowrap',
+                WebkitTapHighlightColor: 'transparent'
               }}
               onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
               onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
@@ -158,7 +160,8 @@ export function ChosenView() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px',
                 transition: 'opacity 0.2s',
-                whiteSpace: 'nowrap'
+                whiteSpace: 'nowrap',
+                WebkitTapHighlightColor: 'transparent'
               }}
               onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
               onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}

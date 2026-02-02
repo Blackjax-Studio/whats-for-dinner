@@ -54,12 +54,13 @@ export function RecipeDetailView() {
             background: 'none',
             border: 'none',
             cursor: 'pointer',
-            padding: 0,
-            fontSize: '1.2rem',
+            padding: '4px',
+            fontSize: '1.5rem',
             lineHeight: 1,
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            WebkitTapHighlightColor: 'transparent'
           }}
           title="Back to Recipes"
         >
@@ -68,7 +69,7 @@ export function RecipeDetailView() {
         <div style={{
           fontFamily: "'Alfa Slab One', serif",
           fontSize: '1.1rem',
-          color: 'var(--accent2, #008639)',
+          color: 'var(--text-neutral, #666666)',
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis'
@@ -97,7 +98,7 @@ export function RecipeDetailView() {
           minWidth: 0
         }}>
           <div style={{
-            color: 'var(--accent, #0062FF)',
+            color: 'var(--text-neutral, #666666)',
             fontSize: '1.4rem',
             fontFamily: "'Alfa Slab One', serif",
             fontWeight: 400,
@@ -137,7 +138,7 @@ export function RecipeDetailView() {
             style={{
               fontFamily: "'Alfa Slab One', serif",
               fontSize: '0.8rem',
-              color: 'var(--accent, #0062FF)',
+              color: 'var(--accent2, #008639)',
               background: 'none',
               border: 'none',
               cursor: 'pointer',
@@ -145,7 +146,8 @@ export function RecipeDetailView() {
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
               transition: 'opacity 0.2s',
-              whiteSpace: 'nowrap'
+              whiteSpace: 'nowrap',
+              WebkitTapHighlightColor: 'transparent'
             }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
@@ -165,7 +167,8 @@ export function RecipeDetailView() {
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
               transition: 'opacity 0.2s',
-              whiteSpace: 'nowrap'
+              whiteSpace: 'nowrap',
+              WebkitTapHighlightColor: 'transparent'
             }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
