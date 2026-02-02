@@ -122,12 +122,13 @@ export function RecipesView() {
               lineHeight: 1
             }}>
               <div style={{
-                fontFamily: "'Alfa Slab One', serif",
-                fontSize: '0.9rem',
+                fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                fontSize: '0.85rem',
                 color: 'var(--text-neutral, #666666)',
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
-                textOverflow: 'ellipsis'
+                textOverflow: 'ellipsis',
+                marginBottom: '2px'
               }}>
                 Recipes for
               </div>
@@ -137,8 +138,7 @@ export function RecipesView() {
                 color: 'var(--accent2, #008639)',
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                marginTop: '-2px'
+                textOverflow: 'ellipsis'
               }}>
                 {mealName}
               </div>
