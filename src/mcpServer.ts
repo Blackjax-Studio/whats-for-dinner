@@ -3,7 +3,7 @@ import {pickRandomMealTool} from "./tools/pickRandomMealTool.js";
 import {pickRandomMealWidget} from "./widgets/pickRandomMealWidget.js";
 
 export function createWhatsForDinnerServer() {
-  const server = new McpServer({ name: "food-choice-app", version: "0.1.0" });
+  const server = new McpServer({ name: "whats-for-dinner", version: "0.1.0" });
 
   server.registerResource(
     pickRandomMealWidget.name,

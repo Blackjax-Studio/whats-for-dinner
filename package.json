@@ -40,7 +40,8 @@
   ],
   "scripts": {
     "build:server": "tsc",
-    "build": "npm run build:server && chmod +x dist/app.js",
+    "build:web": "cd web && npm install && npm run build",
+    "build": "npm run build:web && npm run build:server && chmod +x dist/app.js",
     "start": "npm run build && node dist/app.js",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
