@@ -8,18 +8,18 @@
 
     <style>
         :root{
-            --bg: #0b1220;
-            --card: rgba(255,255,255,0.08);
-            --card2: rgba(255,255,255,0.06);
-            --border: rgba(255,255,255,0.14);
-            --text: rgba(255,255,255,0.92);
-            --muted: rgba(255,255,255,0.72);
-            --muted2: rgba(255,255,255,0.60);
-            --accent: #60a5fa;
-            --accent2: #22c55e;
-            --warn: #fbbf24;
-            --shadow: 0 20px 60px rgba(0,0,0,.35);
-            --radius: 18px;
+            --bg: #ffffff;
+            --card: #ffffff;
+            --card2: #f9fafb;
+            --border: #e5e7eb;
+            --text: #111827;
+            --muted: #4b5563;
+            --muted2: #6b7280;
+            --accent: #2563EB;
+            --accent2: #10b981;
+            --warn: #f59e0b;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --radius: 12px;
             --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
             --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
@@ -34,11 +34,7 @@
             font-family: var(--sans);
             line-height: 1.6;
             color: var(--text);
-            background:
-                    radial-gradient(1200px 800px at 10% 0%, rgba(96,165,250,0.22), transparent 55%),
-                    radial-gradient(900px 700px at 90% 10%, rgba(34,197,94,0.18), transparent 50%),
-                    radial-gradient(700px 600px at 50% 100%, rgba(251,191,36,0.10), transparent 55%),
-                    var(--bg);
+            background: var(--bg);
             padding: 18px 16px 30px;
             display:flex;
             flex-direction: column;
@@ -54,7 +50,7 @@
             flex: 1;
             display:flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 24px;
         }
 
         .topbar{
@@ -62,12 +58,8 @@
             align-items:center;
             justify-content:space-between;
             gap: 12px;
-            padding: 12px 12px;
-            border: 1px solid var(--border);
-            background: rgba(255,255,255,0.05);
-            border-radius: 14px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,.18);
+            padding: 20px 0;
+            margin-bottom: 20px;
         }
 
         .brand{
@@ -75,22 +67,19 @@
             align-items:center;
             gap: 12px;
             min-width: 0;
+            cursor: pointer;
         }
 
         .logo{
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.16);
-            background:
-                    radial-gradient(circle at 30% 20%, rgba(96,165,250,0.35), transparent 55%),
-                    radial-gradient(circle at 80% 70%, rgba(34,197,94,0.25), transparent 55%),
-                    rgba(255,255,255,0.06);
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: #f3f4f6;
             display:flex;
             align-items:center;
             justify-content:center;
-            font-size: 1.15rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,.25);
+            font-size: 1.4rem;
             flex: 0 0 auto;
         }
 
@@ -102,11 +91,12 @@
         }
 
         .brandtext strong{
-            font-size: 0.98rem;
+            font-size: 1.4rem;
             letter-spacing: 0.2px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            color: var(--text);
         }
 
         .brandtext span{
@@ -117,48 +107,20 @@
             text-overflow: ellipsis;
         }
 
-        .nav{
-            display:flex;
-            align-items:center;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-        }
-
-        .chip{
-            display:inline-flex;
-            align-items:center;
-            gap: 8px;
-            padding: 8px 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.14);
-            background: rgba(255,255,255,0.06);
-            color: rgba(255,255,255,0.84);
-            font-size: 0.88rem;
-            text-decoration:none;
-            transition: background .2s ease, transform .2s ease;
-        }
-
-        .chip:hover{
-            background: rgba(255,255,255,0.10);
-            transform: translateY(-1px);
-            text-decoration:none;
-        }
 
         .hero{
             display:grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 18px;
+            grid-template-columns: 1fr;
+            gap: 24px;
             align-items: stretch;
         }
 
         .card{
-            background: linear-gradient(180deg, var(--card), var(--card2));
+            background: var(--card);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             padding: 30px 28px;
-            backdrop-filter: blur(12px);
         }
 
         .headline{
@@ -166,11 +128,12 @@
             font-size: 2.2rem;
             letter-spacing: -0.03em;
             line-height: 1.12;
+            color: #111827;
         }
 
         .subhead{
             margin: 0 0 18px;
-            color: rgba(255,255,255,0.84);
+            color: var(--muted);
             font-size: 1.05rem;
         }
 
@@ -187,14 +150,14 @@
             gap: 8px;
             padding: 8px 10px;
             border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.14);
-            background: rgba(255,255,255,0.05);
-            color: rgba(255,255,255,0.82);
+            border: 1px solid var(--border);
+            background: #f9fafb;
+            color: var(--muted);
             font-size: 0.86rem;
         }
 
         .badge strong{
-            color: rgba(255,255,255,0.92);
+            color: var(--text);
             font-weight: 700;
         }
 
@@ -212,40 +175,86 @@
             gap: 8px;
             padding: 12px 16px;
             border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.16);
-            background: rgba(255,255,255,0.06);
-            color: rgba(255,255,255,0.92);
+            border: 1px solid var(--border);
+            background: #f3f4f6;
+            color: var(--text);
             font-weight: 700;
             text-decoration:none;
             transition: background .2s ease, transform .2s ease;
         }
 
         .btn:hover{
-            background: rgba(255,255,255,0.12);
+            background: #e5e7eb;
             transform: translateY(-1px);
             text-decoration:none;
         }
 
         .btn.primary{
-            border-color: rgba(96,165,250,0.45);
-            background: rgba(96,165,250,0.16);
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
         }
 
         .btn.primary:hover{
-            background: rgba(96,165,250,0.24);
+            background: #0046CC;
+            border-color: #0046CC;
+            color: #fff;
         }
 
         .btn.ghost{
-            background: rgba(255,255,255,0.04);
+            background: transparent;
+            border-color: var(--border);
+        }
+
+        .btn.ghost:hover{
+            background: #f9fafb;
+        }
+
+        /* Cycling Picker Styles */
+        .cycleContainer {
+            margin-top: 24px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: #f9fafb;
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .cycleLabel {
+            font-size: 0.85rem;
+            color: var(--muted2);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .cycleText {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            transition: all 0.1s ease;
+        }
+
+        .cycleText.final {
+            color: var(--text);
+            font-size: 2.2rem;
+            line-height: 1.2;
+            max-width: 600px;
         }
 
         .sideCard{
             display:flex;
             flex-direction: column;
-            justify-content: space-between;
             gap: 14px;
             position: relative;
             overflow:hidden;
+            background: #f9fafb;
         }
 
         .sideTop{
@@ -258,18 +267,19 @@
             margin: 0;
             font-size: 1.05rem;
             letter-spacing: -0.01em;
+            color: var(--text);
         }
 
         .sideText{
             margin: 0;
-            color: rgba(255,255,255,0.80);
+            color: var(--muted);
             font-size: 0.98rem;
         }
 
         .miniSteps{
             margin: 0;
             padding-left: 18px;
-            color: rgba(255,255,255,0.84);
+            color: var(--muted);
         }
 
         .miniSteps li{
@@ -278,10 +288,10 @@
 
         .notice{
             border-left: 4px solid var(--accent2);
-            background: rgba(34,197,94,0.10);
+            background: #f0fdf4;
             padding: 12px 12px;
             border-radius: 12px;
-            color: rgba(255,255,255,0.90);
+            color: #166534;
             font-size: 0.95rem;
         }
 
@@ -294,35 +304,35 @@
         .featureCard{
             padding: 16px 16px;
             border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            background: #ffffff;
         }
 
         .featureCard h3{
             margin: 0 0 6px;
             font-size: 1.02rem;
             letter-spacing: -0.01em;
+            color: var(--text);
         }
 
         .featureCard p{
             margin: 0;
-            color: rgba(255,255,255,0.78);
+            color: var(--muted);
             font-size: 0.94rem;
         }
 
         .mutedLine{
             margin-top: 16px;
-            color: rgba(255,255,255,0.66);
+            color: var(--muted2);
             font-size: 0.92rem;
         }
 
         .footer{
             margin-top: 6px;
-            padding: 16px 10px;
-            border: 1px solid rgba(255,255,255,0.12);
+            padding: 16px 20px;
+            border: 1px solid var(--border);
             border-radius: 14px;
-            background: rgba(255,255,255,0.04);
-            backdrop-filter: blur(10px);
+            background: #f9fafb;
             display:flex;
             flex-wrap: wrap;
             align-items:center;
@@ -338,25 +348,25 @@
         }
 
         .footerLinks a{
-            color: rgba(255,255,255,0.72);
+            color: var(--muted);
             font-size: 0.9rem;
             text-decoration: none;
-            padding: 6px 10px;
+            padding: 6px 12px;
             border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.10);
-            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            background: #ffffff;
             transition: background .2s ease, transform .2s ease;
         }
 
         .footerLinks a:hover{
-            background: rgba(255,255,255,0.08);
+            background: #f3f4f6;
             transform: translateY(-1px);
             text-decoration:none;
-            color: rgba(255,255,255,0.88);
+            color: var(--text);
         }
 
         .copyright{
-            color: rgba(255,255,255,0.55);
+            color: var(--muted2);
             font-size: 0.86rem;
         }
 
@@ -392,47 +402,24 @@ const readme = repo + "#readme";
 <div class="wrap">
 
     <div class="topbar">
-        <div class="brand">
+        <div class="brand" onclick="window.location='/'">
             <div class="logo">🍽️</div>
             <div class="brandtext">
                 <strong><%= appName %></strong>
                 <span>Open-source MCP dinner picker</span>
             </div>
         </div>
-
-        <div class="nav">
-            <a class="chip" href="<%= repo %>" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-        </div>
     </div>
 
     <div class="hero">
-        <!-- Main Hero -->
-        <div class="card">
-            <h1 class="headline">Stop debating dinner. Spin once and move on.</h1>
-            <p class="subhead">
-                <strong><%= appName %></strong> is a lightweight, open-source MCP server that helps you pick a meal fast.
-                Use built-in meal options or let ChatGPT generate candidates and have the picker choose for you.
-            </p>
-
-            <div class="badges">
-                <div class="badge">🎲 <strong>Random Picker</strong> from meals</div>
-                <div class="badge">🤖 <strong>ChatGPT-friendly</strong> list selection</div>
-                <div class="badge">🎨 <strong>Interactive UI</strong> spin animation</div>
-                <div class="badge">🔒 <strong>No user data stored</strong></div>
+        <!-- Main Cycler Card -->
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; padding: 10px 0;">
+            <div class="cycleContainer" style="width: 100%; border: none; background: transparent; margin-top: 0; padding: 0; min-height: auto;">
+                <div id="cycleText" class="cycleText">Loading...</div>
             </div>
-
-            <div class="ctaRow">
-                <a class="btn primary" href="<%= repo %>" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                <a class="btn" href="<%= readme %>" target="_blank" rel="noopener noreferrer">Read the README</a>
-                <a class="btn ghost" href="<%= issues %>" target="_blank" rel="noopener noreferrer">Get Support</a>
-            </div>
-
-            <p class="mutedLine">
-                Tip: Ask ChatGPT for “10 dinner ideas under 30 minutes,” then spin from that list.
-            </p>
         </div>
 
-        <!-- Side How It Works -->
+        <!-- How It Works -->
         <div class="card sideCard">
             <div class="sideTop">
                 <h2 class="sideTitle">How it works</h2>
@@ -453,35 +440,13 @@ const readme = repo + "#readme";
         </div>
     </div>
 
-    <!-- Features Grid -->
-    <div class="card">
-        <h2 style="margin:0 0 12px; font-size:1.2rem;">What you get</h2>
-
-        <div class="grid">
-            <div class="featureCard">
-                <h3>🎲 Random Dinner Picker</h3>
-                <p>Pick from the app’s meal options instantly—no endless scrolling.</p>
-            </div>
-
-            <div class="featureCard">
-                <h3>🤖 ChatGPT Integration</h3>
-                <p>Let ChatGPT brainstorm; the picker chooses from the candidates.</p>
-            </div>
-
-            <div class="featureCard">
-                <h3>🎨 Interactive Widget</h3>
-                <p>A fun spin animation that lands on a single clear choice.</p>
-            </div>
-
-            <div class="featureCard">
-                <h3>⚡ Quick Actions</h3>
-                <p>Jump to recipes/restaurants or spin again in one tap.</p>
-            </div>
+    <div class="card" style="text-align: center; padding: 40px 28px;">
+        <h2 style="margin:0 0 24px; font-size:1.4rem;">Built with ❤️ as an open-source MCP tool.</h2>
+        <div style="display: flex; justify-content: center;">
+            <a class="btn primary" href="<%= repo %>" target="_blank" rel="noopener noreferrer" style="padding: 16px 32px; font-size: 1.1rem; border-radius: 16px;">
+                View on GitHub
+            </a>
         </div>
-
-        <p class="mutedLine" style="margin-bottom:0;">
-            Open source means you can inspect the code and run your own version.
-        </p>
     </div>
 
     <!-- Footer -->
@@ -489,7 +454,7 @@ const readme = repo + "#readme";
         <div class="footerLinks">
             <a href="/privacy">Privacy Policy</a>
             <a href="/terms">Terms of Service</a>
-            <a href="/support">Customer Support</a>
+            <a href="/support">Support</a>
         </div>
 
         <div class="copyright">
@@ -497,6 +462,37 @@ const readme = repo + "#readme";
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const meals = [
+                '🍕 Pizza Night', '🌮 Taco Tuesday', '🍝 Pasta Carbonara',
+                '🍔 Juicy Burgers', '🍣 Sushi Rolls', '🥗 Fresh Salad',
+                '🥩 Grilled Steak', '🍜 Hot Ramen', '🍛 Thai Curry',
+                '🌯 Burritos', '🥘 Paella', '🥪 Gourmet Sandwiches'
+            ];
+
+            const cycleText = document.getElementById('cycleText');
+            let index = 0;
+            let cycles = 0;
+            const maxCycles = 15; // Number of meal changes before landing
+            const speed = 120; // ms between changes
+
+            function spin() {
+                if (cycles < maxCycles) {
+                    cycleText.textContent = meals[index];
+                    index = (index + 1) % meals.length;
+                    cycles++;
+                    setTimeout(spin, speed);
+                } else {
+                    cycleText.textContent = "Stop spinning your wheels. Spin and let us choose!";
+                    cycleText.classList.add('final');
+                }
+            }
+
+            // Start spinning after a short delay
+            setTimeout(spin, 500);
+        });
+    </script>
 </div>
 </body>
 </html>
