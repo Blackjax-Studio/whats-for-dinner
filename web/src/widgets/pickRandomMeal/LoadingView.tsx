@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setSharedOptions } from './state';
+import { setSharedOptions, setMealOptions, setCycleTargetRoute, setRecipesLoaded, setRestaurantsLoaded, setSharedLandedRestaurant } from './state';
 
 declare global {
   interface Window {
@@ -23,6 +23,11 @@ export function LoadingView() {
       const toolOutput = globals?.toolOutput;
       if (toolOutput?.options && toolOutput.options.length > 0) {
         setSharedOptions(toolOutput.options);
+        setMealOptions(toolOutput.options);
+        setCycleTargetRoute('/chosen');
+        setRecipesLoaded(false);
+        setRestaurantsLoaded(false);
+        setSharedLandedRestaurant(null);
         navigate('/cycler');
       }
     };
@@ -33,6 +38,11 @@ export function LoadingView() {
     if (window.openai?.toolOutput?.options) {
       console.log('Found toolOutput in window.openai');
       setSharedOptions(window.openai.toolOutput.options);
+      setMealOptions(window.openai.toolOutput.options);
+      setCycleTargetRoute('/chosen');
+      setRecipesLoaded(false);
+      setRestaurantsLoaded(false);
+      setSharedLandedRestaurant(null);
       navigate('/cycler');
     } else {
       console.log('Waiting for openai:set_globals event or toolOutput');

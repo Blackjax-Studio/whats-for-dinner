@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Recipe } from './types';
-import { sharedLandedMeal } from './state';
+import { sharedLandedMeal, setSharedOptions, setCycleTargetRoute, setSharedLandedRecipe, recipesLoaded, setRecipesLoaded } from './state';
 
 export function RecipesView() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!recipesLoaded);
   const navigate = useNavigate();
 
   const mealName = sharedLandedMeal?.title || sharedLandedMeal?.name || 'Your Choice';
@@ -18,9 +18,23 @@ export function RecipesView() {
     { id: '5', title: 'Vegetable Pad Thai', description: 'Rice noodles with tofu, peanuts, and tangy tamarind sauce' },
   ];
 
+  const handleSpin = () => {
+    setSharedOptions(recipes);
+    setCycleTargetRoute('/recipe-detail');
+    navigate('/cycler');
+  };
+
+  const handleRecipeClick = (recipe: Recipe) => {
+    setSharedLandedRecipe(recipe);
+    navigate('/recipe-detail');
+  };
+
   useEffect(() => {
+    if (recipesLoaded) return;
+
     const timer = setTimeout(() => {
       setIsLoading(false);
+      setRecipesLoaded(true);
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -104,10 +118,32 @@ export function RecipesView() {
               color: 'var(--accent2, #008639)',
               whiteSpace: 'nowrap',
               overflow: 'hidden',
-              textOverflow: 'ellipsis'
+              textOverflow: 'ellipsis',
+              flex: 1
             }}>
               Recipes for {mealName}
             </div>
+            <button
+              onClick={handleSpin}
+              style={{
+                fontFamily: "'Alfa Slab One', serif",
+                fontSize: '0.8rem',
+                color: 'var(--warn, #E25600)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '4px 8px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+                transition: 'opacity 0.2s',
+                whiteSpace: 'nowrap',
+                flexShrink: 0
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
+              onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+            >
+              Spin
+            </button>
           </div>
           <div style={{
             display: 'flex',
@@ -120,6 +156,7 @@ export function RecipesView() {
             {recipes.map(recipe => (
               <div
                 key={recipe.id}
+                onClick={() => handleRecipeClick(recipe)}
                 style={{
                   minWidth: '240px',
                   maxWidth: '240px',
@@ -128,7 +165,8 @@ export function RecipesView() {
                   padding: '12px',
                   border: '1px solid var(--border, #E0E0E0)',
                   display: 'flex',
-                  flexDirection: 'column'
+                  flexDirection: 'column',
+                  cursor: 'pointer'
                 }}
               >
                 <div style={{

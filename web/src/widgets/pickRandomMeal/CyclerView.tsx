@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sharedOptions, setSharedLandedMeal } from './state';
+import { sharedOptions, setSharedLandedMeal, setSharedLandedRecipe, setSharedLandedRestaurant, cycleTargetRoute, setRecipesLoaded, setRestaurantsLoaded } from './state';
+import { MealOption, Recipe, Restaurant } from './types';
 
 export function CyclerView() {
   const [cyclingText, setCyclingText] = useState('');
@@ -17,6 +18,13 @@ export function CyclerView() {
     if (isStartedRef.current) return;
     isStartedRef.current = true;
 
+    // Reset loaded flags if we are cycling for a new meal
+    if (cycleTargetRoute === '/chosen') {
+      setRecipesLoaded(false);
+      setRestaurantsLoaded(false);
+      setSharedLandedRestaurant(null); // Reset restaurant landing when spinning for a new meal
+    }
+
     let currentIndex = 0;
     const cycleInterval = 150;
     const cycleDuration = 2000;
@@ -25,7 +33,7 @@ export function CyclerView() {
 
     const runCycle = () => {
       const currentOption = sharedOptions[currentIndex];
-      setCyclingText(currentOption.title || currentOption.name || '');
+      setCyclingText(currentOption.title || (currentOption as MealOption).name || (currentOption as Restaurant).name || '');
 
       // Scale effect
       setCycleScale(true);
@@ -36,9 +44,17 @@ export function CyclerView() {
         currentIteration++;
         setTimeout(runCycle, cycleInterval);
       } else {
-        // Land on the current meal
-        setSharedLandedMeal(currentOption);
-        navigate('/chosen');
+        // Land on the current option
+        if (cycleTargetRoute === '/recipe-detail') {
+          setSharedLandedRecipe(currentOption as Recipe);
+        } else if (cycleTargetRoute === '/restaurant-detail') {
+           setSharedLandedRestaurant(currentOption as Restaurant);
+        } else if (cycleTargetRoute === '/restaurants') {
+           setSharedLandedRestaurant(currentOption as Restaurant);
+        } else {
+          setSharedLandedMeal(currentOption as MealOption);
+        }
+        navigate(cycleTargetRoute);
       }
     };
 

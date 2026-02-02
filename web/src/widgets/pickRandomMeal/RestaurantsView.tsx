@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Restaurant } from './types';
-import { sharedLandedMeal } from './state';
+import { sharedLandedMeal, restaurantsLoaded, setRestaurantsLoaded, setSharedOptions, setCycleTargetRoute, sharedLandedRestaurant, setSharedLandedRestaurant } from './state';
 
 export function RestaurantsView() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!restaurantsLoaded);
   const navigate = useNavigate();
 
   const mealName = sharedLandedMeal?.title || sharedLandedMeal?.name || 'Your Choice';
@@ -18,9 +18,23 @@ export function RestaurantsView() {
     { id: '5', name: 'Green Leaf Cafe', location: '202 Maple Dr, Eastside', rating: '4.4' },
   ];
 
+  const handleSpin = () => {
+    setSharedOptions(restaurants);
+    setCycleTargetRoute('/restaurant-detail'); 
+    navigate('/cycler');
+  };
+
+  const handleRestaurantClick = (restaurant: Restaurant) => {
+    setSharedLandedRestaurant(restaurant);
+    navigate('/restaurant-detail');
+  };
+
   useEffect(() => {
+    if (restaurantsLoaded) return;
+
     const timer = setTimeout(() => {
       setIsLoading(false);
+      setRestaurantsLoaded(true);
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -104,10 +118,32 @@ export function RestaurantsView() {
               color: 'var(--accent2, #008639)',
               whiteSpace: 'nowrap',
               overflow: 'hidden',
-              textOverflow: 'ellipsis'
+              textOverflow: 'ellipsis',
+              flex: 1
             }}>
               Restaurants for {mealName}
             </div>
+            <button
+              onClick={handleSpin}
+              style={{
+                fontFamily: "'Alfa Slab One', serif",
+                fontSize: '0.8rem',
+                color: 'var(--warn, #E25600)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '4px 8px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+                transition: 'opacity 0.2s',
+                whiteSpace: 'nowrap',
+                flexShrink: 0
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
+              onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+            >
+              Spin
+            </button>
           </div>
           <div style={{
             display: 'flex',
@@ -117,50 +153,57 @@ export function RestaurantsView() {
             scrollbarWidth: 'thin',
             flex: 1
           }}>
-            {restaurants.map(restaurant => (
-              <div
-                key={restaurant.id}
-                style={{
-                  minWidth: '240px',
-                  maxWidth: '240px',
-                  backgroundColor: 'var(--card-bg, #F8F8F8)',
-                  borderRadius: '10px',
-                  padding: '12px',
-                  border: '1px solid var(--border, #E0E0E0)',
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}
-              >
-                <div style={{
-                  fontFamily: "'Alfa Slab One', serif",
-                  fontSize: '1rem',
-                  color: 'var(--text-main, #0D0D0D)',
-                  marginBottom: '4px',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis'
-                }}>
-                  {restaurant.name}
-                </div>
-                <div style={{
-                  fontSize: '0.85rem',
-                  color: 'var(--text-muted, #6E6E6E)',
-                  lineHeight: '1.3',
-                  marginBottom: '4px'
-                }}>
-                  {restaurant.location}
-                </div>
-                {restaurant.rating && (
+            {restaurants.map(restaurant => {
+              const isLanded = sharedLandedRestaurant?.id === restaurant.id;
+              return (
+                <div
+                  key={restaurant.id}
+                  onClick={() => handleRestaurantClick(restaurant)}
+                  style={{
+                    minWidth: '240px',
+                    maxWidth: '240px',
+                    backgroundColor: isLanded ? 'var(--bg-muted, #F0F0F0)' : 'var(--card-bg, #F8F8F8)',
+                    borderRadius: '10px',
+                    padding: '12px',
+                    border: isLanded ? '2px solid var(--accent, #0062FF)' : '1px solid var(--border, #E0E0E0)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    boxSizing: 'border-box',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <div style={{
+                    fontFamily: "'Alfa Slab One', serif",
+                    fontSize: '1rem',
+                    color: isLanded ? 'var(--accent, #0062FF)' : 'var(--text-main, #0D0D0D)',
+                    marginBottom: '4px',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
+                  }}>
+                    {restaurant.name}
+                  </div>
                   <div style={{
                     fontSize: '0.85rem',
-                    color: 'var(--accent2, #008639)',
-                    fontWeight: 'bold'
+                    color: 'var(--text-muted, #6E6E6E)',
+                    lineHeight: '1.3',
+                    marginBottom: '4px'
                   }}>
-                    Rating: {restaurant.rating} ★
+                    {restaurant.location}
                   </div>
-                )}
-              </div>
-            ))}
+                  {restaurant.rating && (
+                    <div style={{
+                      fontSize: '0.85rem',
+                      color: 'var(--accent2, #008639)',
+                      fontWeight: 'bold'
+                    }}>
+                      Rating: {restaurant.rating} ★
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

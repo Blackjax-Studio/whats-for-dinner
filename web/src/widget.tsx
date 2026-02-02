@@ -5,6 +5,8 @@ import { CyclerView } from './widgets/pickRandomMeal/CyclerView';
 import { ChosenView } from './widgets/pickRandomMeal/ChosenView';
 import { RecipesView } from './widgets/pickRandomMeal/RecipesView';
 import { RestaurantsView } from './widgets/pickRandomMeal/RestaurantsView';
+import { RecipeDetailView } from './widgets/pickRandomMeal/RecipeDetailView';
+import { RestaurantDetailView } from './widgets/pickRandomMeal/RestaurantDetailView';
 
 function WidgetRouter() {
   return (
@@ -15,6 +17,8 @@ function WidgetRouter() {
         <Route path="/chosen" element={<ChosenView />} />
         <Route path="/recipes" element={<RecipesView />} />
         <Route path="/restaurants" element={<RestaurantsView />} />
+        <Route path="/recipe-detail" element={<RecipeDetailView />} />
+        <Route path="/restaurant-detail" element={<RestaurantDetailView />} />
       </Routes>
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes indeterminate {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sharedLandedMeal } from './state';
+import { sharedLandedMeal, setCycleTargetRoute, mealOptions, setSharedOptions } from './state';
 
 export function ChosenView() {
   const navigate = useNavigate();
@@ -22,6 +22,8 @@ export function ChosenView() {
   };
 
   const handleSpinAgain = () => {
+    setSharedOptions(mealOptions);
+    setCycleTargetRoute('/chosen');
     navigate('/cycler');
   };
 
