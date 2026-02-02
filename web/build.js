@@ -7,7 +7,8 @@ const __dirname = dirname(__filename);
 
 const isWatch = process.argv.includes('--watch');
 
-const ctx = await esbuild.context({
+// Build main website bundle
+const mainCtx = await esbuild.context({
   entryPoints: [join(__dirname, 'src/index.tsx')],
   bundle: true,
   outfile: join(__dirname, 'dist/bundle.js'),
@@ -23,11 +24,30 @@ const ctx = await esbuild.context({
   sourcemap: true,
 });
 
+// Build widget bundle (separate from main website)
+const widgetCtx = await esbuild.context({
+  entryPoints: [join(__dirname, 'src/widget.tsx')],
+  bundle: true,
+  outfile: join(__dirname, 'dist/widget.js'),
+  format: 'iife', // IIFE for widget to work in ChatGPT iframe
+  platform: 'browser',
+  target: 'es2020',
+  loader: {
+    '.tsx': 'tsx',
+    '.ts': 'ts',
+  },
+  logLevel: 'info',
+  sourcemap: false, // No sourcemap needed for widget
+});
+
 if (isWatch) {
-  await ctx.watch();
+  await mainCtx.watch();
+  await widgetCtx.watch();
   console.log('Watching for changes...');
 } else {
-  await ctx.rebuild();
-  await ctx.dispose();
-  console.log('Build complete!');
+  await mainCtx.rebuild();
+  await widgetCtx.rebuild();
+  await mainCtx.dispose();
+  await widgetCtx.dispose();
+  console.log('Build complete! (website + widget)');
 }
