@@ -1,34 +1,30 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sharedLandedRestaurant } from './state';
+import { sharedLandedRecipe } from './state';
 
-export function RestaurantDetailView() {
+export function RecipeDetailView() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!sharedLandedRestaurant) {
-      navigate('/restaurants');
+    if (!sharedLandedRecipe) {
+      navigate('/');
     }
   }, [navigate]);
 
-  if (!sharedLandedRestaurant) return null;
+  if (!sharedLandedRecipe) return null;
 
-  const restaurant = sharedLandedRestaurant;
+  const recipe = sharedLandedRecipe;
 
   const handleBack = () => {
+    navigate('/');
+  };
+
+  const handleGiveRecipe = async () => {
+    alert(`Requesting full recipe for ${recipe.title}...`);
+  };
+
+  const handleRestaurants = () => {
     navigate('/restaurants');
-  };
-
-  const handleGetRecipes = () => {
-    console.log('Give me some recipes for a place like this clicked for:', restaurant.name);
-    // Stubbed action
-    navigate('/recipes');
-  };
-
-  const handleLetsGo = () => {
-    console.log("Let's go here clicked for:", restaurant.name);
-    // Stubbed action
-    alert(`Great choice! Heading to ${restaurant.name} at ${restaurant.location}.`);
   };
 
   return (
@@ -66,7 +62,7 @@ export function RestaurantDetailView() {
             justifyContent: 'center',
             WebkitTapHighlightColor: 'transparent'
           }}
-          title="Back to Restaurants"
+          title="Back to Recipes"
         >
           ←
         </button>
@@ -78,7 +74,7 @@ export function RestaurantDetailView() {
           overflow: 'hidden',
           textOverflow: 'ellipsis'
         }}>
-          Restaurant Details
+          Recipe Details
         </div>
       </div>
 
@@ -111,7 +107,7 @@ export function RestaurantDetailView() {
             textAlign: 'left',
             lineHeight: '1.1'
           }}>
-            {restaurant.name}
+            {recipe.title}
           </div>
           <div style={{
             fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
@@ -121,22 +117,12 @@ export function RestaurantDetailView() {
             maxWidth: '100%',
             textAlign: 'left',
             display: '-webkit-box',
-            WebkitLineClamp: 2,
+            WebkitLineClamp: 3,
             WebkitBoxOrient: 'vertical',
             overflow: 'hidden'
           }}>
-            {restaurant.location}
+            {recipe.description}
           </div>
-          {restaurant.rating && (
-             <div style={{
-                fontSize: '0.85rem',
-                color: 'var(--rating-color, #FFD700)',
-                fontWeight: 'bold',
-                marginTop: '4px'
-              }}>
-                Rating: {restaurant.rating} ★
-              </div>
-          )}
         </div>
 
         <div style={{
@@ -148,28 +134,7 @@ export function RestaurantDetailView() {
           width: '100%'
         }}>
           <button
-            onClick={handleGetRecipes}
-            style={{
-              fontFamily: "'Alfa Slab One', serif",
-              fontSize: '0.8rem',
-              color: 'var(--accent, #0062FF)',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '2px 0',
-              textTransform: 'uppercase',
-              letterSpacing: '0.5px',
-              transition: 'opacity 0.2s',
-              whiteSpace: 'nowrap',
-              WebkitTapHighlightColor: 'transparent'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-          >
-            Recipes like this
-          </button>
-          <button
-            onClick={handleLetsGo}
+            onClick={handleGiveRecipe}
             style={{
               fontFamily: "'Alfa Slab One', serif",
               fontSize: '0.8rem',
@@ -187,7 +152,27 @@ export function RestaurantDetailView() {
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            Let's go here
+            Give me the recipe
+          </button>
+          <button
+            onClick={() => {}}
+            style={{
+              fontFamily: "'Alfa Slab One', serif",
+              fontSize: '0.8rem',
+              color: 'var(--accent, #0062FF)',
+              background: 'none',
+              border: 'none',
+              cursor: 'default',
+              padding: '2px 0',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+              transition: 'opacity 0.2s',
+              whiteSpace: 'nowrap',
+              WebkitTapHighlightColor: 'transparent',
+              opacity: 0.3
+            }}
+          >
+            Find Restaurants
           </button>
         </div>
       </div>

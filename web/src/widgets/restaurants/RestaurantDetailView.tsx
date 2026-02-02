@@ -1,48 +1,28 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sharedLandedRecipe } from './state';
+import { sharedLandedRestaurant } from './state';
 
-export function RecipeDetailView() {
+export function RestaurantDetailView() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!sharedLandedRecipe) {
-      navigate('/recipes');
+    if (!sharedLandedRestaurant) {
+      navigate('/');
     }
   }, [navigate]);
 
-  if (!sharedLandedRecipe) return null;
+  if (!sharedLandedRestaurant) return null;
 
-  const recipe = sharedLandedRecipe;
+  const restaurant = sharedLandedRestaurant;
 
   const handleBack = () => {
-    navigate('/recipes');
+    navigate('/');
   };
 
-  const handleGiveRecipe = async () => {
-    if (window.openai?.callTool) {
-      try {
-        const result = await window.openai.callTool("format_recipes", {
-          type: "dish",
-          dish_details: recipe.title,
-          options: [{ title: recipe.title, description: recipe.description }]
-        });
-        
-        if (result) {
-          console.log("format_recipes result:", result);
-        }
-        
-        alert(`Requesting full recipe for ${recipe.title}...`);
-      } catch (error) {
-        console.error("Failed to call format_recipes:", error);
-      }
-    } else {
-      alert(`Here's the recipe for ${recipe.title}! (Stubbed)`);
-    }
-  };
-
-  const handleRestaurants = () => {
-    navigate('/restaurants');
+  const handleLetsGo = () => {
+    console.log("Let's go here clicked for:", restaurant.name);
+    // Stubbed action
+    alert(`Great choice! Heading to ${restaurant.name} at ${restaurant.location}.`);
   };
 
   return (
@@ -80,7 +60,7 @@ export function RecipeDetailView() {
             justifyContent: 'center',
             WebkitTapHighlightColor: 'transparent'
           }}
-          title="Back to Recipes"
+          title="Back to Restaurants"
         >
           ←
         </button>
@@ -92,7 +72,7 @@ export function RecipeDetailView() {
           overflow: 'hidden',
           textOverflow: 'ellipsis'
         }}>
-          Recipe Details
+          Restaurant Details
         </div>
       </div>
 
@@ -125,7 +105,7 @@ export function RecipeDetailView() {
             textAlign: 'left',
             lineHeight: '1.1'
           }}>
-            {recipe.title}
+            {restaurant.name}
           </div>
           <div style={{
             fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
@@ -135,12 +115,44 @@ export function RecipeDetailView() {
             maxWidth: '100%',
             textAlign: 'left',
             display: '-webkit-box',
-            WebkitLineClamp: 3,
+            WebkitLineClamp: 2,
             WebkitBoxOrient: 'vertical',
             overflow: 'hidden'
           }}>
-            {recipe.description}
+            {restaurant.location}
           </div>
+          {restaurant.phone && (
+            <div style={{
+              fontSize: '0.85rem',
+              color: 'var(--text-muted, #6E6E6E)',
+              marginTop: '2px'
+            }}>
+              📞 {restaurant.phone}
+            </div>
+          )}
+          {restaurant.rating && (
+             <div style={{
+                fontSize: '0.85rem',
+                color: 'var(--rating-color, #FFD700)',
+                fontWeight: 'bold',
+                marginTop: '4px'
+              }}>
+                Rating: {restaurant.rating} ★
+              </div>
+          )}
+          {restaurant.description && (
+            <div style={{
+              fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+              fontSize: '0.85rem',
+              color: 'var(--text-main, #0D0D0D)',
+              marginTop: '8px',
+              maxWidth: '100%',
+              textAlign: 'left',
+              lineHeight: '1.4'
+            }}>
+              {restaurant.description}
+            </div>
+          )}
         </div>
 
         <div style={{
@@ -149,31 +161,11 @@ export function RecipeDetailView() {
           gap: '12px',
           alignItems: 'center',
           flexShrink: 0,
-          width: '100%'
+          width: '100%',
+          marginTop: 'auto'
         }}>
           <button
-            onClick={handleGiveRecipe}
-            style={{
-              fontFamily: "'Alfa Slab One', serif",
-              fontSize: '0.8rem',
-              color: 'var(--accent2, #008639)',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '2px 0',
-              textTransform: 'uppercase',
-              letterSpacing: '0.5px',
-              transition: 'opacity 0.2s',
-              whiteSpace: 'nowrap',
-              WebkitTapHighlightColor: 'transparent'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-          >
-            Give me the recipe
-          </button>
-          <button
-            onClick={handleRestaurants}
+            onClick={() => {}}
             style={{
               fontFamily: "'Alfa Slab One', serif",
               fontSize: '0.8rem',
@@ -191,7 +183,28 @@ export function RecipeDetailView() {
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            Find Restaurants
+            Recipes like this
+          </button>
+          <button
+            onClick={handleLetsGo}
+            style={{
+              fontFamily: "'Alfa Slab One', serif",
+              fontSize: '0.8rem',
+              color: 'var(--accent2, #008639)',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '2px 0',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+              transition: 'opacity 0.2s',
+              whiteSpace: 'nowrap',
+              WebkitTapHighlightColor: 'transparent'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+          >
+            Let's go
           </button>
         </div>
       </div>

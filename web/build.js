@@ -40,14 +40,52 @@ const widgetCtx = await esbuild.context({
   sourcemap: false, // No sourcemap needed for widget
 });
 
+// Build recipes widget bundle
+const recipesWidgetCtx = await esbuild.context({
+  entryPoints: [join(__dirname, 'src/widget-recipes.tsx')],
+  bundle: true,
+  outfile: join(__dirname, 'dist/widget-recipes.js'),
+  format: 'iife',
+  platform: 'browser',
+  target: 'es2020',
+  loader: {
+    '.tsx': 'tsx',
+    '.ts': 'ts',
+  },
+  logLevel: 'info',
+  sourcemap: false,
+});
+
+// Build restaurants widget bundle
+const restaurantsWidgetCtx = await esbuild.context({
+  entryPoints: [join(__dirname, 'src/widget-restaurants.tsx')],
+  bundle: true,
+  outfile: join(__dirname, 'dist/widget-restaurants.js'),
+  format: 'iife',
+  platform: 'browser',
+  target: 'es2020',
+  loader: {
+    '.tsx': 'tsx',
+    '.ts': 'ts',
+  },
+  logLevel: 'info',
+  sourcemap: false,
+});
+
 if (isWatch) {
   await mainCtx.watch();
   await widgetCtx.watch();
+  await recipesWidgetCtx.watch();
+  await restaurantsWidgetCtx.watch();
   console.log('Watching for changes...');
 } else {
   await mainCtx.rebuild();
   await widgetCtx.rebuild();
+  await recipesWidgetCtx.rebuild();
+  await restaurantsWidgetCtx.rebuild();
   await mainCtx.dispose();
   await widgetCtx.dispose();
-  console.log('Build complete! (website + widget)');
+  await recipesWidgetCtx.dispose();
+  await restaurantsWidgetCtx.dispose();
+  console.log('Build complete! (website + widgets)');
 }

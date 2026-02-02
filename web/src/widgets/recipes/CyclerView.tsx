@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sharedOptions, setSharedLandedMeal, cycleTargetRoute } from './state';
-import { MealOption } from './types';
+import { sharedOptions, setSharedLandedRecipe, cycleTargetRoute } from './state';
+import { Recipe } from './types';
 
 export function CyclerView() {
   const [cyclingText, setCyclingText] = useState('');
@@ -17,11 +17,6 @@ export function CyclerView() {
 
     if (isStartedRef.current) return;
     isStartedRef.current = true;
-
-    // Reset loaded flags if we are cycling for a new meal
-    if (cycleTargetRoute === '/chosen') {
-      // Logic for resetting other widget's state removed as they are now separate widgets
-    }
 
     let currentIndex = 0;
     const cycleInterval = 150;
@@ -44,7 +39,7 @@ export function CyclerView() {
         setTimeout(runCycle, cycleInterval);
       } else {
         // Land on the current option
-        setSharedLandedMeal(currentOption as MealOption);
+        setSharedLandedRecipe(currentOption as Recipe);
         navigate(cycleTargetRoute);
       }
     };

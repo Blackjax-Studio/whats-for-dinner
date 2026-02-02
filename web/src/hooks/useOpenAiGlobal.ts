@@ -47,6 +47,7 @@ export function useOpenAiGlobal<K extends keyof OpenAiGlobals>(
 
 export interface OpenAiApi {
   callTool: (toolName: string, args: any) => Promise<any>;
+  sendFollowUpMessage: (options: { prompt: string }) => Promise<any>;
   [key: string]: any;
 }
 

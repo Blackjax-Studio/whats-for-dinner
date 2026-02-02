@@ -1,67 +1,66 @@
 import { useEffect, useSyncExternalStore } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Recipe } from './types';
-import { sharedLandedMeal, setSharedOptions, setCycleTargetRoute, setSharedLandedRecipe, recipesLoaded, setRecipesLoaded, isFetchingRecipes, setIsFetchingRecipes, recipes, setRecipes, subscribe } from './state';
+import { Restaurant } from './types';
+import { restaurantsLoaded, setRestaurantsLoaded, setSharedOptions, setCycleTargetRoute, sharedLandedRestaurant, setSharedLandedRestaurant, isFetchingRestaurants, setIsFetchingRestaurants, restaurants, setRestaurants, subscribe } from './state';
 import { useToolOutput } from '../../hooks/useOpenAiGlobal';
 
-export function RecipesView() {
+export function RestaurantsView() {
   const navigate = useNavigate();
+
   const toolOutput = useToolOutput();
 
-  const recipesLoadedValue = useSyncExternalStore(subscribe, () => recipesLoaded);
-  const isFetchingRecipesValue = useSyncExternalStore(subscribe, () => isFetchingRecipes);
-  const recipesValue = useSyncExternalStore(subscribe, () => recipes);
+  const restaurantsLoadedValue = useSyncExternalStore(subscribe, () => restaurantsLoaded);
+  const isFetchingRestaurantsValue = useSyncExternalStore(subscribe, () => isFetchingRestaurants);
+  const restaurantsValue = useSyncExternalStore(subscribe, () => restaurants);
 
-  const isLoading = isFetchingRecipesValue || !recipesLoadedValue;
+  const isLoading = isFetchingRestaurantsValue || !restaurantsLoadedValue;
+
+  const mealName = toolOutput?.dishName || 'Your Choice';
+
+  const handleSpin = () => {
+    setSharedOptions(restaurantsValue);
+    setCycleTargetRoute('/restaurant-detail');
+    navigate('/cycler');
+  };
+
+  const handleRestaurantClick = (restaurant: Restaurant) => {
+    setSharedLandedRestaurant(restaurant);
+    navigate('/restaurant-detail');
+  };
 
   useEffect(() => {
-    // If we are currently fetching, we should not be processing toolOutput
-    if (isFetchingRecipesValue) {
+    // If we are currently fetching, we should not be checking for loaded state
+    if (isFetchingRestaurantsValue) {
         return;
     }
 
-    // Check if recipes are already loaded in state
-    if (recipesLoadedValue && recipesValue.length > 0) {
+    // Check if restaurants are already loaded in state
+    if (restaurantsLoadedValue && restaurantsValue.length > 0) {
         return;
     }
 
     const options = toolOutput?.structuredContent?.options || toolOutput?.options;
 
     if (options && options.length > 0) {
-      console.log("RecipesView: processing toolOutput options", options);
-      // Map tool output to Recipe type
-      const receivedRecipes: Recipe[] = options.map((opt: any, index: number) => ({
+      console.log("RestaurantsView: processing toolOutput options", options);
+      const receivedRestaurants: Restaurant[] = options.map((opt: any, index: number) => ({
         id: String(index + 1),
-        title: opt.title || opt.name || 'Untitled Recipe',
-        description: opt.description || ''
+        name: opt.title || opt.name || 'Untitled Restaurant',
+        location: opt.location || opt.address || '',
+        address: opt.address || '',
+        phone: opt.phone || '',
+        description: opt.description || '',
+        rating: opt.rating || ''
       }));
-
-      setRecipes(receivedRecipes);
-      setRecipesLoaded(true);
-      setIsFetchingRecipes(false);
+      setRestaurants(receivedRestaurants);
+      setRestaurantsLoaded(true);
+      setIsFetchingRestaurants(false);
+    } else if (toolOutput) {
+       // We have tool output but no options, maybe it's still loading?
+       setIsFetchingRestaurants(true);
+       setRestaurantsLoaded(false);
     }
-  }, [toolOutput, recipesLoadedValue, recipesValue.length]);
-
-  const mealName = sharedLandedMeal?.title || sharedLandedMeal?.name || 'Your Choice';
-
-  const handleSpin = () => {
-    setSharedOptions(recipesValue);
-    setCycleTargetRoute('/recipe-detail');
-    navigate('/cycler');
-  };
-
-  const handleRecipeClick = (recipe: Recipe) => {
-    setSharedLandedRecipe(recipe);
-    navigate('/recipe-detail');
-  };
-
-  useEffect(() => {
-    if (recipesLoaded && recipes.length === 0) {
-       // if we are already loaded but no recipes in state (e.g. initial mount after loading)
-       // we should check window.openai or state if we persisted it.
-       // For now, the useEffect above handles it on mount.
-    }
-  }, []);
+  }, [toolOutput, restaurantsLoadedValue, restaurantsValue.length, isFetchingRestaurantsValue]);
 
   return (
     <div style={{
@@ -88,7 +87,7 @@ export function RecipesView() {
             color: 'var(--accent, #0062FF)',
             marginBottom: '16px'
           }}>
-            Finding Recipes...
+            Finding Restaurants...
           </div>
           <div style={{
             width: '100%',
@@ -118,19 +117,20 @@ export function RecipesView() {
             flexShrink: 0
           }}>
             <button
-              onClick={() => navigate('/chosen')}
+              onClick={() => {}}
               style={{
-                color: 'var(--accent, #0062FF)',
+                color: 'var(--text-neutral, #666666)',
                 background: 'none',
                 border: 'none',
-                cursor: 'pointer',
+                cursor: 'default',
                 padding: '4px',
                 fontSize: '1.5rem',
                 lineHeight: 1,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                WebkitTapHighlightColor: 'transparent'
+                WebkitTapHighlightColor: 'transparent',
+                opacity: 0.3
               }}
               title="Back"
             >
@@ -153,7 +153,7 @@ export function RecipesView() {
                 textOverflow: 'ellipsis',
                 marginBottom: '2px'
               }}>
-                Recipes for
+                Restaurants for
               </div>
               <div style={{
                 fontFamily: "'Alfa Slab One', serif",
@@ -196,46 +196,57 @@ export function RecipesView() {
             scrollbarWidth: 'thin',
             flex: 1
           }}>
-            {recipesValue.map(recipe => (
-              <div
-                key={recipe.id}
-                onClick={() => handleRecipeClick(recipe)}
-                style={{
-                  minWidth: '240px',
-                  maxWidth: '240px',
-                  backgroundColor: 'var(--card-bg, #F8F8F8)',
-                  borderRadius: '10px',
-                  padding: '12px',
-                  border: '1px solid var(--border, #E0E0E0)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  cursor: 'pointer'
-                }}
-              >
-                <div style={{
-                  fontFamily: "'Alfa Slab One', serif",
-                  fontSize: '1rem',
-                  color: 'var(--text-main, #0D0D0D)',
-                  marginBottom: '4px',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis'
-                }}>
-                  {recipe.title}
+            {restaurantsValue.map(restaurant => {
+              const isLanded = sharedLandedRestaurant?.id === restaurant.id;
+              return (
+                <div
+                  key={restaurant.id}
+                  onClick={() => handleRestaurantClick(restaurant)}
+                  style={{
+                    minWidth: '240px',
+                    maxWidth: '240px',
+                    backgroundColor: isLanded ? 'var(--bg-muted, #F0F0F0)' : 'var(--card-bg, #F8F8F8)',
+                    borderRadius: '10px',
+                    padding: '12px',
+                    border: isLanded ? '2px solid var(--accent, #0062FF)' : '1px solid var(--border, #E0E0E0)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    boxSizing: 'border-box',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <div style={{
+                    fontFamily: "'Alfa Slab One', serif",
+                    fontSize: '1rem',
+                    color: isLanded ? 'var(--accent, #0062FF)' : 'var(--text-main, #0D0D0D)',
+                    marginBottom: '4px',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
+                  }}>
+                    {restaurant.name}
+                  </div>
+                  <div style={{
+                    fontSize: '0.85rem',
+                    color: 'var(--text-muted, #6E6E6E)',
+                    lineHeight: '1.3',
+                    marginBottom: '4px'
+                  }}>
+                    {restaurant.location}
+                  </div>
+                  {restaurant.rating && (
+                    <div style={{
+                      fontSize: '0.85rem',
+                      color: 'var(--rating-color, #FFD700)',
+                      fontWeight: 'bold'
+                    }}>
+                      Rating: {restaurant.rating} ★
+                    </div>
+                  )}
                 </div>
-                <div style={{
-                  fontSize: '0.85rem',
-                  color: 'var(--text-muted, #6E6E6E)',
-                  lineHeight: '1.3',
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitLineClamp: 3,
-                  WebkitBoxOrient: 'vertical'
-                }}>
-                  {recipe.description}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}

@@ -1,16 +1,16 @@
 import ReactDOM from 'react-dom/client';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import { LoadingView } from './widgets/pickRandomMeal/LoadingView';
-import { CyclerView } from './widgets/pickRandomMeal/CyclerView';
-import { ChosenView } from './widgets/pickRandomMeal/ChosenView';
+import { RestaurantsView } from './widgets/restaurants/RestaurantsView';
+import { RestaurantDetailView } from './widgets/restaurants/RestaurantDetailView';
+import { CyclerView } from './widgets/restaurants/CyclerView';
 
-function WidgetRouter() {
+function RestaurantsWidgetRouter() {
   return (
-    <MemoryRouter>
+    <MemoryRouter initialEntries={['/']}>
       <Routes>
-        <Route path="/" element={<LoadingView />} />
+        <Route path="/" element={<RestaurantsView />} />
+        <Route path="/restaurant-detail" element={<RestaurantDetailView />} />
         <Route path="/cycler" element={<CyclerView />} />
-        <Route path="/chosen" element={<ChosenView />} />
       </Routes>
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes indeterminate {
@@ -56,10 +56,7 @@ function WidgetRouter() {
   );
 }
 
-// Mount the React app
 const root = document.getElementById('root');
 if (root) {
-  ReactDOM.createRoot(root).render(<WidgetRouter />);
-} else {
-  console.error('Root element not found for widget');
+  ReactDOM.createRoot(root).render(<RestaurantsWidgetRouter />);
 }
