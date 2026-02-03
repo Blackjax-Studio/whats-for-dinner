@@ -1,0 +1,8 @@
+{
+  "mcp": {
+    "version": "1.0",
+    "authentication": {
+      "type": "none"
+    }
+  }
+}
