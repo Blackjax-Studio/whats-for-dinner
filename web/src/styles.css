@@ -54,6 +54,7 @@ body {
     padding: 0 16px 30px;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 a {
@@ -277,7 +278,7 @@ a:hover {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     min-height: 60vh;
-    overflow: hidden;
+    overflow-x: clip; /* Prevent horizontal scroll from 100vw if scrollbar exists */
     display: flex;
     align-items: center;
     justify-content: center;
