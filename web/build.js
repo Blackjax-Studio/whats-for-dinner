@@ -120,6 +120,22 @@ const pickRandomRecipeWidgetCtx = await esbuild.context({
   sourcemap: false,
 });
 
+// Build about app widget bundle
+const aboutAppWidgetCtx = await esbuild.context({
+  entryPoints: [join(__dirname, 'src/widget-about-app.tsx')],
+  bundle: true,
+  outfile: join(__dirname, 'dist/widget-about-app.js'),
+  format: 'iife',
+  platform: 'browser',
+  target: 'es2020',
+  loader: {
+    '.tsx': 'tsx',
+    '.ts': 'ts',
+  },
+  logLevel: 'info',
+  sourcemap: false,
+});
+
 if (isWatch) {
   await mainCtx.watch();
   await widgetCtx.watch();
@@ -128,6 +144,7 @@ if (isWatch) {
   await googleMapsLinkWidgetCtx.watch();
   await pickRandomRestaurantWidgetCtx.watch();
   await pickRandomRecipeWidgetCtx.watch();
+  await aboutAppWidgetCtx.watch();
   console.log('Watching for changes...');
 } else {
   await mainCtx.rebuild();
@@ -137,6 +154,7 @@ if (isWatch) {
   await googleMapsLinkWidgetCtx.rebuild();
   await pickRandomRestaurantWidgetCtx.rebuild();
   await pickRandomRecipeWidgetCtx.rebuild();
+  await aboutAppWidgetCtx.rebuild();
   await mainCtx.dispose();
   await widgetCtx.dispose();
   await recipesWidgetCtx.dispose();
@@ -144,5 +162,6 @@ if (isWatch) {
   await googleMapsLinkWidgetCtx.dispose();
   await pickRandomRestaurantWidgetCtx.dispose();
   await pickRandomRecipeWidgetCtx.dispose();
+  await aboutAppWidgetCtx.dispose();
   console.log('Build complete! (website + widgets)');
 }

@@ -67,6 +67,19 @@ describe("mcpServer", () => {
       expect.any(Function)
     );
 
+    expect(registerToolSpy).toHaveBeenCalledWith(
+      "about_the_app",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerResourceSpy).toHaveBeenCalledWith(
+      "about-app-widget",
+      "ui://widget/aboutApp.html",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
     registerToolSpy.mockRestore();
     registerResourceSpy.mockRestore();
   });

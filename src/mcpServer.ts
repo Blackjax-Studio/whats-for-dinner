@@ -5,12 +5,14 @@ import {showRecipesWidgetTool} from "./tools/showRecipesWidgetTool.ts";
 import {showRestaurantsWidgetTool} from "./tools/showRestaurantsWidgetTool.ts";
 import {showGoogleMapsLinkTool} from "./tools/showGoogleMapsLinkTool.ts";
 import {pickRandomRestaurantTool} from "./tools/pickRandomRestaurantTool.ts";
+import {aboutAppTool} from "./tools/aboutAppTool.ts";
 import {pickRandomMealWidget} from "./widgets/pickRandomMealWidget.js";
 import {pickRandomRecipeWidget} from "./widgets/pickRandomRecipeWidget.ts";
 import {recipesWidget} from "./widgets/recipesWidget.js";
 import {restaurantsWidget} from "./widgets/restaurantsWidget.js";
 import {googleMapsLinkWidget} from "./widgets/googleMapsLinkWidget.ts";
 import {pickRandomRestaurantWidget} from "./widgets/pickRandomRestaurantWidget.js";
+import {aboutAppWidget} from "./widgets/aboutAppWidget.ts";
 
 export function createWhatsForDinnerServer() {
   const server = new McpServer({ name: "whats-for-dinner", version: "0.1.0" });
@@ -57,6 +59,13 @@ export function createWhatsForDinnerServer() {
     pickRandomRestaurantWidget.handler
   );
 
+  server.registerResource(
+    aboutAppWidget.name,
+    aboutAppWidget.uri,
+    aboutAppWidget.options,
+    aboutAppWidget.handler
+  );
+
   server.registerTool(
     pickRandomMealTool.name,
     pickRandomMealTool.config,
@@ -91,6 +100,12 @@ export function createWhatsForDinnerServer() {
     pickRandomRestaurantTool.name,
     pickRandomRestaurantTool.config,
     (args: any, extra: any) => pickRandomRestaurantTool.handler(args, extra)
+  );
+
+  server.registerTool(
+    aboutAppTool.name,
+    aboutAppTool.config,
+    (args: any, extra: any) => aboutAppTool.handler(args, extra)
   );
 
   return server;

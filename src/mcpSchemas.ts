@@ -57,3 +57,5 @@ export const pickRandomRecipeInputSchema = {
     instructions: z.array(z.string()).optional().describe("List of instructions"),
   })).describe("List of recipes to choose from"),
 };
+
+export const aboutAppInputSchema = {};
