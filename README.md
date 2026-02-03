@@ -1,12 +1,20 @@
 # What's for Dinner? MCP Server
 
-A Model Context Protocol (MCP) server for the ChatGPT App Store that helps you decide what to eat! This server provides an interactive widget for choosing meals randomly from the app's database.
+What's for Dinner is a specialized Model Context Protocol (MCP) server designed to solve the age-old dilemma of deciding what to eat. Built specifically for the ChatGPT environment, it integrates directly into your conversation, allowing the AI to help you navigate through meal choices, restaurant selections, and recipe discoveries.
 
-## Features
+## How It Works
 
-- 🎲 **Random Dinner Picker**: Randomly selects from the app's database of meal options
-- 🤖 **ChatGPT Integration**: Let ChatGPT pick the meals or the restaurants and then What's for Dinner will choose out of ChatGPT's created list
-- 🎨 **Interactive UI Widget**: Exciting animation that cycles through meal options before landing on your dinner choice, with quick-action buttons for recipes, restaurants, or spinning again
+"What's for Dinner" is a specialized MCP server designed to integrate directly into your ChatGPT environment. It bridges the gap between a simple "I don't know" and a delicious meal by combining a curated database with real-time reasoning.
+
+Key capabilities include:
+* **Pick a restaurant** when you want to go out.
+* **Pick a meal** for general inspiration.
+* **Pick a recipe** for home cooking.
+* **String them together**: 
+    * Pick a meal → Find a place to eat it.
+    * Pick a meal → Find a recipe for it.
+    * Pick a restaurant → Find recipes for similar food.
+    * Pick a recipe → Find a restaurant that serves it.
 
 ## Installation
 
@@ -91,7 +99,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Built with the [Model Context Protocol SDK](https://github.com/modelcontextprotocol/sdk)
 - Inspired by the everyday struggle of "what's for dinner?"
-- Special thanks to Junie, Claude, and ChatGPT for their help building this project
+- Special thanks to Junie and the JetBrains team, Claude, and ChatGPT for their help building this project
 
 ## Support
 
