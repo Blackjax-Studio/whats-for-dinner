@@ -1,51 +1,33 @@
-import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 
-const MEALS = [
-  '🍕 Pizza Night', '🌮 Taco Tuesday', '🍝 Pasta Carbonara',
-  '🍔 Juicy Burgers', '🍣 Sushi Rolls', '🥗 Fresh Salad',
-  '🥩 Grilled Steak', '🍜 Hot Ramen', '🍛 Thai Curry',
-  '🌯 Burritos', '🥘 Paella', '🥪 Gourmet Sandwiches'
-];
-
 export default function HomePage() {
-  const [cycleText, setCycleText] = useState('Loading...');
-  const [isFinal, setIsFinal] = useState(false);
-
-  useEffect(() => {
-    let index = 0;
-    let cycles = 0;
-    const maxCycles = 15;
-    const speed = 120;
-
-    const spin = () => {
-      if (cycles < maxCycles) {
-        setCycleText(MEALS[index]);
-        index = (index + 1) % MEALS.length;
-        cycles++;
-        setTimeout(spin, speed);
-      } else {
-        setCycleText("Stop spinning your wheels. We'll spin for you!");
-        setIsFinal(true);
-      }
-    };
-
-    setTimeout(spin, 500);
-  }, []);
-
   return (
     <Layout>
-      <div className="hero">
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '200px', padding: '10px 0' }}>
-          <div className="cycleContainer" style={{ width: '100%', border: 'none', background: 'transparent', marginTop: 0, padding: 0, minHeight: 'auto' }}>
-            <div className={`cycleText ${isFinal ? 'final' : ''}`}>
-              {cycleText}
-            </div>
-          </div>
+      <div className="hero full-width-hero">
+        <div className="hero-video-bg">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/videos/test_web_recording.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="hero-overlay"></div>
         </div>
       </div>
 
-      <div className="card" style={{ textAlign: 'center', padding: '40px 28px' }}>
+      <div className="hero-content">
+        <h1 className="hero-title">
+          Stop spinning about what to eat.
+        </h1>
+        <p className="hero-subtitle">
+          We'll spin for you!
+        </p>
+      </div>
+
+      <div className="card" style={{ textAlign: 'center', padding: '40px 28px', marginTop: '40px' }}>
         <h2 style={{ margin: '0 0 24px', fontFamily: 'var(--display)', fontSize: '1.4rem', fontWeight: 400 }}>
           Built with ❤️ as an open-source MCP tool.
         </h2>

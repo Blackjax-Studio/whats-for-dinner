@@ -41,7 +41,7 @@ body {
     color: var(--text);
     background: var(--bg-gradient);
     background-attachment: fixed;
-    padding: 18px 16px 30px;
+    padding: 0 16px 30px;
     display: flex;
     flex-direction: column;
 }
@@ -57,12 +57,17 @@ a:hover {
 
 .wrap {
     width: 100%;
-    max-width: 1040px;
     margin: 0 auto;
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+}
+
+.topbar, .footer, .card {
+    max-width: 1040px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .topbar {
@@ -70,8 +75,24 @@ a:hover {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 20px 0;
-    margin-bottom: 20px;
+    padding: 24px 16px;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 10;
+    color: white; /* Make text white to overlay video */
+}
+
+.topbar .nav-btn {
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 8px 12px;
+}
+
+.brandtext strong {
+    color: white;
 }
 
 .brand {
@@ -116,7 +137,7 @@ a:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: var(--text);
+    color: inherit;
 }
 
 .brandtext span {
@@ -243,6 +264,87 @@ a:hover {
 
 .btn.ghost:hover {
     background: #f9fafb;
+}
+
+.full-width-hero {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-top: -96px; /* Offset the topbar height to overlay it */
+    min-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0f172a;
+}
+
+.hero-video-bg {
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Narrower video container */
+    margin: 0 auto;
+    z-index: 1;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.hero-video-bg video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--bg-gradient);
+}
+
+.hero-title {
+    font-family: var(--display);
+    font-size: 3.5rem;
+    margin: 0 0 16px;
+    color: #111827; /* Dark text */
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #374151; /* Dark grey text */
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+}
+
+.videoContainer {
+    margin-top: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #000;
+    overflow: hidden;
+    box-shadow: var(--shadow);
 }
 
 .cycleContainer {

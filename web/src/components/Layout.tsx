@@ -18,14 +18,6 @@ export default function Layout({ children }: LayoutProps) {
             <strong>{APP_NAME}</strong>
           </div>
         </button>
-        <div className="nav-buttons">
-          <button onClick={() => navigate('/how-it-works')} className="nav-btn">
-            How it works
-          </button>
-          <button onClick={() => navigate('/see-it-work')} className="nav-btn">
-            See it in action
-          </button>
-        </div>
       </div>
 
       {children}
