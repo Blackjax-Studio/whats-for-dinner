@@ -66,25 +66,6 @@ Description: ${recipe.description}
         gap: '0.5rem',
         flexShrink: 0
       }}>
-        <button
-          onClick={handleBack}
-          style={{
-            color: 'var(--accent, #0062FF)',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: '4px',
-            fontSize: '1.5rem',
-            lineHeight: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            WebkitTapHighlightColor: 'transparent'
-          }}
-          title="Back to Recipes"
-        >
-          ←
-        </button>
         <div style={{
           fontFamily: "'Alfa Slab One', serif",
           fontSize: '1.1rem',
@@ -150,31 +131,12 @@ Description: ${recipe.description}
           gap: '12px',
           alignItems: 'center',
           flexShrink: 0,
-          width: '100%'
+          width: '100%',
+          marginTop: 'auto',
+          flexWrap: 'wrap'
         }}>
           <button
             onClick={handleGiveRecipe}
-            style={{
-              fontFamily: "'Alfa Slab One', serif",
-              fontSize: '0.8rem',
-              color: 'var(--accent2, #008639)',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '2px 0',
-              textTransform: 'uppercase',
-              letterSpacing: '0.5px',
-              transition: 'opacity 0.2s',
-              whiteSpace: 'nowrap',
-              WebkitTapHighlightColor: 'transparent'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-          >
-            Give me the recipe
-          </button>
-          <button
-            onClick={handleFindRestaurants}
             style={{
               fontFamily: "'Alfa Slab One', serif",
               fontSize: '0.8rem',
@@ -192,7 +154,49 @@ Description: ${recipe.description}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            Find Restaurants
+            give me the recipe
+          </button>
+          <button
+            onClick={handleFindRestaurants}
+            style={{
+              fontFamily: "'Alfa Slab One', serif",
+              fontSize: '0.8rem',
+              color: 'var(--accent2, #008639)',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '2px 0',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+              transition: 'opacity 0.2s',
+              whiteSpace: 'nowrap',
+              WebkitTapHighlightColor: 'transparent'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+          >
+            find restaurants
+          </button>
+          <button
+            onClick={handleBack}
+            style={{
+              fontFamily: "'Alfa Slab One', serif",
+              fontSize: '0.8rem',
+              color: 'var(--warn, #FF9E60)',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '2px 0',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+              transition: 'opacity 0.2s',
+              whiteSpace: 'nowrap',
+              WebkitTapHighlightColor: 'transparent'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+          >
+            back
           </button>
         </div>
       </div>

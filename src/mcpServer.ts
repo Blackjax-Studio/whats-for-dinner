@@ -1,10 +1,12 @@
 import {McpServer} from "@modelcontextprotocol/sdk/server/mcp.js";
 import {pickRandomMealTool} from "./tools/pickRandomMealTool.js";
+import {pickRandomRecipeTool} from "./tools/pickRandomRecipeTool.ts";
 import {showRecipesWidgetTool} from "./tools/showRecipesWidgetTool.ts";
 import {showRestaurantsWidgetTool} from "./tools/showRestaurantsWidgetTool.ts";
 import {showGoogleMapsLinkTool} from "./tools/showGoogleMapsLinkTool.ts";
 import {pickRandomRestaurantTool} from "./tools/pickRandomRestaurantTool.ts";
 import {pickRandomMealWidget} from "./widgets/pickRandomMealWidget.js";
+import {pickRandomRecipeWidget} from "./widgets/pickRandomRecipeWidget.ts";
 import {recipesWidget} from "./widgets/recipesWidget.js";
 import {restaurantsWidget} from "./widgets/restaurantsWidget.js";
 import {googleMapsLinkWidget} from "./widgets/googleMapsLinkWidget.ts";
@@ -18,6 +20,13 @@ export function createWhatsForDinnerServer() {
     pickRandomMealWidget.uri,
     pickRandomMealWidget.options,
     pickRandomMealWidget.handler
+  );
+
+  server.registerResource(
+    pickRandomRecipeWidget.name,
+    pickRandomRecipeWidget.uri,
+    pickRandomRecipeWidget.options,
+    pickRandomRecipeWidget.handler
   );
 
   server.registerResource(
@@ -52,6 +61,12 @@ export function createWhatsForDinnerServer() {
     pickRandomMealTool.name,
     pickRandomMealTool.config,
     (args: any, extra: any) => pickRandomMealTool.handler(args, extra)
+  );
+
+  server.registerTool(
+    pickRandomRecipeTool.name,
+    pickRandomRecipeTool.config,
+    (args: any, extra: any) => pickRandomRecipeTool.handler(args, extra)
   );
 
   server.registerTool(

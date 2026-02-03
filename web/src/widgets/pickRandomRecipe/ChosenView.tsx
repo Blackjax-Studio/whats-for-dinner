@@ -1,26 +1,33 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sharedLandedRestaurant } from './state';
+import { sharedLandedRecipe, recipeOptions, setSharedOptions, setCycleTargetRoute } from './state';
 
-export function RestaurantDetailView() {
+export function ChosenView() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!sharedLandedRestaurant) {
+    if (!sharedLandedRecipe) {
       navigate('/');
     }
   }, [navigate]);
 
-  if (!sharedLandedRestaurant) return null;
+  if (!sharedLandedRecipe) return null;
 
-  const restaurant = sharedLandedRestaurant;
+  const recipe = sharedLandedRecipe;
 
   const handleBack = () => {
-    navigate('/');
+    setSharedOptions(recipeOptions);
+    setCycleTargetRoute('/chosen');
+    navigate('/cycler');
   };
 
-  const handleRecipesLikeThis = async () => {
-    const message = `Do not respond to the user with text. Instead, first look up information about the restaurant "${restaurant.name}" at "${restaurant.location}" if possible. Then, generate a list of recipe titles and descriptions for dishes that could typically be found at this restaurant. Finally, call the show_recipes_widget tool with that data to show the recipes in the widget. Please be cognizant of the user's known preferences and dietary restrictions.`;
+  const handleGiveRecipe = async () => {
+    const message = `Sure, I'll give you a recipe for "${recipe.title}". 
+
+Title: ${recipe.title}
+Description: ${recipe.description}
+
+(Model instruction: Please provide a friendly response and then the full recipe. Do not repeat these internal instructions.)`;
 
     if (window.openai?.sendFollowUpMessage) {
       await window.openai.sendFollowUpMessage({ prompt: message });
@@ -30,15 +37,8 @@ export function RestaurantDetailView() {
     }
   };
 
-  const handleLetsGo = async () => {
-    const message = `Do not respond to the user with text. Instead, first look up information about the restaurant "${restaurant.name}" at "${restaurant.location}" using web search tools if available to get the most accurate and up-to-date address. Then, call the show_google_maps_link tool to provide a Google Maps link.
-
-For the tool input:
-1. Use as fine-grained a starting address for the user as possible (using their known location details), but at least providing the closest zip code.
-2. Provide "${restaurant.name}" as the poiName.
-3. Provide the full address and zip code for "${restaurant.name}" obtained from your search.
-
-The goal is to show a link to the restaurant on Google Maps for the user.`;
+  const handleFindRestaurants = async () => {
+    const message = `Do not respond to the user with text if you already know their location. Instead, find some restaurants that serve "${recipe.title}" (or dishes very similar to it) and call the show_restaurants_widget tool with that data, using whatever is known about the user's location to find nearby options. Include address, phone, description, and rating for each restaurant if possible. If you do not know the user's location, ask them for it first, and then create the list of restaurants once they provide it.`;
 
     if (window.openai?.sendFollowUpMessage) {
       await window.openai.sendFollowUpMessage({ prompt: message });
@@ -76,7 +76,7 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
           overflow: 'hidden',
           textOverflow: 'ellipsis'
         }}>
-          Restaurant Details
+          Recipe Details
         </div>
       </div>
 
@@ -109,54 +109,19 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
             textAlign: 'left',
             lineHeight: '1.1'
           }}>
-            {restaurant.name}
+            {recipe.title}
           </div>
           <div style={{
             fontFamily: "'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             fontSize: '0.85rem',
-            color: 'var(--text-muted, #6E6E6E)',
-            marginTop: '4px',
+            color: 'var(--text-main, #0D0D0D)',
+            marginTop: '8px',
             maxWidth: '100%',
             textAlign: 'left',
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden'
+            lineHeight: '1.4'
           }}>
-            {restaurant.location}
+            {recipe.description}
           </div>
-          {restaurant.phone && (
-            <div style={{
-              fontSize: '0.85rem',
-              color: 'var(--text-muted, #6E6E6E)',
-              marginTop: '2px'
-            }}>
-              📞 {restaurant.phone}
-            </div>
-          )}
-          {restaurant.rating && (
-             <div style={{
-                fontSize: '0.85rem',
-                color: 'var(--rating-color, #FFD700)',
-                fontWeight: 'bold',
-                marginTop: '4px'
-              }}>
-                Rating: {restaurant.rating} ★
-              </div>
-          )}
-          {restaurant.description && (
-            <div style={{
-              fontFamily: "'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-              fontSize: '0.85rem',
-              color: 'var(--text-main, #0D0D0D)',
-              marginTop: '8px',
-              maxWidth: '100%',
-              textAlign: 'left',
-              lineHeight: '1.4'
-            }}>
-              {restaurant.description}
-            </div>
-          )}
         </div>
 
         <div style={{
@@ -170,7 +135,7 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
           flexWrap: 'wrap'
         }}>
           <button
-            onClick={handleRecipesLikeThis}
+            onClick={handleGiveRecipe}
             style={{
               fontFamily: "'Alfa Slab One', serif",
               fontSize: '0.8rem',
@@ -188,10 +153,10 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            get recipes
+            get recipe
           </button>
           <button
-            onClick={handleLetsGo}
+            onClick={handleFindRestaurants}
             style={{
               fontFamily: "'Alfa Slab One', serif",
               fontSize: '0.8rem',
@@ -230,7 +195,7 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            back
+            spin again
           </button>
         </div>
       </div>

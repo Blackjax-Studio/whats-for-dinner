@@ -48,3 +48,12 @@ export const pickRandomRestaurantInputSchema = {
     rating: z.string().optional().describe("Rating (e.g., '4.5') if possible"),
   })).describe("List of restaurants to choose from"),
 };
+
+export const pickRandomRecipeInputSchema = {
+  recipes: z.array(z.object({
+    title: z.string().describe("Title of the recipe"),
+    description: z.string().describe("Brief description of the recipe"),
+    ingredients: z.array(z.string()).optional().describe("List of ingredients"),
+    instructions: z.array(z.string()).optional().describe("List of instructions"),
+  })).describe("List of recipes to choose from"),
+};
