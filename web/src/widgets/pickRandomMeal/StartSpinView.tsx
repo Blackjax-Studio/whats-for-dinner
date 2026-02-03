@@ -23,8 +23,9 @@ export function StartSpinView() {
     }}>
       <div style={{
         textAlign: 'center',
-        padding: '4px',
-        boxSizing: 'border-box'
+        padding: '12px',
+        boxSizing: 'border-box',
+        width: '100%'
       }}>
         <button
           onClick={handleSpin}
@@ -35,7 +36,8 @@ export function StartSpinView() {
             backgroundColor: 'var(--warn, #E25600)',
             border: 'none',
             borderRadius: '12px',
-            padding: '12px 32px',
+            padding: '16px 32px',
+            width: '100%',
             cursor: 'pointer',
             textTransform: 'uppercase',
             letterSpacing: '1px',

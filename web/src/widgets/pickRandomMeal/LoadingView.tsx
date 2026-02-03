@@ -24,6 +24,7 @@ export function LoadingView() {
     <div style={{
       fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
       display: 'flex',
+      flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       height: '100%',
@@ -36,26 +37,42 @@ export function LoadingView() {
     }}>
       <div style={{
         textAlign: 'center',
-        padding: '4px',
-        boxSizing: 'border-box'
+        padding: '12px',
+        boxSizing: 'border-box',
+        width: '100%'
       }}>
+        {/* Skeleton for the Spin button */}
         <div style={{
+          height: '63px', // Matches padding (16*2) + font height approximately
           width: '100%',
-          maxWidth: '300px',
-          height: '6px',
           backgroundColor: 'var(--bg-muted, #F0F0F0)',
-          borderRadius: '3px',
-          overflow: 'hidden',
+          borderRadius: '12px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           position: 'relative',
-          margin: '0 auto'
+          overflow: 'hidden',
+          animation: 'pulsate 2s infinite ease-in-out'
         }}>
           <div style={{
-            position: 'absolute',
-            height: '100%',
-            backgroundColor: 'var(--accent, #0062FF)',
+            width: '100%',
+            maxWidth: '120px', // Just enough for some visual feedback
+            height: '6px',
+            backgroundColor: 'var(--border, #E0E0E0)',
             borderRadius: '3px',
-            animation: 'indeterminate 1.5s infinite linear'
-          }} />
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <div style={{
+              position: 'absolute',
+              height: '100%',
+              width: '100%',
+              backgroundColor: 'var(--accent, #0062FF)',
+              borderRadius: '3px',
+              animation: 'indeterminate 1.5s infinite linear',
+              opacity: 0.5
+            }} />
+          </div>
         </div>
       </div>
     </div>
