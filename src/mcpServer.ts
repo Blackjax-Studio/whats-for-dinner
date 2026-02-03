@@ -15,7 +15,7 @@ import {pickRandomRestaurantWidget} from "./widgets/pickRandomRestaurantWidget.j
 import {aboutAppWidget} from "./widgets/aboutAppWidget.ts";
 
 export function createWhatsForDinnerServer() {
-  const server = new McpServer({ name: "whats-for-dinner", version: "0.1.0" });
+  const server = new McpServer({ name: "whats-for-dinner", version: "1.0.0" });
 
   server.registerResource(
     pickRandomMealWidget.name,

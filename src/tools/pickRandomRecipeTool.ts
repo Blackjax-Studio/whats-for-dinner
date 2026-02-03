@@ -11,7 +11,11 @@ export const pickRandomRecipeTool = {
     _meta: {
       "openai/outputTemplate": "ui://widget/pickRandomRecipe.html",
       "openai/widgetAccessible": true,
-      "openai/toolInvocation/invoked": "Picking a recipe",
+      "openai/toolInvocation/invoking": "Picking a recipe...",
+      "openai/toolInvocation/invoked": "Recipe picked.",
+    },
+    annotations: {
+      readOnlyHint: true,
     },
   },
   handler: async (args: { recipes: any[] }, extra: any): Promise<CallToolResult> => {

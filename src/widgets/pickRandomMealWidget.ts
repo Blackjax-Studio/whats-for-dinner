@@ -35,11 +35,16 @@ export const pickRandomMealWidget = {
       contents: [
         {
           uri: "ui://widget/pickRandomMeal.html",
-          mimeType: "text/html",
+          mimeType: "text/html+skybridge",
           text: renderedHtml,
           _meta: {
             "openai/widgetPrefersBorder": true,
             "openai/widgetDescription": "Displays the chosen meal option.",
+            "openai/widgetDomain": "https://whatsfordinnermcp.com",
+            "openai/widgetCSP": {
+              connect_domains: ["https://whatsfordinnermcp.com"],
+              resource_domains: ["https://fonts.googleapis.com", "https://fonts.gstatic.com"],
+            },
           },
         },
       ],

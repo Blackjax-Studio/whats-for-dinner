@@ -40,11 +40,17 @@ export const googleMapsLinkWidget = {
       contents: [
         {
           uri: "ui://widget/google-maps-link.html",
-          mimeType: "text/html",
+          mimeType: "text/html+skybridge",
           text: renderedHtml,
           _meta: {
             "openai/widgetPrefersBorder": true,
             "openai/widgetDescription": "Displays a button that links to Google Maps for a restaurant.",
+            "openai/widgetDomain": "https://whatsfordinnermcp.com",
+            "openai/widgetCSP": {
+              connect_domains: ["https://whatsfordinnermcp.com"],
+              resource_domains: ["https://fonts.googleapis.com", "https://fonts.gstatic.com"],
+              redirect_domains: ["https://www.google.com"],
+            },
           },
         },
       ],

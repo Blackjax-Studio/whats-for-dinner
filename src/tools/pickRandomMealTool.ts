@@ -12,7 +12,11 @@ export const pickRandomMealTool = {
     _meta: {
       "openai/outputTemplate": "ui://widget/pickRandomMeal.html",
       "openai/widgetAccessible": true,
-      "openai/toolInvocation/invoked": "Picking a meal option",
+      "openai/toolInvocation/invoking": "Picking a meal option...",
+      "openai/toolInvocation/invoked": "Meal option picked.",
+    },
+    annotations: {
+      readOnlyHint: true,
     },
   },
   handler: async (args: { providedOptions?: boolean, options?: any[] }, extra: any): Promise<CallToolResult> => {

@@ -40,11 +40,16 @@ export const aboutAppWidget = {
       contents: [
         {
           uri: "ui://widget/aboutApp.html",
-          mimeType: "text/html",
+          mimeType: "text/html+skybridge",
           text: renderedHtml,
           _meta: {
             "openai/widgetPrefersBorder": true,
             "openai/widgetDescription": "Displays information about the What's for Dinner app, including open source details.",
+            "openai/widgetDomain": "https://whatsfordinnermcp.com",
+            "openai/widgetCSP": {
+              connect_domains: ["https://whatsfordinnermcp.com"],
+              resource_domains: ["https://fonts.googleapis.com", "https://fonts.gstatic.com"],
+            },
           },
         },
       ],

@@ -40,11 +40,16 @@ export const restaurantsWidget = {
       contents: [
         {
           uri: "ui://widget/restaurants.html",
-          mimeType: "text/html",
+          mimeType: "text/html+skybridge",
           text: renderedHtml,
           _meta: {
             "openai/widgetPrefersBorder": true,
             "openai/widgetDescription": "Displays the restaurant list and details.",
+            "openai/widgetDomain": "https://whatsfordinnermcp.com",
+            "openai/widgetCSP": {
+              connect_domains: ["https://whatsfordinnermcp.com"],
+              resource_domains: ["https://fonts.googleapis.com", "https://fonts.gstatic.com"],
+            },
           },
         },
       ],

@@ -26,7 +26,7 @@ describe("Widgets", () => {
             expect(result.contents).toHaveLength(1);
             expect(result.contents[0]).toMatchObject({
                 uri: "ui://widget/pickRandomMeal.html",
-                mimeType: "text/html",
+                mimeType: "text/html+skybridge",
             });
             expect(result.contents[0].text).toContain("console.log('mock bundle')");
             expect(result.contents[0].text).toContain("<div id=\"root\"></div>");

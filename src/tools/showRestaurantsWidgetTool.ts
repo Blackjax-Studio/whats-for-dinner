@@ -11,7 +11,11 @@ export const showRestaurantsWidgetTool = {
     _meta: {
       "openai/outputTemplate": "ui://widget/restaurants.html",
       "openai/widgetAccessible": true,
-      "openai/toolInvocation/invoked": "Listing restaurants",
+      "openai/toolInvocation/invoking": "Loading restaurants...",
+      "openai/toolInvocation/invoked": "Restaurants loaded.",
+    },
+    annotations: {
+      readOnlyHint: true,
     },
   },
   handler: async (args: { dishName: string, restaurants: any[] }, extra: any): Promise<CallToolResult> => {

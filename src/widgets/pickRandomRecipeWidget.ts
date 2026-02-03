@@ -40,11 +40,16 @@ export const pickRandomRecipeWidget = {
       contents: [
         {
           uri: "ui://widget/pickRandomRecipe.html",
-          mimeType: "text/html",
+          mimeType: "text/html+skybridge",
           text: renderedHtml,
           _meta: {
             "openai/widgetPrefersBorder": true,
             "openai/widgetDescription": "Displays a random recipe picker spinner and the chosen recipe details.",
+            "openai/widgetDomain": "https://whatsfordinnermcp.com",
+            "openai/widgetCSP": {
+              connect_domains: ["https://whatsfordinnermcp.com"],
+              resource_domains: ["https://fonts.googleapis.com", "https://fonts.gstatic.com"],
+            },
           },
         },
       ],

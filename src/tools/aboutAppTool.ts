@@ -11,7 +11,11 @@ export const aboutAppTool = {
     _meta: {
       "openai/outputTemplate": "ui://widget/aboutApp.html",
       "openai/widgetAccessible": true,
-      "openai/toolInvocation/invoked": "Getting app information",
+      "openai/toolInvocation/invoking": "Loading app information...",
+      "openai/toolInvocation/invoked": "App information loaded.",
+    },
+    annotations: {
+      readOnlyHint: true,
     },
   },
   handler: async (args: any, extra: any): Promise<CallToolResult> => {

@@ -11,7 +11,11 @@ export const showGoogleMapsLinkTool = {
     _meta: {
       "openai/outputTemplate": "ui://widget/google-maps-link.html",
       "openai/widgetAccessible": true,
-      "openai/toolInvocation/invoked": "Linking to Google Maps",
+      "openai/toolInvocation/invoking": "Preparing Google Maps link...",
+      "openai/toolInvocation/invoked": "Link ready.",
+    },
+    annotations: {
+      readOnlyHint: true,
     },
   },
   handler: async (args: { poiName?: string, address?: string, zipCode: string }, extra: any): Promise<CallToolResult> => {

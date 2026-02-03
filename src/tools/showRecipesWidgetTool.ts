@@ -11,7 +11,11 @@ export const showRecipesWidgetTool = {
     _meta: {
       "openai/outputTemplate": "ui://widget/recipes.html",
       "openai/widgetAccessible": true,
-      "openai/toolInvocation/invoked": "Listing recipes",
+      "openai/toolInvocation/invoking": "Loading recipes...",
+      "openai/toolInvocation/invoked": "Recipes loaded.",
+    },
+    annotations: {
+      readOnlyHint: true,
     },
   },
   handler: async (args: { dishName: string, recipes: { title: string, description: string }[] }, extra: any): Promise<CallToolResult> => {
