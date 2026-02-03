@@ -43,7 +43,9 @@ WORKDIR /app
 COPY --from=build /app/dist /app/dist
 COPY --from=build /app/node_modules /app/node_modules
 COPY --from=build /app/package.json /app/package.json
-COPY --from=build /app/views /app/views
+COPY --from=build /app/web/dist /app/web/dist
+COPY --from=build /app/web/public /app/web/public
+COPY --from=build /app/assets /app/assets
 
 # Start the server by default
 EXPOSE 8787
