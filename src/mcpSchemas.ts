@@ -46,7 +46,7 @@ export const pickRandomRestaurantInputSchema = {
     phone: z.string().optional().describe("Phone number if possible"),
     description: z.string().optional().describe("Brief description of the restaurant"),
     rating: z.string().optional().describe("Rating (e.g., '4.5') if possible"),
-  })).describe("List of restaurants to choose from"),
+  })).min(10).describe("List of restaurants to choose from (minimum 10)"),
 };
 
 export const pickRandomRecipeInputSchema = {
@@ -55,7 +55,7 @@ export const pickRandomRecipeInputSchema = {
     description: z.string().describe("Brief description of the recipe"),
     ingredients: z.array(z.string()).optional().describe("List of ingredients"),
     instructions: z.array(z.string()).optional().describe("List of instructions"),
-  })).describe("List of recipes to choose from"),
+  })).min(10).describe("List of recipes to choose from (minimum 10)"),
 };
 
 export const aboutAppInputSchema = {};

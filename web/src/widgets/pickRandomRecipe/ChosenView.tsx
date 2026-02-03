@@ -189,20 +189,17 @@ Description: ${recipe.description}
               padding: '6px 12px',
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
-              transition: 'transform 0.2s, box-shadow 0.2s, filter 0.2s',
+              transition: 'transform 0.2s, opacity 0.2s',
               whiteSpace: 'nowrap',
-              WebkitTapHighlightColor: 'transparent',
-              boxShadow: '0 6px 14px rgba(255, 158, 96, 0.35)'
+              WebkitTapHighlightColor: 'transparent'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-1px)';
-              e.currentTarget.style.boxShadow = '0 8px 18px rgba(255, 158, 96, 0.45)';
-              e.currentTarget.style.filter = 'brightness(1.05)';
+              e.currentTarget.style.opacity = '0.9';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 6px 14px rgba(255, 158, 96, 0.35)';
-              e.currentTarget.style.filter = 'none';
+              e.currentTarget.style.opacity = '1';
             }}
           >
             spin again

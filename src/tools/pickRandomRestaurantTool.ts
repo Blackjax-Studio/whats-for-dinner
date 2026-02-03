@@ -6,7 +6,7 @@ export const pickRandomRestaurantTool = {
   name: "pick_random_restaurant",
   config: {
     title: "Pick a Random Restaurant from a list of model supplied restaurants.",
-    description: "Opens a widget that shows a view of the restaurants being cycled through and then randomly stopping on one. The model must provide the list of restaurants. Use this tool ONLY when you want to help the user choose a restaurant from a list of options by picking one randomly with an interactive spinner.",
+    description: "Opens a widget that shows a view of the restaurants being cycled through and then randomly stopping on one. The model must provide a list of at least 10 restaurants. Use this tool ONLY when you want to help the user choose a restaurant from a list of options by picking one randomly with an interactive spinner.",
     inputSchema: pickRandomRestaurantInputSchema,
     _meta: {
       "openai/outputTemplate": "ui://widget/pickRandomRestaurant.html",
