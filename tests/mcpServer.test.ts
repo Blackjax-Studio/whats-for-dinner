@@ -28,6 +28,19 @@ describe("mcpServer", () => {
       expect.any(Function)
     );
 
+    expect(registerToolSpy).toHaveBeenCalledWith(
+      "show_map_widget",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerResourceSpy).toHaveBeenCalledWith(
+      "map-widget",
+      "ui://widget/map.html",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
     registerToolSpy.mockRestore();
     registerResourceSpy.mockRestore();
   });

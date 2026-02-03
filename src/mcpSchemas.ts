@@ -31,3 +31,8 @@ export const showRestaurantsInputSchema = {
     rating: z.string().optional().describe("Rating (e.g., '4.5') if possible"),
   })).describe("List of restaurants to display"),
 };
+
+export const showMapWidgetInputSchema = {
+  address: z.string().optional().describe("The full address of the restaurant"),
+  zipCode: z.string().describe("The zip code of the restaurant"),
+};

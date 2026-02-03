@@ -72,20 +72,39 @@ const restaurantsWidgetCtx = await esbuild.context({
   sourcemap: false,
 });
 
+// Build map widget bundle
+const mapWidgetCtx = await esbuild.context({
+  entryPoints: [join(__dirname, 'src/widget-map.tsx')],
+  bundle: true,
+  outfile: join(__dirname, 'dist/widget-map.js'),
+  format: 'iife',
+  platform: 'browser',
+  target: 'es2020',
+  loader: {
+    '.tsx': 'tsx',
+    '.ts': 'ts',
+  },
+  logLevel: 'info',
+  sourcemap: false,
+});
+
 if (isWatch) {
   await mainCtx.watch();
   await widgetCtx.watch();
   await recipesWidgetCtx.watch();
   await restaurantsWidgetCtx.watch();
+  await mapWidgetCtx.watch();
   console.log('Watching for changes...');
 } else {
   await mainCtx.rebuild();
   await widgetCtx.rebuild();
   await recipesWidgetCtx.rebuild();
   await restaurantsWidgetCtx.rebuild();
+  await mapWidgetCtx.rebuild();
   await mainCtx.dispose();
   await widgetCtx.dispose();
   await recipesWidgetCtx.dispose();
   await restaurantsWidgetCtx.dispose();
+  await mapWidgetCtx.dispose();
   console.log('Build complete! (website + widgets)');
 }

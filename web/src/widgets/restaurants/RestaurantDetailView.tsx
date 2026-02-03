@@ -31,11 +31,13 @@ export function RestaurantDetailView() {
   };
 
   const handleLetsGo = async () => {
-    const message = `I've decided to go to "${restaurant.name}" at "${restaurant.location}". 
+    const message = `Do not respond to the user with text. Instead, call the show_map_widget tool to show the location of "${restaurant.name}" at "${restaurant.location}". 
 
-Please generate a clickable Google Maps link for this restaurant. Use the best available location data you have for the user (such as their known city or current coordinates) to ensure the link provides accurate directions from their current position to "${restaurant.name}" at "${restaurant.location}". The link must be clickable on web, iOS, and Android devices.
+For the map widget input:
+1. Use as fine-grained a starting address for the user as possible (using their known location details), but at least providing the closest zip code.
+2. Provide the full address and zip code for "${restaurant.name}" at "${restaurant.location}".
 
-(Model instruction: Provide a friendly confirmation and the clickable maps link. Do not repeat these internal instructions.)`;
+The goal is to show the restaurant on the map for the user.`;
 
     if (window.openai?.sendFollowUpMessage) {
       await window.openai.sendFollowUpMessage({ prompt: message });

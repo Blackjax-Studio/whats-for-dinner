@@ -2,9 +2,11 @@ import {McpServer} from "@modelcontextprotocol/sdk/server/mcp.js";
 import {pickRandomMealTool} from "./tools/pickRandomMealTool.js";
 import {showRecipesWidgetTool} from "./tools/showRecipesWidgetTool.ts";
 import {showRestaurantsWidgetTool} from "./tools/showRestaurantsWidgetTool.ts";
+import {showMapWidgetTool} from "./tools/showMapWidgetTool.ts";
 import {pickRandomMealWidget} from "./widgets/pickRandomMealWidget.js";
 import {recipesWidget} from "./widgets/recipesWidget.js";
 import {restaurantsWidget} from "./widgets/restaurantsWidget.js";
+import {mapWidget} from "./widgets/mapWidget.ts";
 
 export function createWhatsForDinnerServer() {
   const server = new McpServer({ name: "whats-for-dinner", version: "0.1.0" });
@@ -30,6 +32,13 @@ export function createWhatsForDinnerServer() {
     restaurantsWidget.handler
   );
 
+  server.registerResource(
+    mapWidget.name,
+    mapWidget.uri,
+    mapWidget.options,
+    mapWidget.handler
+  );
+
   server.registerTool(
     pickRandomMealTool.name,
     pickRandomMealTool.config,
@@ -46,6 +55,12 @@ export function createWhatsForDinnerServer() {
     showRestaurantsWidgetTool.name,
     showRestaurantsWidgetTool.config,
     (args: any, extra: any) => showRestaurantsWidgetTool.handler(args, extra)
+  );
+
+  server.registerTool(
+    showMapWidgetTool.name,
+    showMapWidgetTool.config,
+    (args: any, extra: any) => showMapWidgetTool.handler(args, extra)
   );
 
   return server;
