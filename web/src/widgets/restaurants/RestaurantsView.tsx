@@ -116,26 +116,6 @@ export function RestaurantsView() {
             gap: '0.5rem',
             flexShrink: 0
           }}>
-            <button
-              onClick={() => {}}
-              style={{
-                color: 'var(--text-neutral, #666666)',
-                background: 'none',
-                border: 'none',
-                cursor: 'default',
-                padding: '4px',
-                fontSize: '1.5rem',
-                lineHeight: 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                WebkitTapHighlightColor: 'transparent',
-                opacity: 0.3
-              }}
-              title="Back"
-            >
-              ←
-            </button>
             <div style={{
               display: 'flex',
               flexDirection: 'column',
@@ -171,19 +151,30 @@ export function RestaurantsView() {
               style={{
                 fontFamily: "'Alfa Slab One', serif",
                 fontSize: '0.8rem',
-                color: 'var(--warn, #E25600)',
-                background: 'none',
-                border: 'none',
+                color: '#FFFFFF',
+                background: 'var(--warn, #E25600)',
+                border: '1px solid rgba(0, 0, 0, 0.08)',
+                borderRadius: '999px',
                 cursor: 'pointer',
-                padding: '4px 8px',
+                padding: '8px 14px',
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px',
-                transition: 'opacity 0.2s',
+                transition: 'transform 0.2s, box-shadow 0.2s, filter 0.2s',
                 whiteSpace: 'nowrap',
-                flexShrink: 0
+                flexShrink: 0,
+                boxShadow: '0 6px 14px rgba(226, 86, 0, 0.25)',
+                WebkitTapHighlightColor: 'transparent'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
-              onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 8px 18px rgba(226, 86, 0, 0.35)';
+                e.currentTarget.style.filter = 'brightness(1.05)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 6px 14px rgba(226, 86, 0, 0.25)';
+                e.currentTarget.style.filter = 'none';
+              }}
             >
               Spin
             </button>

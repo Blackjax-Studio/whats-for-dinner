@@ -1,0 +1,118 @@
+pick_random_meal
+Read Only: Yes
+Describe why Read Only is set to True
+This tool only retrieves meal options from a built-in list or processes provided options to display them in a widget. It does not create, update, or delete any data.
+
+Open World: No
+Describe why Open World is set to False
+The tool only operates within the context of the application's predefined meal options or the specific options passed to it by the model. It does not interact with arbitrary external URLs or files.
+
+Destructive: No
+Describe why Destructive is set to False
+The tool simply picks and displays a random meal option. It has no side effects and does not delete or overwrite any information.
+
+CSP Metadata:
+connect_domains: https://whatsfordinnermcp.com
+resource_domains: https://fonts.googleapis.com, https://fonts.gstatic.com
+
+pick_random_recipe
+Read Only: Yes
+Describe why Read Only is set to True
+This tool takes a list of recipes and displays them in a random selection widget. It only reads and processes the provided recipe data without modifying any state.
+
+Open World: No
+Describe why Open World is set to False
+The tool's operations are bounded to the recipe data provided in the request and it does not access or write to arbitrary external resources.
+
+Destructive: No
+Describe why Destructive is set to False
+Selecting a random recipe for display is a non-destructive operation with no irreversible side effects.
+
+CSP Metadata:
+connect_domains: https://whatsfordinnermcp.com
+resource_domains: https://fonts.googleapis.com, https://fonts.gstatic.com
+
+show_recipes_widget
+Read Only: Yes
+Describe why Read Only is set to True
+This tool is used exclusively to render a list of recipes in a user interface widget. It does not perform any data persistence or modification.
+
+Open World: No
+Describe why Open World is set to False
+The tool only affects the display of recipes within the app's widget system and does not interact with the outside world beyond its defined scope.
+
+Destructive: No
+Describe why Destructive is set to False
+Displaying information in a widget is a safe, view-only operation that does not delete or overwrite any data.
+
+CSP Metadata:
+connect_domains: https://whatsfordinnermcp.com
+resource_domains: https://fonts.googleapis.com, https://fonts.gstatic.com
+
+show_restaurants_widget
+Read Only: Yes
+Describe why Read Only is set to True
+This tool renders a restaurant list widget based on provided data. It is a pure display tool that does not modify any underlying data.
+
+Open World: No
+Describe why Open World is set to False
+The tool's impact is limited to the local UI widget and it does not make arbitrary external network requests or file system changes.
+
+Destructive: No
+Describe why Destructive is set to False
+The tool only displays data to the user and has no capability to delete or modify resources.
+
+CSP Metadata:
+connect_domains: https://whatsfordinnermcp.com
+resource_domains: https://fonts.googleapis.com, https://fonts.gstatic.com
+
+show_google_maps_link
+Read Only: Yes
+Describe why Read Only is set to True
+This tool generates a link to Google Maps based on address information. It does not store or change any data; it only computes a URL for display.
+
+Open World: No
+Describe why Open World is set to False
+The tool generates a specific link for a bounded target (Google Maps) and does not write to arbitrary resources or locations.
+
+Destructive: No
+Describe why Destructive is set to False
+Generating and showing a map link is a harmless operation with no side effects or data deletion.
+
+CSP Metadata:
+connect_domains: https://whatsfordinnermcp.com
+resource_domains: https://fonts.googleapis.com, https://fonts.gstatic.com
+
+pick_random_restaurant
+Read Only: Yes
+Describe why Read Only is set to True
+This tool selects a random restaurant from a provided list to display in an interactive spinner. It only reads the input data.
+
+Open World: No
+Describe why Open World is set to False
+The tool only processes the list of restaurants provided to it and does not interact with any arbitrary external systems or files.
+
+Destructive: No
+Describe why Destructive is set to False
+The operation is limited to picking a random item for display, which has no destructive or irreversible effects.
+
+CSP Metadata:
+connect_domains: https://whatsfordinnermcp.com
+resource_domains: https://fonts.googleapis.com, https://fonts.gstatic.com
+
+about_the_app
+Read Only: Yes
+Describe why Read Only is set to True
+This tool returns static information about the application's purpose and features. It does not modify any data.
+
+Open World: No
+Describe why Open World is set to False
+The tool only provides internal application information and does not access or write to any arbitrary external resources.
+
+Destructive: No
+Describe why Destructive is set to False
+Providing informational text about the app is a completely safe operation with no side effects.
+
+CSP Metadata:
+connect_domains: https://whatsfordinnermcp.com
+resource_domains: https://fonts.googleapis.com, https://fonts.gstatic.com

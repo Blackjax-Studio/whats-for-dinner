@@ -6,7 +6,7 @@ export const showGoogleMapsLinkTool = {
   name: "show_google_maps_link",
   config: {
     title: "Show Google Maps Link Button",
-    description: "Used to show a button that links to Google Maps for a restaurant given its address and zip code.",
+    description: "Used ONLY to show a button that links to Google Maps for a restaurant given its address and zip code.",
     inputSchema: showGoogleMapsLinkInputSchema,
     _meta: {
       "openai/outputTemplate": "ui://widget/google-maps-link.html",
@@ -16,6 +16,8 @@ export const showGoogleMapsLinkTool = {
     },
     annotations: {
       readOnlyHint: true,
+      openWorldHint: false,
+      destructiveHint: false,
     },
   },
   handler: async (args: { poiName?: string, address?: string, zipCode: string }, extra: any): Promise<CallToolResult> => {

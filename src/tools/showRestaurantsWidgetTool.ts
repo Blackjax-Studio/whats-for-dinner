@@ -6,7 +6,7 @@ export const showRestaurantsWidgetTool = {
   name: "show_restaurants_widget",
   config: {
     title: "Show Restaurants Widget",
-    description: "ONLY used to show the restaurants widget with the specified restaurants. This tool does NOT retrieve any data itself; the model must provide the restaurant data to it. Use this tool when you want to display a list of restaurants to the user in an interactive widget.",
+    description: "ONLY used to show the restaurants widget with the specified restaurants. This tool does NOT retrieve any data itself; the model must provide the restaurant data to it. Use this tool ONLY when you want to display a list of restaurants to the user in an interactive widget.",
     inputSchema: showRestaurantsInputSchema,
     _meta: {
       "openai/outputTemplate": "ui://widget/restaurants.html",
@@ -16,6 +16,8 @@ export const showRestaurantsWidgetTool = {
     },
     annotations: {
       readOnlyHint: true,
+      openWorldHint: false,
+      destructiveHint: false,
     },
   },
   handler: async (args: { dishName: string, restaurants: any[] }, extra: any): Promise<CallToolResult> => {

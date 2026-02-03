@@ -78,7 +78,7 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
           overflow: 'hidden',
           textOverflow: 'ellipsis'
         }}>
-          Restaurant Details
+          Restaurant
         </div>
       </div>
 
@@ -218,19 +218,29 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
             style={{
               fontFamily: "'Alfa Slab One', serif",
               fontSize: '0.8rem',
-              color: 'var(--warn, #FF9E60)',
-              background: 'none',
-              border: 'none',
+              color: '#3B1B00',
+              background: 'var(--warn, #FF9E60)',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
+              borderRadius: '999px',
               cursor: 'pointer',
-              padding: '2px 0',
+              padding: '6px 12px',
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
-              transition: 'opacity 0.2s',
+              transition: 'transform 0.2s, box-shadow 0.2s, filter 0.2s',
               whiteSpace: 'nowrap',
-              WebkitTapHighlightColor: 'transparent'
+              WebkitTapHighlightColor: 'transparent',
+              boxShadow: '0 6px 14px rgba(255, 158, 96, 0.35)'
             }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-1px)';
+              e.currentTarget.style.boxShadow = '0 8px 18px rgba(255, 158, 96, 0.45)';
+              e.currentTarget.style.filter = 'brightness(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 6px 14px rgba(255, 158, 96, 0.35)';
+              e.currentTarget.style.filter = 'none';
+            }}
           >
             spin again
           </button>

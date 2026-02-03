@@ -6,7 +6,7 @@ export const aboutAppTool = {
   name: "about_the_app",
   config: {
     title: "About What's for Dinner App",
-    description: "Returns information about the What's for Dinner application, its purpose, and open source information. Use this when the user asks about the app itself.",
+    description: "Returns information about the What's for Dinner application, its purpose, and open source information. Use ONLY when the user asks specifically about this application, its features, or its development.",
     inputSchema: aboutAppInputSchema,
     _meta: {
       "openai/outputTemplate": "ui://widget/aboutApp.html",
@@ -16,6 +16,8 @@ export const aboutAppTool = {
     },
     annotations: {
       readOnlyHint: true,
+      openWorldHint: false,
+      destructiveHint: false,
     },
   },
   handler: async (args: any, extra: any): Promise<CallToolResult> => {

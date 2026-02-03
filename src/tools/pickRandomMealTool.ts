@@ -7,7 +7,7 @@ export const pickRandomMealTool = {
   name: "pick_random_meal",
   config: {
     title: "Pick a Random Meal Option from a list of app supplied options or a list of model supplied options of meals and/or restaurants.",
-    description: "Opens a widget that shows a view of the options being cycled through and then randomly stopping on one. The list of options depends on if the model sent in options or not. If not, the tool will use the tool's built-in meal options. If the model did provide options, it will use those options. Please follow the input schema.",
+    description: "Opens a widget that shows a view of the options being cycled through and then randomly stopping on one. Use this ONLY when the user wants to pick a random meal or is undecided what to eat. The list of options depends on if the model sent in options or not. If not, the tool will use the tool's built-in meal options. If the model did provide options, it will use those options. Please follow the input schema.",
     inputSchema: pickRandomMealInputSchema,
     _meta: {
       "openai/outputTemplate": "ui://widget/pickRandomMeal.html",
@@ -17,6 +17,8 @@ export const pickRandomMealTool = {
     },
     annotations: {
       readOnlyHint: true,
+      openWorldHint: false,
+      destructiveHint: false,
     },
   },
   handler: async (args: { providedOptions?: boolean, options?: any[] }, extra: any): Promise<CallToolResult> => {

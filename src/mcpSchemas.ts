@@ -59,3 +59,7 @@ export const pickRandomRecipeInputSchema = {
 };
 
 export const aboutAppInputSchema = {};
+
+export const generalInquiryInputSchema = {
+  query: z.string().describe("The general inquiry or question from the user"),
+};

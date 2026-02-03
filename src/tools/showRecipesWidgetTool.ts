@@ -6,7 +6,7 @@ export const showRecipesWidgetTool = {
   name: "show_recipes_widget",
   config: {
     title: "Show Recipes Widget",
-    description: "ONLY used to show the recipes widget with the specified recipes. This tool does NOT retrieve any data itself; the model must provide the recipe data to it. Use this tool when you want to display a list of recipes to the user in an interactive widget.",
+    description: "ONLY used to show the recipes widget with the specified recipes. This tool does NOT retrieve any data itself; the model must provide the recipe data to it. Use this tool ONLY when you want to display a list of recipes to the user in an interactive widget.",
     inputSchema: showRecipesInputSchema,
     _meta: {
       "openai/outputTemplate": "ui://widget/recipes.html",
@@ -16,6 +16,8 @@ export const showRecipesWidgetTool = {
     },
     annotations: {
       readOnlyHint: true,
+      openWorldHint: false,
+      destructiveHint: false,
     },
   },
   handler: async (args: { dishName: string, recipes: { title: string, description: string }[] }, extra: any): Promise<CallToolResult> => {

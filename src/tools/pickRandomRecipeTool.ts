@@ -6,7 +6,7 @@ export const pickRandomRecipeTool = {
   name: "pick_random_recipe",
   config: {
     title: "Pick a Random Recipe from a list of model supplied recipes.",
-    description: "Opens a widget that shows a view of the recipes being cycled through and then randomly stopping on one. The model must provide the list of recipes. Use this tool when you want to help the user choose a recipe from a list of options by picking one randomly with an interactive spinner.",
+    description: "Opens a widget that shows a view of the recipes being cycled through and then randomly stopping on one. The model must provide the list of recipes. Use this tool ONLY when you want to help the user choose a recipe from a list of options by picking one randomly with an interactive spinner.",
     inputSchema: pickRandomRecipeInputSchema,
     _meta: {
       "openai/outputTemplate": "ui://widget/pickRandomRecipe.html",
@@ -16,6 +16,8 @@ export const pickRandomRecipeTool = {
     },
     annotations: {
       readOnlyHint: true,
+      openWorldHint: false,
+      destructiveHint: false,
     },
   },
   handler: async (args: { recipes: any[] }, extra: any): Promise<CallToolResult> => {

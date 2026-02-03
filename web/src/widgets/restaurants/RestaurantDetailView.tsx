@@ -65,18 +65,41 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
         display: 'flex',
         alignItems: 'center',
         marginBottom: '8px',
-        gap: '0.5rem',
+        gap: '0.35rem',
         flexShrink: 0
       }}>
+        <button
+          onClick={handleBack}
+          style={{
+            color: 'var(--text-neutral, #666666)',
+            background: 'none',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+            cursor: 'pointer',
+            padding: '6px',
+            fontSize: '1.3rem',
+            lineHeight: 1,
+            width: '36px',
+            height: '36px',
+            borderRadius: '999px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            WebkitTapHighlightColor: 'transparent'
+          }}
+          aria-label="Back"
+          title="Back"
+        >
+          ←
+        </button>
         <div style={{
           fontFamily: "'Alfa Slab One', serif",
-          fontSize: '1.1rem',
+          fontSize: '0.9rem',
           color: 'var(--text-neutral, #666666)',
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis'
         }}>
-          Restaurant Details
+          Restaurant
         </div>
       </div>
 
@@ -210,27 +233,6 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
             let's go
-          </button>
-          <button
-            onClick={handleBack}
-            style={{
-              fontFamily: "'Alfa Slab One', serif",
-              fontSize: '0.8rem',
-              color: 'var(--warn, #FF9E60)',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '2px 0',
-              textTransform: 'uppercase',
-              letterSpacing: '0.5px',
-              transition: 'opacity 0.2s',
-              whiteSpace: 'nowrap',
-              WebkitTapHighlightColor: 'transparent'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-          >
-            back
           </button>
         </div>
       </div>
