@@ -12,8 +12,8 @@ export const pickRandomMealTool = {
     _meta: {
       "openai/outputTemplate": "ui://widget/pickRandomMeal.html",
       "openai/widgetAccessible": true,
-      "openai/toolInvocation/invoking": "Picking a meal option...",
-      "openai/toolInvocation/invoked": "Meal option picked.",
+      "openai/toolInvocation/invoking": "Preparing spinner...",
+      "openai/toolInvocation/invoked": "Spinner ready!",
     },
     annotations: {
       readOnlyHint: true,

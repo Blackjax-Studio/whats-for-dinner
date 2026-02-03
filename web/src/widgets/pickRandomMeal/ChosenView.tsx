@@ -118,7 +118,7 @@ export function ChosenView() {
           </div>
           <div style={{
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: 'column',
             gap: '12px',
             alignItems: 'center',
             justifyContent: 'center',

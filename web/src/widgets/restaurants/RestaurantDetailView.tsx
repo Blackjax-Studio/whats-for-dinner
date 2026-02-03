@@ -184,13 +184,12 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
 
         <div style={{
           display: 'flex',
-          flexDirection: 'row',
+          flexDirection: 'column',
           gap: '12px',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           flexShrink: 0,
           width: '100%',
-          marginTop: 'auto',
-          flexWrap: 'wrap'
+          marginTop: 'auto'
         }}>
           <button
             onClick={handleRecipesLikeThis}

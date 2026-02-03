@@ -126,13 +126,12 @@ Description: ${recipe.description}
 
         <div style={{
           display: 'flex',
-          flexDirection: 'row',
+          flexDirection: 'column',
           gap: '12px',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           flexShrink: 0,
           width: '100%',
-          marginTop: 'auto',
-          flexWrap: 'wrap'
+          marginTop: 'auto'
         }}>
           <button
             onClick={handleGiveRecipe}
