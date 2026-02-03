@@ -1,20 +1,51 @@
 import { useState, useRef, useEffect } from 'react';
 import Layout from '../components/Layout';
 
+const actionConfig = {
+  'pick-restaurant': {
+    label: 'Pick a restaurant',
+    video: '/videos/web/spin_restaurants.mp4',
+  },
+  'pick-meal': {
+    label: 'Pick a meal',
+    video: '/videos/web/i_cant_decide.mp4',
+  },
+  'pick-recipe': {
+    label: 'Pick a recipe',
+    video: '/videos/web/spin_recipes.mp4',
+  },
+  'meal-then-restaurant': {
+    label: 'Pick a meal then find a restaurant',
+    video: '/videos/web/pick_meal_then_restaurant.mp4',
+  },
+  'meal-then-recipe': {
+    label: 'Pick a meal then find a recipe',
+    video: '/videos/web/pick_meal_then_recipe.mp4',
+  },
+  'restaurant-then-recipe': {
+    label: 'Pick a restaurant then find recipes',
+    video: '/videos/web/pick_restaurant_then_recipe.mp4',
+  },
+  'recipe-then-restaurant': {
+    label: 'Pick a recipe then find a restaurant',
+    video: '/videos/web/pick_recipe_then_restaurant.mp4',
+  },
+} as const;
+
+type ActionKey = keyof typeof actionConfig;
+
 export default function HowItWorksPage() {
-  const [platform, setPlatform] = useState<'web' | 'ios' | 'android'>('web');
-  const [action, setAction] = useState<string>('pick-restaurant');
+  const [action, setAction] = useState<ActionKey>('pick-restaurant');
   const videoRef = useRef<HTMLVideoElement>(null);
+  const currentAction = actionConfig[action];
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.load();
     }
-  }, [platform, action]);
+  }, [action]);
 
-  const videoSrc = platform === 'web'
-    ? "/videos/test_web_recording.mp4"
-    : "/videos/ios_test_recording.mp4";
+  const videoSrc = currentAction.video;
 
   return (
     <Layout>
@@ -68,30 +99,14 @@ export default function HowItWorksPage() {
                 <select
                   id="action-select"
                   value={action}
-                  onChange={(e) => setAction(e.target.value)}
+                  onChange={(e) => setAction(e.target.value as ActionKey)}
                   className="platform-dropdown"
                 >
-                  <option value="pick-restaurant">Pick a restaurant</option>
-                  <option value="pick-meal">Pick a meal</option>
-                  <option value="pick-recipe">Pick a recipe</option>
-                  <option value="meal-then-restaurant">Pick a meal then find a restaurant</option>
-                  <option value="meal-then-recipe">Pick a meal then find a recipe</option>
-                  <option value="restaurant-then-recipe">Pick a restaurant then find recipes</option>
-                  <option value="recipe-then-restaurant">Pick a recipe then find a restaurant</option>
-                </select>
-              </div>
-
-              <div className="platform-selector">
-                <label htmlFor="platform-select">Platform:</label>
-                <select
-                  id="platform-select"
-                  value={platform}
-                  onChange={(e) => setPlatform(e.target.value as any)}
-                  className="platform-dropdown"
-                >
-                  <option value="web">Web</option>
-                  <option value="ios">iOS</option>
-                  <option value="android">Android</option>
+                  {Object.entries(actionConfig).map(([key, config]) => (
+                    <option key={key} value={key}>
+                      {config.label}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>

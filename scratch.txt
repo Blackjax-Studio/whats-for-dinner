@@ -14,3 +14,12 @@ A series of 2 widgets.  One to randomly pick a meal. Then when get recipes is ch
 
 User clicks the "Let's Go" button on a chosen restaurant.  The model then invokes the new tool and a Googlemaps link is show in the new widget.
 
+
+
+punchlist:
+
+
+- iterate over test cases once more
+- double check reasons for hints in mcp setup
+- videos (approximately 17 or so total to make aross web, ios, android)
+- updates to how it work spage
