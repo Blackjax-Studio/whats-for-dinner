@@ -3,9 +3,7 @@ export type Restaurant = {
   name: string;
   location: string;
   address?: string;
-  phone?: string;
   description?: string;
-  rating?: string;
   title?: string; // for spinner
 };
 

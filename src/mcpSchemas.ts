@@ -7,7 +7,6 @@ export const pickRandomMealInputSchema = {
     title: z.string().describe("Name of the dish or restaurant"),
     cuisine: z.string().optional().describe("Cuisine of the dish or restaurant"),
     description: z.string().describe("Brief description"),
-    phone: z.string().optional().describe("Phone number (for restaurants)"),
     address: z.string().optional().describe("Physical address (for restaurants)"),
   })).optional().describe("List of options to choose from if providedOptions is true"),
 };
@@ -26,9 +25,7 @@ export const showRestaurantsInputSchema = {
     name: z.string().describe("Name of the restaurant"),
     location: z.string().optional().describe("Physical address or general location"),
     address: z.string().optional().describe("Full physical address if possible"),
-    phone: z.string().optional().describe("Phone number if possible"),
     description: z.string().optional().describe("Brief description of the restaurant"),
-    rating: z.string().optional().describe("Rating (e.g., '4.5') if possible"),
   })).describe("List of restaurants to display"),
 };
 
@@ -43,9 +40,7 @@ export const pickRandomRestaurantInputSchema = {
     name: z.string().describe("Name of the restaurant"),
     location: z.string().optional().describe("Physical address or general location"),
     address: z.string().optional().describe("Full physical address if possible"),
-    phone: z.string().optional().describe("Phone number if possible"),
     description: z.string().optional().describe("Brief description of the restaurant"),
-    rating: z.string().optional().describe("Rating (e.g., '4.5') if possible"),
   })).min(10).describe("List of restaurants to choose from (minimum 10)"),
 };
 

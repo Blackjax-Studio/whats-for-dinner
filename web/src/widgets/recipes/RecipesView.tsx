@@ -2,7 +2,7 @@ import { useEffect, useSyncExternalStore } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Recipe } from './types';
 import { setSharedOptions, setCycleTargetRoute, setSharedLandedRecipe, recipesLoaded, setRecipesLoaded, isFetchingRecipes, setIsFetchingRecipes, recipes, setRecipes, subscribe } from './state';
-import { useToolOutput } from '../../hooks/useOpenAiGlobal';
+import { setWidgetState, useToolOutput } from '../../hooks/useOpenAiGlobal';
 
 export function RecipesView() {
   const navigate = useNavigate();
@@ -56,6 +56,11 @@ export function RecipesView() {
 
   const handleRecipeClick = (recipe: Recipe) => {
     setSharedLandedRecipe(recipe);
+    setWidgetState({
+      modelContent: { selectedType: 'recipe', selected: recipe },
+      privateContent: null,
+      imageIds: []
+    });
     navigate('/recipe-detail');
   };
 

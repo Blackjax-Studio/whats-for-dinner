@@ -2,7 +2,7 @@ import { useEffect, useSyncExternalStore } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Restaurant } from './types';
 import { restaurantsLoaded, setRestaurantsLoaded, setSharedOptions, setCycleTargetRoute, sharedLandedRestaurant, setSharedLandedRestaurant, isFetchingRestaurants, setIsFetchingRestaurants, restaurants, setRestaurants, subscribe } from './state';
-import { useToolOutput } from '../../hooks/useOpenAiGlobal';
+import { setWidgetState, useToolOutput } from '../../hooks/useOpenAiGlobal';
 
 export function RestaurantsView() {
   const navigate = useNavigate();
@@ -25,6 +25,11 @@ export function RestaurantsView() {
 
   const handleRestaurantClick = (restaurant: Restaurant) => {
     setSharedLandedRestaurant(restaurant);
+    setWidgetState({
+      modelContent: { selectedType: 'restaurant', selected: restaurant },
+      privateContent: null,
+      imageIds: []
+    });
     navigate('/restaurant-detail');
   };
 
@@ -48,9 +53,7 @@ export function RestaurantsView() {
         name: opt.title || opt.name || 'Untitled Restaurant',
         location: opt.location || opt.address || '',
         address: opt.address || '',
-        phone: opt.phone || '',
-        description: opt.description || '',
-        rating: opt.rating || ''
+        description: opt.description || ''
       }));
       setRestaurants(receivedRestaurants);
       setRestaurantsLoaded(true);
@@ -226,15 +229,6 @@ export function RestaurantsView() {
                   }}>
                     {restaurant.location}
                   </div>
-                  {restaurant.rating && (
-                    <div style={{
-                      fontSize: '0.85rem',
-                      color: 'var(--rating-color, #FFD700)',
-                      fontWeight: 'bold'
-                    }}>
-                      Rating: {restaurant.rating} ★
-                    </div>
-                  )}
                 </div>
               );
             })}

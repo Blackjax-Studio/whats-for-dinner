@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { sharedLandedRestaurant, restaurantOptions, setSharedOptions, setCycleTargetRoute } from './state';
+import { setWidgetState } from '../../hooks/useOpenAiGlobal';
 
 export function ChosenView() {
   const navigate = useNavigate();
@@ -10,6 +11,16 @@ export function ChosenView() {
       navigate('/');
     }
   }, [navigate]);
+
+  useEffect(() => {
+    if (sharedLandedRestaurant) {
+      setWidgetState({
+        modelContent: { selectedType: 'restaurant', selected: sharedLandedRestaurant },
+        privateContent: null,
+        imageIds: []
+      });
+    }
+  }, []);
 
   if (!sharedLandedRestaurant) return null;
 
@@ -127,25 +138,6 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
           }}>
             {restaurant.location}
           </div>
-          {restaurant.phone && (
-            <div style={{
-              fontSize: '0.85rem',
-              color: 'var(--text-muted, #6E6E6E)',
-              marginTop: '2px'
-            }}>
-              📞 {restaurant.phone}
-            </div>
-          )}
-          {restaurant.rating && (
-             <div style={{
-                fontSize: '0.85rem',
-                color: 'var(--rating-color, #FFD700)',
-                fontWeight: 'bold',
-                marginTop: '4px'
-              }}>
-                Rating: {restaurant.rating} ★
-              </div>
-          )}
           {restaurant.description && (
             <div style={{
               fontFamily: "'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
@@ -177,9 +169,10 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
               fontSize: '0.8rem',
               color: 'var(--accent, #0062FF)',
               background: 'none',
-              border: 'none',
+              border: '1px solid currentColor',
               cursor: 'pointer',
-              padding: '2px 0',
+              padding: '6px 10px',
+              borderRadius: '6px',
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
               transition: 'opacity 0.2s',
@@ -198,9 +191,10 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
               fontSize: '0.8rem',
               color: 'var(--accent2, #008639)',
               background: 'none',
-              border: 'none',
+              border: '1px solid currentColor',
               cursor: 'pointer',
-              padding: '2px 0',
+              padding: '6px 10px',
+              borderRadius: '6px',
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
               transition: 'opacity 0.2s',
@@ -219,10 +213,10 @@ The goal is to show a link to the restaurant on Google Maps for the user.`;
               fontSize: '0.8rem',
               color: '#3B1B00',
               background: 'var(--warn, #FF9E60)',
-              border: '1px solid rgba(0, 0, 0, 0.08)',
-              borderRadius: '999px',
+              border: '1px solid currentColor',
+              borderRadius: '6px',
               cursor: 'pointer',
-              padding: '6px 12px',
+              padding: '6px 10px',
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
               transition: 'transform 0.2s, opacity 0.2s',

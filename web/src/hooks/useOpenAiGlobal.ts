@@ -50,6 +50,7 @@ export function useOpenAiGlobal<K extends keyof OpenAiGlobals>(
 export interface OpenAiApi {
   callTool: (toolName: string, args: any) => Promise<any>;
   sendFollowUpMessage: (options: { prompt: string }) => Promise<any>;
+  setWidgetState?: (state: any) => void;
   [key: string]: any;
 }
 
@@ -61,4 +62,22 @@ declare global {
 
 export function useToolOutput() {
   return useOpenAiGlobal("toolOutput");
+}
+
+export function setWidgetState(widgetState: any) {
+  if (!window.openai) {
+    return;
+  }
+
+  if (typeof window.openai.setWidgetState === 'function') {
+    window.openai.setWidgetState(widgetState);
+    return;
+  }
+
+  window.openai.widgetState = widgetState;
+  window.dispatchEvent(
+    new CustomEvent(SET_GLOBALS_EVENT_TYPE, {
+      detail: { globals: { widgetState } },
+    })
+  );
 }

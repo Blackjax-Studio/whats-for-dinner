@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { sharedLandedRecipe, recipeOptions, setSharedOptions, setCycleTargetRoute } from './state';
+import { setWidgetState } from '../../hooks/useOpenAiGlobal';
 
 export function ChosenView() {
   const navigate = useNavigate();
@@ -10,6 +11,16 @@ export function ChosenView() {
       navigate('/');
     }
   }, [navigate]);
+
+  useEffect(() => {
+    if (sharedLandedRecipe) {
+      setWidgetState({
+        modelContent: { selectedType: 'recipe', selected: sharedLandedRecipe },
+        privateContent: null,
+        imageIds: []
+      });
+    }
+  }, []);
 
   if (!sharedLandedRecipe) return null;
 
@@ -38,7 +49,7 @@ Description: ${recipe.description}
   };
 
   const handleFindRestaurants = async () => {
-    const message = `Do not respond to the user with text if you already know their location. Instead, find some restaurants that serve "${recipe.title}" (or dishes very similar to it) and call the show_restaurants_widget tool with that data, using whatever is known about the user's location to find nearby options. Include address, phone, description, and rating for each restaurant if possible. If you do not know the user's location, ask them for it first, and then create the list of restaurants once they provide it.`;
+    const message = `Do not respond to the user with text if you already know their location. Instead, find some restaurants that serve "${recipe.title}" (or dishes very similar to it) and call the show_restaurants_widget tool with that data, using whatever is known about the user's location to find nearby options. Include address and description for each restaurant if possible. If you do not know the user's location, ask them for it first, and then create the list of restaurants once they provide it.`;
 
     if (window.openai?.sendFollowUpMessage) {
       await window.openai.sendFollowUpMessage({ prompt: message });
@@ -140,9 +151,10 @@ Description: ${recipe.description}
               fontSize: '0.8rem',
               color: 'var(--accent, #0062FF)',
               background: 'none',
-              border: 'none',
+              border: '1px solid currentColor',
               cursor: 'pointer',
-              padding: '2px 0',
+              padding: '6px 10px',
+              borderRadius: '6px',
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
               transition: 'opacity 0.2s',
@@ -161,9 +173,10 @@ Description: ${recipe.description}
               fontSize: '0.8rem',
               color: 'var(--accent2, #008639)',
               background: 'none',
-              border: 'none',
+              border: '1px solid currentColor',
               cursor: 'pointer',
-              padding: '2px 0',
+              padding: '6px 10px',
+              borderRadius: '6px',
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
               transition: 'opacity 0.2s',
@@ -182,10 +195,10 @@ Description: ${recipe.description}
               fontSize: '0.8rem',
               color: '#3B1B00',
               background: 'var(--warn, #FF9E60)',
-              border: '1px solid rgba(0, 0, 0, 0.08)',
-              borderRadius: '999px',
+              border: '1px solid currentColor',
+              borderRadius: '6px',
               cursor: 'pointer',
-              padding: '6px 12px',
+              padding: '6px 10px',
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
               transition: 'transform 0.2s, opacity 0.2s',
