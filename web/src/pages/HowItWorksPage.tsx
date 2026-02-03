@@ -1,9 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 
 export default function HowItWorksPage() {
-  const navigate = useNavigate();
   const [platform, setPlatform] = useState<'web' | 'ios' | 'android'>('web');
   const [action, setAction] = useState<string>('pick-restaurant');
   const videoRef = useRef<HTMLVideoElement>(null);
