@@ -2,11 +2,11 @@ import {McpServer} from "@modelcontextprotocol/sdk/server/mcp.js";
 import {pickRandomMealTool} from "./tools/pickRandomMealTool.js";
 import {showRecipesWidgetTool} from "./tools/showRecipesWidgetTool.ts";
 import {showRestaurantsWidgetTool} from "./tools/showRestaurantsWidgetTool.ts";
-import {showMapWidgetTool} from "./tools/showMapWidgetTool.ts";
+import {showGoogleMapsLinkTool} from "./tools/showGoogleMapsLinkTool.ts";
 import {pickRandomMealWidget} from "./widgets/pickRandomMealWidget.js";
 import {recipesWidget} from "./widgets/recipesWidget.js";
 import {restaurantsWidget} from "./widgets/restaurantsWidget.js";
-import {mapWidget} from "./widgets/mapWidget.ts";
+import {googleMapsLinkWidget} from "./widgets/googleMapsLinkWidget.ts";
 
 export function createWhatsForDinnerServer() {
   const server = new McpServer({ name: "whats-for-dinner", version: "0.1.0" });
@@ -33,10 +33,10 @@ export function createWhatsForDinnerServer() {
   );
 
   server.registerResource(
-    mapWidget.name,
-    mapWidget.uri,
-    mapWidget.options,
-    mapWidget.handler
+    googleMapsLinkWidget.name,
+    googleMapsLinkWidget.uri,
+    googleMapsLinkWidget.options,
+    googleMapsLinkWidget.handler
   );
 
   server.registerTool(
@@ -58,9 +58,9 @@ export function createWhatsForDinnerServer() {
   );
 
   server.registerTool(
-    showMapWidgetTool.name,
-    showMapWidgetTool.config,
-    (args: any, extra: any) => showMapWidgetTool.handler(args, extra)
+    showGoogleMapsLinkTool.name,
+    showGoogleMapsLinkTool.config,
+    (args: any, extra: any) => showGoogleMapsLinkTool.handler(args, extra)
   );
 
   return server;

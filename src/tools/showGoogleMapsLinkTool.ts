@@ -2,26 +2,26 @@ import { logger } from "../logger.js";
 import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { showMapWidgetInputSchema } from "../mcpSchemas.js";
 
-export const showMapWidgetTool = {
-  name: "show_map_widget",
+export const showGoogleMapsLinkTool = {
+  name: "show_google_maps_link",
   config: {
-    title: "Show Map Widget",
-    description: "Used to show a link to Google Maps for a restaurant given its address and zip code.",
+    title: "Show Google Maps Link Button",
+    description: "Used to show a button that links to Google Maps for a restaurant given its address and zip code.",
     inputSchema: showMapWidgetInputSchema,
     _meta: {
-      "openai/outputTemplate": "ui://widget/map.html",
+      "openai/outputTemplate": "ui://widget/google-maps-link.html",
       "openai/widgetAccessible": true,
       "openai/toolInvocation/invoked": "Linking to Google Maps",
     },
   },
   handler: async (args: { address?: string, zipCode: string }, extra: any): Promise<CallToolResult> => {
     const requestLogger = extra?.request?.logger || logger;
-    requestLogger.info({ address: args.address, zipCode: args.zipCode }, "Tool called: show_map_widget");
+    requestLogger.info({ address: args.address, zipCode: args.zipCode }, "Tool called: show_google_maps_link");
 
     return {
       content: [],
       structuredContent: {
-        "openai/responseInstructions": "A widget is showing a link to the map. Do not provide any text response.",
+        "openai/responseInstructions": "A widget is showing a button that links to the map. Do not provide any text response.",
         address: args.address,
         zipCode: args.zipCode,
       }

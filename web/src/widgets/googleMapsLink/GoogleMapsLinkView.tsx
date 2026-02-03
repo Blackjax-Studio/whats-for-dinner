@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useToolOutput } from '../../hooks/useOpenAiGlobal';
 
-export function MapView() {
+export function GoogleMapsLinkView() {
   const [address, setAddress] = useState<string>('');
   const [zipCode, setZipCode] = useState<string>('');
   const toolOutput = useToolOutput();
