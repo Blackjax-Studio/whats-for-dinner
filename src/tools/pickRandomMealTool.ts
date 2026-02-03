@@ -38,9 +38,10 @@ export const pickRandomMealTool = {
       }));
     }
 
-    // Randomly pick up to 70 options
+    // Randomly pick up to 50 options if using built-in ones
+    const limit = args.providedOptions ? 70 : 50;
     const shuffled = [...initialOptions].sort(() => 0.5 - Math.random());
-    const optionsToUse = shuffled.slice(0, 70);
+    const optionsToUse = shuffled.slice(0, limit);
 
     requestLogger.info({ selectedCount: optionsToUse.length }, "Random meal options selected");
 

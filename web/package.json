@@ -1,0 +1,21 @@
+{
+  "name": "whats-for-dinner-web",
+  "version": "1.0.0",
+  "description": "React web interface for What's for Dinner",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js --watch"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "esbuild": "^0.24.2",
+    "typescript": "^5.9.3"
+  }
+}

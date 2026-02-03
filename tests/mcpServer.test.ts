@@ -28,6 +28,58 @@ describe("mcpServer", () => {
       expect.any(Function)
     );
 
+    expect(registerToolSpy).toHaveBeenCalledWith(
+      "show_google_maps_link",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerResourceSpy).toHaveBeenCalledWith(
+      "google-maps-link-widget",
+      "ui://widget/google-maps-link.html",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerToolSpy).toHaveBeenCalledWith(
+      "pick_random_restaurant",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerResourceSpy).toHaveBeenCalledWith(
+      "pick-random-restaurant-widget",
+      "ui://widget/pickRandomRestaurant.html",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerToolSpy).toHaveBeenCalledWith(
+      "pick_random_recipe",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerResourceSpy).toHaveBeenCalledWith(
+      "pick-random-recipe-widget",
+      "ui://widget/pickRandomRecipe.html",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerToolSpy).toHaveBeenCalledWith(
+      "about_the_app",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerResourceSpy).toHaveBeenCalledWith(
+      "about-app-widget",
+      "ui://widget/aboutApp.html",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
     registerToolSpy.mockRestore();
     registerResourceSpy.mockRestore();
   });

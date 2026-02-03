@@ -13,11 +13,22 @@ setServerId(serverId);
 
 const app = express();
 
-app.set("view engine", "ejs");
-app.use(express.static("assets"));
-app.use(requestLoggingMiddleware);
+// Apply CORS - must be early in the middleware chain
 app.use(cors(corsOptions));
+
+// DO NOT use express.json() - the MCP SDK needs raw body streams
+// It will handle parsing internally
+
+app.use(express.static("assets"));
+app.use("/dist", express.static("web/dist"));
+app.use(express.static("web/public"));
+app.use(requestLoggingMiddleware);
 app.use(router);
+
+// Serve React app for all other routes (SPA fallback)
+app.get(/^\/.*/, (req, res) => {
+  res.sendFile("index.html", { root: "web/public" });
+});
 
 // Initialize services and start server
 app.listen(config.port, () => {

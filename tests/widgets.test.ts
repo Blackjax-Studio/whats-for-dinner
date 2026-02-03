@@ -1,17 +1,10 @@
 import { describe, it, expect, vi } from "vitest";
 import { pickRandomMealWidget } from "../src/widgets/pickRandomMealWidget.js";
-import ejs from "ejs";
 import { readFileSync } from "node:fs";
 
-// Mock fs and ejs
+// Mock fs
 vi.mock("node:fs", () => ({
-    readFileSync: vi.fn().mockReturnValue("<html></html>"),
-}));
-
-vi.mock("ejs", () => ({
-    default: {
-        render: vi.fn().mockReturnValue("<html>https://example.com</html>"),
-    },
+    readFileSync: vi.fn().mockReturnValue("console.log('mock bundle')"),
 }));
 
 describe("Widgets", () => {
@@ -24,17 +17,13 @@ describe("Widgets", () => {
         it("should render and return correct content structure", async () => {
             const result = await pickRandomMealWidget.handler();
 
-            expect(ejs.render).toHaveBeenCalledWith(
-                expect.any(String),
-                {}
-            );
-
             expect(result.contents).toHaveLength(1);
             expect(result.contents[0]).toMatchObject({
                 uri: "ui://widget/pickRandomMeal.html",
                 mimeType: "text/html",
-                text: "<html>https://example.com</html>",
             });
+            expect(result.contents[0].text).toContain("console.log('mock bundle')");
+            expect(result.contents[0].text).toContain("<div id=\"root\"></div>");
             expect(result.contents[0]._meta).toBeDefined();
         });
     });

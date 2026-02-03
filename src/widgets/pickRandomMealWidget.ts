@@ -1,10 +1,9 @@
 import {readFileSync} from "node:fs";
-import ejs from "ejs";
 import {join} from "node:path";
 import {logger} from "../logger.ts";
 
-const templatePath = join(process.cwd(), "views/pickRandomMeal.ejs");
-const pickRandomMealTemplate = readFileSync(templatePath, "utf8");
+const widgetBundlePath = join(process.cwd(), "web/dist/widget.js");
+const widgetBundle = readFileSync(widgetBundlePath, "utf8");
 
 export const pickRandomMealWidget = {
   name: "pick-random-meal-widget",
@@ -12,7 +11,25 @@ export const pickRandomMealWidget = {
   options: {},
   handler: async () => {
     logger.debug("Rendering pick-random-meal-widget");
-    const renderedHtml = ejs.render(pickRandomMealTemplate, {});
+    
+    const renderedHtml = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick Random Meal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Vend+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module">
+        ${widgetBundle}
+    </script>
+</body>
+</html>
+    `.trim();
+
     logger.info("Widget pick-random-meal-widget rendered");
     return {
       contents: [
