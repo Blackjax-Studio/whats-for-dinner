@@ -19,9 +19,15 @@ app.use(cors(corsOptions));
 // DO NOT use express.json() - the MCP SDK needs raw body streams
 // It will handle parsing internally
 
+app.get("/.well-known/openai-apps-challenge", (req, res) => {
+  logger.info("Handling openai-apps-challenge request");
+  res.set("Content-Type", "text/plain");
+  res.send(config.openaiChallengeToken);
+});
+
 app.use(express.static("assets"));
 app.use("/dist", express.static("web/dist"));
-app.use(express.static("web/public"));
+app.use(express.static("web/public", { dotfiles: "allow" }));
 app.use(requestLoggingMiddleware);
 app.use(router);
 
