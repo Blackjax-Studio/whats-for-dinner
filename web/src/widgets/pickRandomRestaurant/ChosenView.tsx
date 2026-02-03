@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sharedLandedRestaurant } from './state';
+import { sharedLandedRestaurant, restaurantOptions, setSharedOptions, setCycleTargetRoute } from './state';
 
-export function RestaurantDetailView() {
+export function ChosenView() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,7 +16,9 @@ export function RestaurantDetailView() {
   const restaurant = sharedLandedRestaurant;
 
   const handleBack = () => {
-    navigate('/');
+    setSharedOptions(restaurantOptions);
+    setCycleTargetRoute('/chosen');
+    navigate('/cycler');
   };
 
   const handleRecipesLikeThis = async () => {

@@ -3,10 +3,12 @@ import {pickRandomMealTool} from "./tools/pickRandomMealTool.js";
 import {showRecipesWidgetTool} from "./tools/showRecipesWidgetTool.ts";
 import {showRestaurantsWidgetTool} from "./tools/showRestaurantsWidgetTool.ts";
 import {showGoogleMapsLinkTool} from "./tools/showGoogleMapsLinkTool.ts";
+import {pickRandomRestaurantTool} from "./tools/pickRandomRestaurantTool.ts";
 import {pickRandomMealWidget} from "./widgets/pickRandomMealWidget.js";
 import {recipesWidget} from "./widgets/recipesWidget.js";
 import {restaurantsWidget} from "./widgets/restaurantsWidget.js";
 import {googleMapsLinkWidget} from "./widgets/googleMapsLinkWidget.ts";
+import {pickRandomRestaurantWidget} from "./widgets/pickRandomRestaurantWidget.js";
 
 export function createWhatsForDinnerServer() {
   const server = new McpServer({ name: "whats-for-dinner", version: "0.1.0" });
@@ -39,6 +41,13 @@ export function createWhatsForDinnerServer() {
     googleMapsLinkWidget.handler
   );
 
+  server.registerResource(
+    pickRandomRestaurantWidget.name,
+    pickRandomRestaurantWidget.uri,
+    pickRandomRestaurantWidget.options,
+    pickRandomRestaurantWidget.handler
+  );
+
   server.registerTool(
     pickRandomMealTool.name,
     pickRandomMealTool.config,
@@ -61,6 +70,12 @@ export function createWhatsForDinnerServer() {
     showGoogleMapsLinkTool.name,
     showGoogleMapsLinkTool.config,
     (args: any, extra: any) => showGoogleMapsLinkTool.handler(args, extra)
+  );
+
+  server.registerTool(
+    pickRandomRestaurantTool.name,
+    pickRandomRestaurantTool.config,
+    (args: any, extra: any) => pickRandomRestaurantTool.handler(args, extra)
   );
 
   return server;

@@ -37,3 +37,14 @@ export const showGoogleMapsLinkInputSchema = {
   address: z.string().optional().describe("The full address of the restaurant"),
   zipCode: z.string().describe("The zip code of the restaurant"),
 };
+
+export const pickRandomRestaurantInputSchema = {
+  restaurants: z.array(z.object({
+    name: z.string().describe("Name of the restaurant"),
+    location: z.string().optional().describe("Physical address or general location"),
+    address: z.string().optional().describe("Full physical address if possible"),
+    phone: z.string().optional().describe("Phone number if possible"),
+    description: z.string().optional().describe("Brief description of the restaurant"),
+    rating: z.string().optional().describe("Rating (e.g., '4.5') if possible"),
+  })).describe("List of restaurants to choose from"),
+};
