@@ -64,7 +64,7 @@ export function RestaurantsView() {
 
   return (
     <div style={{
-      fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+      fontFamily: "'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
       backgroundColor: 'var(--bg-color, #FFFFFF)',
       color: 'var(--text-main, #0D0D0D)',
       height: '100%',
@@ -145,7 +145,7 @@ export function RestaurantsView() {
               lineHeight: 1
             }}>
               <div style={{
-                fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                fontFamily: "'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
                 fontSize: '0.85rem',
                 color: 'var(--text-neutral, #666666)',
                 whiteSpace: 'nowrap',

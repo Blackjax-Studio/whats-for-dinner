@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,6 +9,7 @@ const APP_NAME = "What's for Dinner";
 
 export default function Layout({ children }: LayoutProps) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className="wrap">
@@ -18,6 +19,13 @@ export default function Layout({ children }: LayoutProps) {
             <strong>{APP_NAME}</strong>
           </div>
         </button>
+        <div className="nav-buttons">
+          {location.pathname !== '/how-it-works' && (
+            <button onClick={() => navigate('/how-it-works')} className="nav-btn">
+              How it works
+            </button>
+          )}
+        </div>
       </div>
 
       {children}
@@ -26,7 +34,6 @@ export default function Layout({ children }: LayoutProps) {
         <div className="footerLinks">
           <button onClick={() => navigate('/')}>Home</button>
           <button onClick={() => navigate('/how-it-works')}>How it works</button>
-          <button onClick={() => navigate('/see-it-work')}>See it work</button>
           <button onClick={() => navigate('/privacy')}>Privacy Policy</button>
           <button onClick={() => navigate('/terms')}>Terms of Service</button>
           <button onClick={() => navigate('/support')}>Support</button>

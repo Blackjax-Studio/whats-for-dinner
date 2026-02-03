@@ -48,7 +48,7 @@ export function ChosenView() {
 
   return (
     <div style={{
-      fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+      fontFamily: "'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -101,7 +101,7 @@ export function ChosenView() {
             </div>
             {sharedLandedMeal.description && (
               <div style={{
-                fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                fontFamily: "'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
                 fontSize: '0.85rem',
                 color: 'var(--text-muted, #6E6E6E)',
                 marginTop: '2px',

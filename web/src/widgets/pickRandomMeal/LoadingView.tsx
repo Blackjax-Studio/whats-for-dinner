@@ -24,7 +24,7 @@ export function LoadingView() {
 
   return (
     <div style={{
-      fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+      fontFamily: "'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',

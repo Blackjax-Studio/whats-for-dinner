@@ -47,7 +47,7 @@ Please generate a clickable Google Maps link for this restaurant. Use the best a
 
   return (
     <div style={{
-      fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+      fontFamily: "'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
@@ -128,7 +128,7 @@ Please generate a clickable Google Maps link for this restaurant. Use the best a
             {restaurant.name}
           </div>
           <div style={{
-            fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             fontSize: '0.85rem',
             color: 'var(--text-muted, #6E6E6E)',
             marginTop: '4px',
@@ -162,7 +162,7 @@ Please generate a clickable Google Maps link for this restaurant. Use the best a
           )}
           {restaurant.description && (
             <div style={{
-              fontFamily: "'Vend Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+              fontFamily: "'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
               fontSize: '0.85rem',
               color: 'var(--text-main, #0D0D0D)',
               marginTop: '8px',
