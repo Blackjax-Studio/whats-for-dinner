@@ -16,16 +16,17 @@ export const mapWidget = {
   options: {},
   handler: async () => {
     logger.debug("Rendering map-widget");
-    
+
     const renderedHtml = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Map</title>
+    <title>Restaurant Map Link</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body style="margin: 0; padding: 0; overflow: hidden;">
+<body>
     <div id="root"></div>
     <script type="module">
         ${widgetBundle}
@@ -43,7 +44,7 @@ export const mapWidget = {
           text: renderedHtml,
           _meta: {
             "openai/widgetPrefersBorder": true,
-            "openai/widgetDescription": "Displays a map for a restaurant.",
+            "openai/widgetDescription": "Displays a link to Google Maps for a restaurant.",
           },
         },
       ],

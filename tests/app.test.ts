@@ -4,6 +4,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 const mockApp = {
   set: vi.fn(),
   use: vi.fn(),
+  get: vi.fn(),
   listen: vi.fn((port, callback) => {
     if (callback) callback();
   }),
@@ -52,7 +53,7 @@ describe("app.ts", () => {
     await import("../src/app.ts");
 
     // Verify express app configuration
-    expect(mockApp.set).toHaveBeenCalledWith("view engine", "ejs");
+    // expect(mockApp.set).toHaveBeenCalledWith("view engine", "ejs"); // Removed in actual code
 
     // Check for CORS and router usage
     expect(mockApp.use).toHaveBeenCalledWith("mocked-cors");
