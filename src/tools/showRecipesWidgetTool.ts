@@ -1,13 +1,13 @@
 import { logger } from "../logger.js";
 import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
-import { listRecipesInputSchema } from "../mcpSchemas.js";
+import { showRecipesInputSchema } from "../mcpSchemas.js";
 
 export const showRecipesWidgetTool = {
   name: "show_recipes_widget",
   config: {
     title: "Show Recipes Widget",
     description: "ONLY used to show the recipes widget with the specified recipes. This tool does NOT retrieve any data itself; the model must provide the recipe data to it. Use this tool when you want to display a list of recipes to the user in an interactive widget.",
-    inputSchema: listRecipesInputSchema,
+    inputSchema: showRecipesInputSchema,
     _meta: {
       "openai/outputTemplate": "ui://widget/recipes.html",
       "openai/widgetAccessible": true,

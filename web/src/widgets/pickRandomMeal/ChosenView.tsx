@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sharedLandedMeal, setCycleTargetRoute, mealOptions, setSharedOptions, setIsFetchingRecipes, setRecipesLoaded, setRecipes, setIsFetchingRestaurants, setRestaurantsLoaded, setRestaurants } from './state';
+import { sharedLandedMeal, setCycleTargetRoute, mealOptions, setSharedOptions } from './state';
 
 export function ChosenView() {
   const navigate = useNavigate();

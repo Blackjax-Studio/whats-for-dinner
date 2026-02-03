@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { LoadingView } from './widgets/pickRandomMeal/LoadingView';
+import { StartSpinView } from './widgets/pickRandomMeal/StartSpinView';
 import { CyclerView } from './widgets/pickRandomMeal/CyclerView';
 import { ChosenView } from './widgets/pickRandomMeal/ChosenView';
 
@@ -9,6 +10,7 @@ function WidgetRouter() {
     <MemoryRouter>
       <Routes>
         <Route path="/" element={<LoadingView />} />
+        <Route path="/start-spin" element={<StartSpinView />} />
         <Route path="/cycler" element={<CyclerView />} />
         <Route path="/chosen" element={<ChosenView />} />
       </Routes>

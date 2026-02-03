@@ -28,11 +28,14 @@ export function CommonCyclerView<T>({
     if (isStartedRef.current) return;
     isStartedRef.current = true;
 
+    // Shuffle options before starting the cycle
+    const shuffledOptions = [...options].sort(() => Math.random() - 0.5);
+
     const cycleInterval = 150;
     const randomDuration = Math.floor(Math.random() * (4000 - 2000 + 1)) + 2000;
 
     let currentIndex = 0;
-    let currentOption = options[0];
+    let currentOption = shuffledOptions[0];
 
     const runInterval = () => {
       const title = (currentOption as any).title || (currentOption as any).name || '';
@@ -47,8 +50,8 @@ export function CommonCyclerView<T>({
     runInterval();
 
     const intervalId = setInterval(() => {
-      currentIndex = (currentIndex + 1) % options.length;
-      currentOption = options[currentIndex];
+      currentIndex = (currentIndex + 1) % shuffledOptions.length;
+      currentOption = shuffledOptions[currentIndex];
       runInterval();
     }, cycleInterval);
 

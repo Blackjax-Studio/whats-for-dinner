@@ -12,7 +12,7 @@ export const pickRandomMealInputSchema = {
   })).optional().describe("List of options to choose from if providedOptions is true"),
 };
 
-export const listRecipesInputSchema = {
+export const showRecipesInputSchema = {
   dishName: z.string().describe("The name of the dish to get recipes for"),
   recipes: z.array(z.object({
     title: z.string().describe("Title of the recipe"),
@@ -20,7 +20,7 @@ export const listRecipesInputSchema = {
   })).describe("List of recipes to display"),
 };
 
-export const listRestaurantsInputSchema = {
+export const showRestaurantsInputSchema = {
   dishName: z.string().describe("The name of the dish to find restaurants for"),
   restaurants: z.array(z.object({
     name: z.string().describe("Name of the restaurant"),

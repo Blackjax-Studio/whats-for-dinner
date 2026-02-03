@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setSharedOptions, setMealOptions, setCycleTargetRoute, clearRecipes, clearRestaurants, setSharedLandedRestaurant } from './state';
+import { setSharedOptions, setMealOptions, setCycleTargetRoute } from './state';
 import { useToolOutput } from '../../hooks/useOpenAiGlobal';
 
 export function LoadingView() {
@@ -14,10 +14,7 @@ export function LoadingView() {
       setSharedOptions(options);
       setMealOptions(options);
       setCycleTargetRoute('/chosen');
-      clearRecipes();
-      clearRestaurants();
-      setSharedLandedRestaurant(null);
-      navigate('/cycler');
+      navigate('/start-spin');
     } else {
       console.log('Waiting for toolOutput options');
     }
@@ -42,15 +39,6 @@ export function LoadingView() {
         padding: '4px',
         boxSizing: 'border-box'
       }}>
-        <div style={{
-          fontFamily: "'Alfa Slab One', serif",
-          fontSize: '1.8rem',
-          color: 'var(--accent, #0062FF)',
-          padding: '8px 16px',
-          marginBottom: '16px'
-        }}>
-          Loading up the options
-        </div>
         <div style={{
           width: '100%',
           maxWidth: '300px',

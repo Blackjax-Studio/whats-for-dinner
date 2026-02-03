@@ -36,20 +36,3 @@ export function setCycleTargetRoute(route: string) {
   cycleTargetRoute = route;
   notify();
 }
-
-export function clearRecipes() {
-  // Keeping this for compatibility in LoadingView.tsx for now, 
-  // but it doesn't do anything since recipes state is gone from here.
-  notify();
-}
-
-export function clearRestaurants() {
-  // Keeping this for compatibility in LoadingView.tsx for now,
-  // but it doesn't do anything since restaurants state is gone from here.
-  notify();
-}
-
-export function setSharedLandedRestaurant(r: any) {
-    // Keeping this for compatibility in LoadingView.tsx
-    notify();
-}

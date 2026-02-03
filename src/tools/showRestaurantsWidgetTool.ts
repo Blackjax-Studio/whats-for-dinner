@@ -1,13 +1,13 @@
 import { logger } from "../logger.js";
 import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
-import { listRestaurantsInputSchema } from "../mcpSchemas.js";
+import { showRestaurantsInputSchema } from "../mcpSchemas.js";
 
 export const showRestaurantsWidgetTool = {
   name: "show_restaurants_widget",
   config: {
     title: "Show Restaurants Widget",
     description: "ONLY used to show the restaurants widget with the specified restaurants. This tool does NOT retrieve any data itself; the model must provide the restaurant data to it. Use this tool when you want to display a list of restaurants to the user in an interactive widget.",
-    inputSchema: listRestaurantsInputSchema,
+    inputSchema: showRestaurantsInputSchema,
     _meta: {
       "openai/outputTemplate": "ui://widget/restaurants.html",
       "openai/widgetAccessible": true,

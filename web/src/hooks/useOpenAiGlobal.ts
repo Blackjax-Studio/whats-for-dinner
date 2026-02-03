@@ -3,8 +3,10 @@ import { useSyncExternalStore } from 'react';
 export type OpenAiGlobals = {
   toolInput?: any;
   toolOutput?: {
+    dishName?: string;
     options?: Array<{ title?: string; name?: string; description?: string; type?: string }>;
     structuredContent?: {
+        dishName?: string;
         options?: Array<{ title?: string; name?: string; description?: string; type?: string }>;
     };
   };
