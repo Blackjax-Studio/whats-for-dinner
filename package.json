@@ -44,7 +44,7 @@
     "build:web": "cd web && npm install && npm run build",
     "build": "npm run build:web && npm run build:server && chmod +x dist/app.js",
     "start": "npm run build && node dist/app.js",
-    "test": "vitest run",
+    "test": "npm run build:server && vitest run --coverage",
     "test:coverage": "vitest run --coverage",
     "inspect": "npx @modelcontextprotocol/inspector@latest --server-url http://localhost:8787/mcp --transport https"
   },
