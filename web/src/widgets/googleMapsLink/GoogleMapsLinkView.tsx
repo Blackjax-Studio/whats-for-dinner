@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useToolOutput } from '../../hooks/useOpenAiGlobal';
 
 export function GoogleMapsLinkView() {
+  const [poiName, setPoiName] = useState<string>('');
   const [address, setAddress] = useState<string>('');
   const [zipCode, setZipCode] = useState<string>('');
   const toolOutput = useToolOutput();
@@ -11,6 +12,7 @@ export function GoogleMapsLinkView() {
     if (window.openai?.getPayload) {
       const payload = window.openai.getPayload();
       if (payload) {
+        if (payload.poiName) setPoiName(payload.poiName);
         if (payload.address) setAddress(payload.address);
         if (payload.zipCode) setZipCode(payload.zipCode);
       }
@@ -20,33 +22,60 @@ export function GoogleMapsLinkView() {
     if (toolOutput) {
       const structuredContent = toolOutput.structuredContent;
       if (structuredContent) {
+        if (structuredContent.poiName) setPoiName(structuredContent.poiName);
         if (structuredContent.address) setAddress(structuredContent.address);
         if (structuredContent.zipCode) setZipCode(structuredContent.zipCode);
       } else {
         // Fallback to top-level fields if not in structuredContent
+        if (toolOutput.poiName) setPoiName(toolOutput.poiName);
         if (toolOutput.address) setAddress(toolOutput.address);
         if (toolOutput.zipCode) setZipCode(toolOutput.zipCode);
       }
     }
   }, [toolOutput]);
 
-  if (!address && !zipCode) {
+  if (!poiName && !address && !zipCode) {
     return (
       <div style={{
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
-        minHeight: '400px',
-        fontFamily: 'sans-serif',
-        color: '#666'
+        padding: '24px',
+        boxSizing: 'border-box',
+        backgroundColor: 'var(--bg-color, #FFFFFF)'
       }}>
-        Loading map...
+        <div style={{
+          fontFamily: "'Alfa Slab One', serif",
+          fontSize: '1.2rem',
+          color: 'var(--accent, #0062FF)',
+          marginBottom: '16px'
+        }}>
+          Preparing Link...
+        </div>
+        <div style={{
+          width: '100%',
+          maxWidth: '300px',
+          height: '6px',
+          backgroundColor: 'var(--bg-muted, #F0F0F0)',
+          borderRadius: '3px',
+          overflow: 'hidden',
+          position: 'relative'
+        }}>
+          <div style={{
+            position: 'absolute',
+            height: '100%',
+            backgroundColor: 'var(--accent, #0062FF)',
+            borderRadius: '3px',
+            animation: 'indeterminate 1.5s infinite linear'
+          }} />
+        </div>
       </div>
     );
   }
 
-  const query = encodeURIComponent(`${address} ${zipCode}`);
+  const query = encodeURIComponent(`${poiName} ${address} ${zipCode}`.trim());
   const mapUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
 
   return (
@@ -62,6 +91,14 @@ export function GoogleMapsLinkView() {
       textAlign: 'center',
       gap: '16px'
     }}>
+      <div style={{
+        fontFamily: "'Alfa Slab One', serif",
+        fontSize: '1.2rem',
+        color: 'var(--accent, #0062FF)',
+        marginBottom: '8px'
+      }}>
+        {poiName}
+      </div>
       <a
         href={mapUrl}
         target="_blank"

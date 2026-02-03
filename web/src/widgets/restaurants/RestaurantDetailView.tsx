@@ -31,11 +31,12 @@ export function RestaurantDetailView() {
   };
 
   const handleLetsGo = async () => {
-    const message = `Do not respond to the user with text. Instead, first look up information about the restaurant "${restaurant.name}" at "${restaurant.location}" using web search tools if available to get the most accurate and up-to-date address. Then, call the show_map_widget tool to provide a Google Maps link.
+    const message = `Do not respond to the user with text. Instead, first look up information about the restaurant "${restaurant.name}" at "${restaurant.location}" using web search tools if available to get the most accurate and up-to-date address. Then, call the show_google_maps_link tool to provide a Google Maps link.
 
 For the tool input:
 1. Use as fine-grained a starting address for the user as possible (using their known location details), but at least providing the closest zip code.
-2. Provide the full address and zip code for "${restaurant.name}" obtained from your search.
+2. Provide "${restaurant.name}" as the poiName.
+3. Provide the full address and zip code for "${restaurant.name}" obtained from your search.
 
 The goal is to show a link to the restaurant on Google Maps for the user.`;
 

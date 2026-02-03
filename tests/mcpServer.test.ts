@@ -29,14 +29,14 @@ describe("mcpServer", () => {
     );
 
     expect(registerToolSpy).toHaveBeenCalledWith(
-      "show_map_widget",
+      "show_google_maps_link",
       expect.any(Object),
       expect.any(Function)
     );
 
     expect(registerResourceSpy).toHaveBeenCalledWith(
-      "map-widget",
-      "ui://widget/map.html",
+      "google-maps-link-widget",
+      "ui://widget/google-maps-link.html",
       expect.any(Object),
       expect.any(Function)
     );

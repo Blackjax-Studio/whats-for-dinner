@@ -32,7 +32,8 @@ export const showRestaurantsInputSchema = {
   })).describe("List of restaurants to display"),
 };
 
-export const showMapWidgetInputSchema = {
+export const showGoogleMapsLinkInputSchema = {
+  poiName: z.string().optional().describe("The name of the point of interest (e.g., restaurant name)"),
   address: z.string().optional().describe("The full address of the restaurant"),
   zipCode: z.string().describe("The zip code of the restaurant"),
 };
