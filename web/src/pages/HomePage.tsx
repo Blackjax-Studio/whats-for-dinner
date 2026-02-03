@@ -28,7 +28,7 @@ export default function HomePage() {
       </div>
 
       <div className="card" style={{ textAlign: 'center', padding: '40px 28px', marginTop: '40px' }}>
-        <h2 style={{ margin: '0 0 24px', fontFamily: 'var(--display)', fontSize: '1.4rem', fontWeight: 400 }}>
+        <h2 style={{ margin: '0 0 24px', fontFamily: 'var(--display)', fontSize: '1.4rem', fontWeight: 400, color: 'var(--text-title)' }}>
           Built with ❤️ as an open-source MCP tool.
         </h2>
         <div style={{ display: 'flex', justifyContent: 'center' }}>

@@ -20,6 +20,14 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --bg: #0f172a;
+        --card: #1e293b;
+        --card2: #0f172a;
+        --border: #334155;
+        --text: #f1f5f9;
+        --muted: #94a3b8;
+        --muted2: #64748b;
+        --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         --text-title: #ffffff;
     }
 }
@@ -76,14 +84,13 @@ a:hover {
     justify-content: space-between;
     gap: 12px;
     padding: 24px 16px;
-    margin-bottom: 0;
+    margin-bottom: 24px;
     position: relative;
-    z-index: 10;
-    color: white; /* Make text white to overlay video */
+    z-index: 100;
 }
 
 .topbar .nav-btn {
-    color: white;
+    color: var(--text);
     background: transparent;
     border: none;
     cursor: pointer;
@@ -91,9 +98,6 @@ a:hover {
     padding: 8px 12px;
 }
 
-.brandtext strong {
-    color: white;
-}
 
 .brand {
     display: flex;
@@ -114,7 +118,7 @@ a:hover {
     height: 48px;
     border-radius: 14px;
     border: 1px solid var(--border);
-    background: #f3f4f6;
+    background: var(--card2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -137,7 +141,7 @@ a:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: inherit;
+    color: var(--text-title);
 }
 
 .brandtext span {
@@ -170,7 +174,7 @@ a:hover {
     font-weight: 400;
     letter-spacing: -0.03em;
     line-height: 1.12;
-    color: #111827;
+    color: var(--text-title);
 }
 
 .subhead {
@@ -193,7 +197,7 @@ a:hover {
     padding: 8px 10px;
     border-radius: 999px;
     border: 1px solid var(--border);
-    background: #f9fafb;
+    background: var(--card2);
     color: var(--muted);
     font-size: 0.86rem;
 }
@@ -218,7 +222,7 @@ a:hover {
     padding: 12px 16px;
     border-radius: 14px;
     border: 1px solid var(--border);
-    background: #f3f4f6;
+    background: var(--card2);
     color: var(--text);
     font-weight: 700;
     text-decoration: none;
@@ -228,7 +232,7 @@ a:hover {
 }
 
 .btn:hover {
-    background: #e5e7eb;
+    background: var(--border);
     transform: translateY(-1px);
     text-decoration: none;
 }
@@ -263,20 +267,18 @@ a:hover {
 }
 
 .btn.ghost:hover {
-    background: #f9fafb;
+    background: var(--card2);
 }
 
 .full-width-hero {
     position: relative;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    margin-top: -96px; /* Offset the topbar height to overlay it */
-    min-height: 80vh;
+    min-height: 60vh;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #0f172a;
 }
 
 .hero-video-bg {
@@ -285,7 +287,6 @@ a:hover {
     max-width: 450px; /* Narrower video container */
     margin: 0 auto;
     z-index: 1;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
 .hero-video-bg video {
@@ -301,7 +302,6 @@ a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
     pointer-events: none;
     z-index: 2;
 }
@@ -311,30 +311,30 @@ a:hover {
     z-index: 10;
     text-align: center;
     padding: 60px 20px;
-    background: var(--bg-gradient);
 }
 
 .hero-title {
     font-family: var(--display);
-    font-size: 3.5rem;
+    font-size: 2.2rem;
     margin: 0 0 16px;
-    color: #111827; /* Dark text */
+    color: var(--text-title); /* Dark text */
     line-height: 1.1;
 }
 
 .hero-subtitle {
-    font-size: 1.8rem;
+    font-size: 3.5rem;
     margin: 0;
-    color: #374151; /* Dark grey text */
+    color: var(--text); /* Dark grey text */
     opacity: 0.9;
+    font-family: var(--display);
 }
 
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 1.6rem;
     }
     .hero-subtitle {
-        font-size: 1.3rem;
+        font-size: 2.2rem;
     }
 }
 
@@ -342,7 +342,7 @@ a:hover {
     margin-top: 24px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    background: #000;
+    background: var(--card2);
     overflow: hidden;
     box-shadow: var(--shadow);
 }
@@ -352,7 +352,7 @@ a:hover {
     padding: 20px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    background: #f9fafb;
+    background: var(--card2);
     text-align: center;
     min-height: 120px;
     display: flex;
@@ -374,12 +374,12 @@ a:hover {
     font-family: var(--display);
     font-size: 2.2rem;
     font-weight: 400;
-    color: #374151;
+    color: var(--text);
     transition: all 0.1s ease;
 }
 
 .cycleText.final {
-    color: #000000;
+    color: var(--text-title);
     font-size: 2rem;
     font-weight: 400;
     line-height: 1.2;
@@ -392,7 +392,7 @@ a:hover {
     gap: 14px;
     position: relative;
     overflow: hidden;
-    background: #f9fafb;
+    background: var(--card2);
 }
 
 .sideTop {
@@ -428,10 +428,10 @@ a:hover {
 
 .notice {
     border-left: 4px solid var(--accent2);
-    background: #f0fdf4;
+    background: var(--card2);
     padding: 12px 12px;
     border-radius: 12px;
-    color: #166534;
+    color: var(--accent2);
     font-size: 0.95rem;
 }
 
@@ -445,7 +445,7 @@ a:hover {
     padding: 16px 16px;
     border-radius: 16px;
     border: 1px solid var(--border);
-    background: #ffffff;
+    background: var(--card);
 }
 
 .featureCard h3 {
@@ -472,7 +472,7 @@ a:hover {
     padding: 16px 20px;
     border: 1px solid var(--border);
     border-radius: 14px;
-    background: #f9fafb;
+    background: var(--card2);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -497,14 +497,14 @@ a:hover {
     padding: 6px 12px;
     border-radius: 999px;
     border: 1px solid var(--border);
-    background: #ffffff;
+    background: var(--card);
     transition: background .2s ease, transform .2s ease;
     cursor: pointer;
     font-family: inherit;
 }
 
 .footerLinks button:hover {
-    background: #f3f4f6;
+    background: var(--card2);
     transform: translateY(-1px);
     text-decoration: none;
     color: var(--text);
@@ -536,7 +536,7 @@ a:hover {
 }
 
 .nav-btn:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--card2);
     color: var(--text);
 }
 
