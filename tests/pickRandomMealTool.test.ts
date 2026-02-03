@@ -10,8 +10,7 @@ describe('pickRandomMealTool', () => {
     expect(result.structuredContent).toBeDefined();
     const options = (result.structuredContent as any).options;
     expect(options).toBeInstanceOf(Array);
-    expect(options.length).toBeGreaterThan(0);
-    expect(options.length).toBeLessThanOrEqual(70);
+    expect(options.length).toBe(50);
   });
 
   it('should use the logger from extra if provided', async () => {

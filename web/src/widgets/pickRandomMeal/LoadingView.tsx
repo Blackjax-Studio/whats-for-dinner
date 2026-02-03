@@ -15,6 +15,8 @@ export function LoadingView() {
       setMealOptions(options);
       setCycleTargetRoute('/chosen');
       navigate('/start-spin');
+    } else if (toolOutput) {
+      console.log('toolOutput present but no options found');
     } else {
       console.log('Waiting for toolOutput options');
     }
