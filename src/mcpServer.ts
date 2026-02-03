@@ -59,12 +59,12 @@ export function createWhatsForDinnerServer() {
     pickRandomRestaurantWidget.handler
   );
 
-  server.registerResource(
-    aboutAppWidget.name,
-    aboutAppWidget.uri,
-    aboutAppWidget.options,
-    aboutAppWidget.handler
-  );
+  // server.registerResource(
+  //   aboutAppWidget.name,
+  //   aboutAppWidget.uri,
+  //   aboutAppWidget.options,
+  //   aboutAppWidget.handler
+  // );
 
   server.registerTool(
     pickRandomMealTool.name,
@@ -102,11 +102,11 @@ export function createWhatsForDinnerServer() {
     (args: any, extra: any) => pickRandomRestaurantTool.handler(args, extra)
   );
 
-  server.registerTool(
-    aboutAppTool.name,
-    aboutAppTool.config,
-    (args: any, extra: any) => aboutAppTool.handler(args, extra)
-  );
+  // server.registerTool(
+  //   aboutAppTool.name,
+  //   aboutAppTool.config,
+  //   (args: any, extra: any) => aboutAppTool.handler(args, extra)
+  // );
 
   return server;
 }
