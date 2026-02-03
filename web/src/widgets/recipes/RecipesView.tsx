@@ -92,7 +92,7 @@ export function RecipesView() {
             color: 'var(--accent, #0062FF)',
             marginBottom: '16px'
           }}>
-            Finding Recipes...
+            Getting Recipes...
           </div>
           <div style={{
             width: '100%',

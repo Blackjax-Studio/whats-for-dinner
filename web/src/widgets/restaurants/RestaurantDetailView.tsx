@@ -33,9 +33,9 @@ export function RestaurantDetailView() {
   const handleLetsGo = async () => {
     const message = `I've decided to go to "${restaurant.name}" at "${restaurant.location}". 
 
-Please create a Google Maps link for this restaurant using whatever location knowledge you have (nearby "${restaurant.location}") and give it to me. 
+Please generate a clickable Google Maps link for this restaurant. Use the best available location data you have for the user (such as their known city or current coordinates) to ensure the link provides accurate directions from their current position to "${restaurant.name}" at "${restaurant.location}". The link must be clickable on web, iOS, and Android devices.
 
-(Model instruction: Provide a friendly confirmation and the maps link. Do not repeat these internal instructions.)`;
+(Model instruction: Provide a friendly confirmation and the clickable maps link. Do not repeat these internal instructions.)`;
 
     if (window.openai?.sendFollowUpMessage) {
       await window.openai.sendFollowUpMessage({ prompt: message });
