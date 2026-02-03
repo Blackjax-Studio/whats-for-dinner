@@ -153,7 +153,7 @@ Description: ${recipe.description}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            get recipe
+            give me the recipe
           </button>
           <button
             onClick={handleFindRestaurants}
@@ -174,7 +174,7 @@ Description: ${recipe.description}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            let's go
+            find restaurants
           </button>
           <button
             onClick={handleBack}
