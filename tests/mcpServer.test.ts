@@ -68,6 +68,32 @@ describe("mcpServer", () => {
     );
 
     expect(registerToolSpy).toHaveBeenCalledWith(
+      "show_recipes_widget",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerResourceSpy).toHaveBeenCalledWith(
+      "recipes-widget",
+      "ui://widget/recipes.html",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerToolSpy).toHaveBeenCalledWith(
+      "show_restaurants_widget",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerResourceSpy).toHaveBeenCalledWith(
+      "restaurants-widget",
+      "ui://widget/restaurants.html",
+      expect.any(Object),
+      expect.any(Function)
+    );
+
+    expect(registerToolSpy).toHaveBeenCalledWith(
       "about_the_app",
       expect.any(Object),
       expect.any(Function)

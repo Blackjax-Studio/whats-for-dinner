@@ -1,0 +1,34 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="plateGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e9ecef;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4dabf7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1c7ed6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#69db7c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2f9e44;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background/Plate -->
+  <circle cx="256" cy="256" r="180" fill="url(#plateGradient)" stroke="#dee2e6" stroke-width="8" />
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#e9ecef" stroke-width="4" />
+  <circle cx="256" cy="256" r="130" fill="none" stroke="#dee2e6" stroke-width="2" />
+
+  <!-- Fork (Blue) -->
+  <g transform="translate(221 256)">
+    <!-- Simplified Fork Path -->
+    <path d="M-12 140 Q-15 150 0 150 Q15 150 12 140 L12 0 L25 0 Q25 -60 25 -100 L18 -100 L18 -40 L10 -40 L10 -100 L3 -100 L3 -40 L-3 -40 L-3 -100 L-10 -100 L-10 -40 L-18 -40 L-18 -100 L-25 -100 Q-25 -60 -25 0 L-12 0 Z" fill="url(#blueGradient)" stroke="#1864ab" stroke-width="2" />
+  </g>
+  <!-- Knife (Green) -->
+  <g transform="translate(291 256)">
+    <!-- Simplified Knife Path -->
+    <path d="M-12 140 Q-15 150 0 150 Q15 150 12 140 L12 0 L15 0 Q25 -100 15 -140 Q0 -140 -12 -120 L-12 0 Z" fill="url(#greenGradient)" stroke="#2b8a3e" stroke-width="2" />
+  </g>
+
+  <!-- Inner Plate Circle for depth -->
+  <circle cx="256" cy="256" r="120" fill="none" stroke="#dee2e6" stroke-width="1" opacity="0.5"/>
+</svg>
