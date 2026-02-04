@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import Layout from '../components/Layout';
-import { howItWorksVideos, platformOptions, type ActionKey, type Platform } from '../config/howItWorksVideos';
+import { actionOrder, howItWorksVideos, platformOptions, type ActionKey, type Platform } from '../config/howItWorksVideos';
 
 export default function HowItWorksPage() {
   const [platform, setPlatform] = useState<Platform>('web');
-  const [action, setAction] = useState<ActionKey>('pick-restaurant');
+  const [action, setAction] = useState<ActionKey>(actionOrder[0] ?? 'pick-restaurant');
   const videoRef = useRef<HTMLVideoElement>(null);
   const currentAction = howItWorksVideos[action];
   const availablePlatformsForAction = useMemo(
@@ -97,9 +97,9 @@ export default function HowItWorksPage() {
                   onChange={(e) => setAction(e.target.value as ActionKey)}
                   className="platform-dropdown"
                 >
-                  {Object.entries(howItWorksVideos).map(([key, config]) => (
+                  {actionOrder.map((key) => (
                     <option key={key} value={key}>
-                      {config.label}
+                      {howItWorksVideos[key].label}
                     </option>
                   ))}
                 </select>

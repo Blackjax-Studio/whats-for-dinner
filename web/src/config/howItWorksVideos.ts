@@ -3,18 +3,12 @@ export type Platform = 'web' | 'ios' | 'android';
 export const platformOptions: Platform[] = ['web', 'ios', 'android'];
 
 export const howItWorksVideos = {
-  'pick-restaurant': {
-    label: 'Pick a restaurant',
-    platforms: {
-      web: '/videos/spin_restaurants.mp4',
-      ios: '/videos/pick_restaurant_ios.MP4',
-    },
-  },
   'pick-meal': {
     label: 'Pick a meal',
     platforms: {
       web: '/videos/i_cant_decide.mp4',
       ios: '/videos/i_cant_decide_ios.mp4',
+      android: '/videos/pick_meal_android.mp4',
     },
   },
   'pick-recipe': {
@@ -22,6 +16,14 @@ export const howItWorksVideos = {
     platforms: {
       web: '/videos/spin_recipes.mp4',
       ios: '/videos/recipe_ios.mp4',
+      android: '/videos/pick_recipe_android.mp4',
+    },
+  },
+  'pick-restaurant': {
+    label: 'Pick a restaurant',
+    platforms: {
+      web: '/videos/spin_restaurants.mp4',
+      ios: '/videos/pick_restaurant_ios.MP4',
     },
   },
   'meal-then-restaurant': {
@@ -55,3 +57,13 @@ export const howItWorksVideos = {
 } as const;
 
 export type ActionKey = keyof typeof howItWorksVideos;
+
+export const actionOrder: ActionKey[] = [
+  'pick-meal',
+  'pick-recipe',
+  'pick-restaurant',
+  'meal-then-restaurant',
+  'meal-then-recipe',
+  'restaurant-then-recipe',
+  'recipe-then-restaurant',
+];
