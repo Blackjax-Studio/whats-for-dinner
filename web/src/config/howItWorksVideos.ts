@@ -7,6 +7,7 @@ export const howItWorksVideos = {
     label: 'Pick a restaurant',
     platforms: {
       web: '/videos/spin_restaurants.mp4',
+      ios: '/videos/pick_restaurant_ios.MP4',
     },
   },
   'pick-meal': {
@@ -27,18 +28,21 @@ export const howItWorksVideos = {
     label: 'Pick a meal then find a restaurant',
     platforms: {
       web: '/videos/pick_meal_then_restaurant.mp4',
+      ios: '/videos/meal_then_restaurant_ios.MP4',
     },
   },
   'meal-then-recipe': {
     label: 'Pick a meal then find a recipe',
     platforms: {
       web: '/videos/pick_meal_then_recipe.mp4',
+      ios: '/videos/meal_then_recipes_ios.MP4',
     },
   },
   'restaurant-then-recipe': {
     label: 'Pick a restaurant then find recipes',
     platforms: {
       web: '/videos/pick_restaurant_then_recipe.mp4',
+      ios: '/videos/restaurant_then_recipes_ios.MP4',
     },
   },
   'recipe-then-restaurant': {
