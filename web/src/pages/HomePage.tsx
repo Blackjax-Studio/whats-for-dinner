@@ -11,7 +11,7 @@ export default function HomePage() {
             loop
             playsInline
           >
-            <source src="/videos/web/i_cant_decide.mp4" type="video/mp4" />
+            <source src="/videos/i_cant_decide.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <div className="hero-overlay"></div>

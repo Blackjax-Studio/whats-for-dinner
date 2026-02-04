@@ -1,51 +1,25 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import Layout from '../components/Layout';
-
-const actionConfig = {
-  'pick-restaurant': {
-    label: 'Pick a restaurant',
-    video: '/videos/web/spin_restaurants.mp4',
-  },
-  'pick-meal': {
-    label: 'Pick a meal',
-    video: '/videos/web/i_cant_decide.mp4',
-  },
-  'pick-recipe': {
-    label: 'Pick a recipe',
-    video: '/videos/web/spin_recipes.mp4',
-  },
-  'meal-then-restaurant': {
-    label: 'Pick a meal then find a restaurant',
-    video: '/videos/web/pick_meal_then_restaurant.mp4',
-  },
-  'meal-then-recipe': {
-    label: 'Pick a meal then find a recipe',
-    video: '/videos/web/pick_meal_then_recipe.mp4',
-  },
-  'restaurant-then-recipe': {
-    label: 'Pick a restaurant then find recipes',
-    video: '/videos/web/pick_restaurant_then_recipe.mp4',
-  },
-  'recipe-then-restaurant': {
-    label: 'Pick a recipe then find a restaurant',
-    video: '/videos/web/pick_recipe_then_restaurant.mp4',
-  },
-} as const;
-
-type ActionKey = keyof typeof actionConfig;
+import { howItWorksVideos, platformOptions, type ActionKey, type Platform } from '../config/howItWorksVideos';
 
 export default function HowItWorksPage() {
+  const [platform, setPlatform] = useState<Platform>('web');
   const [action, setAction] = useState<ActionKey>('pick-restaurant');
   const videoRef = useRef<HTMLVideoElement>(null);
-  const currentAction = actionConfig[action];
+  const currentAction = howItWorksVideos[action];
+  const availablePlatformsForAction = useMemo(
+    () => Object.keys(currentAction.platforms) as Platform[],
+    [currentAction]
+  );
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.load();
     }
-  }, [action]);
+  }, [platform, action]);
 
-  const videoSrc = currentAction.video;
+  const videoSrc = currentAction.platforms[platform];
+  const isVideoAvailable = availablePlatformsForAction.includes(platform);
 
   return (
     <Layout>
@@ -82,31 +56,71 @@ export default function HowItWorksPage() {
 
           <div className="how-it-works-video">
             <div className="video-wrapper">
-              <video
-                ref={videoRef}
-                autoPlay
-                muted
-                loop
-                playsInline
-                style={{ width: '100%', borderRadius: '12px', border: '1px solid var(--border)' }}
-              >
-                <source src={videoSrc} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              {isVideoAvailable ? (
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  style={{ width: '100%', borderRadius: '12px', border: '1px solid var(--border)' }}
+                >
+                  <source src={videoSrc} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <div
+                  style={{
+                    width: '100%',
+                    borderRadius: '12px',
+                    border: '1px solid var(--border)',
+                    padding: '48px 24px',
+                    textAlign: 'center',
+                    color: 'var(--text-muted)',
+                    background: 'rgba(255, 255, 255, 0.5)',
+                  }}
+                >
+                  No video available for this action and platform yet.
+                </div>
+              )}
 
               <div className="platform-selector">
-                <label htmlFor="action-select">Action:</label>
+                <label htmlFor="action-select">
+                  Action:
+                  <span style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                    Actions available for all platforms.
+                  </span>
+                </label>
                 <select
                   id="action-select"
                   value={action}
                   onChange={(e) => setAction(e.target.value as ActionKey)}
                   className="platform-dropdown"
                 >
-                  {Object.entries(actionConfig).map(([key, config]) => (
+                  {Object.entries(howItWorksVideos).map(([key, config]) => (
                     <option key={key} value={key}>
                       {config.label}
                     </option>
                   ))}
+                </select>
+              </div>
+
+              <div className="platform-selector">
+                <label htmlFor="platform-select">Watch action on:</label>
+                <select
+                  id="platform-select"
+                  value={platform}
+                  onChange={(e) => setPlatform(e.target.value as Platform)}
+                  className="platform-dropdown"
+                >
+                  {platformOptions.map((availablePlatform) => {
+                    const isEnabled = availablePlatformsForAction.includes(availablePlatform);
+                    return (
+                      <option key={availablePlatform} value={availablePlatform} disabled={!isEnabled}>
+                        {availablePlatform === 'ios' ? 'iOS' : availablePlatform.charAt(0).toUpperCase() + availablePlatform.slice(1)}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
             </div>
